@@ -1,1 +1,1 @@
-# Auto-management
+auto-management-releases
