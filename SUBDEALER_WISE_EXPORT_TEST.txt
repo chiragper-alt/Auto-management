@@ -1,0 +1,8 @@
+v1.9.13 Sub-Dealer Wise Export test build.
+
+Button: Sub-Dealer Wise Export
+Input: current filtered records
+Output: ONE Excel workbook, one worksheet, grouped sequentially by Sub-Dealer.
+Each group repeats a Sub-Dealer title and the existing report-style column headers.
+Sr. No. restarts at 1 for each Sub-Dealer.
+Existing import/search/selected-export logic is not replaced.

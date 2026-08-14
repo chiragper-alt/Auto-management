@@ -1,0 +1,4 @@
+UI/export presentation-only refinement for v1.9.13 testing:
+1. Each Sub-Dealer title is centered across all 8 report columns.
+2. All borders are applied to the title, header, and every data cell for each dealer group.
+3. Existing grouping, filtering, import, search and export data logic is unchanged.

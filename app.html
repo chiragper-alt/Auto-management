@@ -1,0 +1,2836 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b3157">
+  <link rel="icon" type="image/svg+xml" href="chirag-solanki-logo.svg">
+  <title>Auto Management</title>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+  <style>
+    :root{--navy:#082d50;--navy-2:#104b7c;--blue:#1877c9;--blue-soft:#eaf5ff;--ink:#13273a;--muted:#66778a;--line:#dce6ef;--bg:#f3f7fa;--card:#fff;--green:#168255;--amber:#a75d00;--red:#bd2c2d;--shadow:0 10px 28px rgba(22,55,86,.08);--radius:16px}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,Segoe UI,Arial,sans-serif}.app{min-height:100vh;display:grid;grid-template-columns:248px minmax(0,1fr)}
+    .sidebar{background:var(--navy);color:#d7e7f5;padding:24px 14px;display:flex;flex-direction:column;gap:28px;position:sticky;top:0;height:100vh}.side-brand{padding:2px 10px}.side-brand img{width:100%;max-height:64px;object-fit:contain;object-position:left}.side-app-name{margin-top:11px;color:rgba(255,255,255,.96);font-size:21px;line-height:1.15;font-weight:500;letter-spacing:-.25px;text-shadow:0 1px 2px rgba(0,0,0,.2)}.side-brand p{font-size:10px;letter-spacing:.04em;margin:6px 0 0;color:#a9d4f2}.nav-label{padding:0 12px;color:#81a5c4;font-size:10px;letter-spacing:.12em;font-weight:800}.nav a{display:flex;align-items:center;gap:11px;color:#cfe1f1;text-decoration:none;border-radius:9px;padding:11px 12px;margin:4px 0;font-weight:650}.nav a:hover,.nav a.active{background:#1765a6;color:#fff}.nav i{font-style:normal;font-size:17px;width:20px;text-align:center}.side-footer{margin-top:auto;border-top:1px solid #2b5578;padding:16px 10px 0;font-size:11px;line-height:1.7;color:#a9c3d9}.side-footer strong,.side-footer span{display:block}.side-footer strong{color:#fff;margin-bottom:2px;font-size:11px}.side-footer a{color:#9fd5ff;text-decoration:none;font-weight:700}.side-footer a:hover{text-decoration:underline}
+    main{min-width:0}.topbar{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:20px}.crumb{color:var(--muted);font-size:12px}.crumb b{display:block;color:var(--ink);font-size:18px;margin-top:1px}.top-meta{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px}.secure{background:#e9f8ef;color:#137445;border-radius:999px;padding:6px 10px;font-weight:750}.content{max-width:1540px;padding:28px 32px 48px}
+    .intro{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:22px}.intro h1{font-size:32px;line-height:1.1;margin:0;color:#062d52;font-weight:850;letter-spacing:-.8px;text-shadow:0 1px rgba(255,255,255,.74)}.intro p{margin:6px 0 0;color:#385b78;font-size:14px;font-weight:600}.last-import{font-size:12px;color:var(--muted);text-align:right}.last-import b{display:block;color:var(--ink);font-size:13px}
+    .stats{display:grid;grid-template-columns:repeat(5,minmax(130px,1fr));gap:14px;margin-bottom:22px}.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:17px;box-shadow:var(--shadow);position:relative;overflow:hidden}.stat:before{content:"";position:absolute;width:42px;height:42px;right:-12px;top:-12px;border-radius:50%;background:var(--blue-soft)}.stat-label{font-size:12px;color:var(--muted);font-weight:650}.stat b{display:block;font-size:28px;line-height:1;margin-top:9px;color:var(--navy)}.stat.pending b{color:var(--amber)}.stat.complete b{color:var(--green)}
+    .card{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:var(--radius);margin-bottom:18px}.card-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:18px}.card-head h2{font-size:16px;margin:0;color:var(--navy)}.card-head p{margin:3px 0 0;color:var(--muted);font-size:12px}.card-body{padding:20px}.notice{background:#f0f8ff;border:1px solid #c9e5fb;border-radius:11px;padding:11px 13px;color:#275476;font-size:12px;margin-bottom:17px}.notice b{color:#0c4d80}
+    .uploads{display:grid;grid-template-columns:1fr 1fr;gap:16px}.upload{border:1.5px dashed #aecce4;border-radius:13px;padding:17px;background:#fbfdff;transition:.15s}.upload:focus-within{border-color:var(--blue);background:var(--blue-soft)}.upload-title{font-weight:750;color:var(--navy);display:block;margin-bottom:4px}.upload-help{font-size:12px;color:var(--muted);display:block;margin-bottom:12px}.file-input{position:relative}.file-input input{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:2}.file-display{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.file-display:before{content:"⌁";color:var(--blue);font-size:18px;font-weight:bold;margin-right:8px;vertical-align:-1px}
+    button{border:0;border-radius:9px;min-height:40px;padding:9px 14px;font:700 13px Inter,Segoe UI,Arial,sans-serif;cursor:pointer;transition:.16s;background:var(--navy);color:#fff}button:hover{transform:translateY(-1px);filter:brightness(1.06)}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid rgba(24,119,201,.22);outline-offset:1px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}.primary{background:var(--blue)}.secondary{background:#edf4f9;color:#205276;border:1px solid #d1e0eb}.success{background:var(--green)}.danger{background:#fff1f1;color:var(--red);border:1px solid #f3c6c6}.danger:hover{background:var(--red);color:#fff}.import-status{margin:14px 0 0;font-size:12px;color:var(--muted)}.import-status:empty{display:none}
+    .mapping-toggle{text-align:right;margin:0 0 12px}.mapping-toggle button{min-height:34px;padding:6px 12px;background:#fff;color:var(--blue);border:1px solid #b7d6ed}.hidden{display:none!important}.maps{display:grid;grid-template-columns:1fr 1fr;gap:16px}.map{padding:16px;border:1px solid var(--line);border-radius:12px;background:#fbfdff}.map-title{color:var(--navy);font-weight:800;margin-bottom:10px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.map label{display:block;font-size:11px;font-weight:750;color:#51677a;margin-bottom:4px}select,input[type=text],input[type=date]{width:100%;border:1px solid #cbd9e5;border-radius:8px;padding:9px;background:#fff;color:var(--ink)}
+    .filters{display:grid;grid-template-columns:minmax(260px,2fr) 1fr 1fr auto;gap:10px;align-items:end}.filter-field label{font-size:11px;font-weight:750;color:var(--muted);display:block;margin-bottom:5px}.filter-actions button{width:100%;background:#edf4f9;color:#205276;border:1px solid #d1e0eb}.records-head-actions{display:flex;gap:8px;align-items:center}.record-count{font-size:12px;color:var(--muted);white-space:nowrap}.table-wrap{overflow:auto;max-height:570px}.table-wrap table{width:100%;min-width:1270px;border-collapse:separate;border-spacing:0}th{position:sticky;top:0;z-index:1;background:#f1f6fa;color:#425b70;font-size:11px;text-transform:uppercase;letter-spacing:.03em;padding:11px 12px;text-align:left;border-bottom:1px solid var(--line)}td{padding:11px 12px;border-bottom:1px solid #e8eef3;color:#263d50;font-size:12px;white-space:nowrap}tbody tr:hover{background:#f6fbff}.check{width:16px;height:16px;accent-color:var(--blue);vertical-align:middle}.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#fff3d9;color:#9a5a00;font-weight:750;font-size:11px}.badge.complete{background:#dff5e8;color:#147144}.badge.pending-reg{background:#fff0f0;color:#b12e30}.order-yes{color:var(--green);font-weight:750}.order-no{color:var(--amber);font-weight:750}.table-empty{text-align:center;color:var(--muted);padding:35px}
+    .danger-zone{border-color:#f2d4d4;box-shadow:none}.danger-zone .card-head{background:#fffafa}.danger-zone h2{color:#9b3030}.danger-body{padding:15px 20px;display:flex;justify-content:space-between;align-items:center;gap:20px}.danger-body p{margin:0;color:var(--muted);font-size:12px}.danger-actions{display:flex;gap:7px;flex-wrap:nowrap;justify-content:flex-end;white-space:nowrap}.danger-actions button{min-height:32px;padding:6px 10px;font-size:11px}
+    #toast{position:fixed;right:24px;bottom:24px;z-index:10;background:#133c60;color:#fff;padding:13px 16px;border-radius:10px;box-shadow:0 12px 28px #0003;max-width:380px;font-size:13px;transform:translateY(120px);opacity:0;transition:.25s}#toast.show{transform:translateY(0);opacity:1}
+    @media(max-width:1100px){.app{grid-template-columns:76px 1fr}.sidebar{padding:20px 10px}.side-app-name,.side-brand p,.nav span,.nav-label,.side-footer{display:none}.side-brand img{height:37px;object-fit:cover;object-position:left}.nav a{justify-content:center;padding:11px 4px}.nav i{width:auto}.stats{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:720px){.app{display:block}.sidebar{position:static;height:auto;padding:9px 12px;display:flex;flex-direction:row;align-items:center;gap:6px}.side-brand{padding:0;width:45px}.side-brand img{height:32px}.nav{display:flex;gap:2px;flex:1;justify-content:flex-end}.nav a{margin:0}.nav a:nth-child(n+4){display:none}.topbar{height:auto;padding:15px 18px}.top-meta{display:none}.content{padding:20px 14px}.intro{display:block}.last-import{text-align:left;margin-top:10px}.stats{grid-template-columns:1fr 1fr;gap:10px}.stat{padding:14px}.uploads,.maps{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.card-head{padding:15px}.card-body{padding:15px}.danger-body{display:block}.danger-actions{justify-content:flex-start;margin-top:12px;overflow-x:auto;padding-bottom:2px}}
+  
+/* v1.9.13 UI-only: Mapping panel collapsed by default after import */
+.mapping-section.collapsed-default,
+.mapping-container.collapsed-default {
+  max-height: 0 !important;
+  overflow: hidden !important;
+}
+
+</style>
+  <style>
+    /* Windows 11-inspired Mica / Acrylic layer */
+    :root{--navy:#0d3158;--navy-2:#123f70;--blue:#1877c9;--blue-soft:rgba(92,190,255,.16);--ink:#10273d;--muted:#587089;--line:rgba(255,255,255,.5);--bg:#b9d8f1;--card:rgba(255,255,255,.53);--green:#087d58;--amber:#9b5c00;--red:#ba303a;--shadow:0 10px 32px rgba(22,65,101,.16);--radius:12px}
+    html{background:#a8c9e5}body{background:radial-gradient(circle at 3% 4%,rgba(255,255,255,.92),transparent 31%),radial-gradient(circle at 100% 0,rgba(69,171,244,.5),transparent 34%),radial-gradient(circle at 68% 100%,rgba(165,129,243,.22),transparent 40%),linear-gradient(130deg,#bddcf0 0%,#e4f1f8 45%,#b4d1e9 100%);background-attachment:fixed;min-height:100vh}.app{position:relative;isolation:isolate}.app:before{content:"";position:fixed;z-index:-1;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.11),rgba(255,255,255,0) 36%);pointer-events:none}
+    .sidebar{background:linear-gradient(165deg,rgba(8,43,79,.83),rgba(13,71,117,.71));border-right:1px solid rgba(255,255,255,.22);box-shadow:6px 0 28px rgba(19,61,94,.13);backdrop-filter:blur(28px) saturate(145%);-webkit-backdrop-filter:blur(28px) saturate(145%)}
+    .topbar{background:rgba(248,252,255,.53);border-bottom:1px solid rgba(255,255,255,.8);box-shadow:0 3px 18px rgba(39,92,131,.07);backdrop-filter:blur(26px) saturate(150%);-webkit-backdrop-filter:blur(26px) saturate(150%)}
+    .card,.stat{background:linear-gradient(135deg,rgba(255,255,255,.66),rgba(255,255,255,.39));border:1px solid rgba(255,255,255,.82);box-shadow:0 10px 26px rgba(21,70,110,.12),inset 0 1px rgba(255,255,255,.65);backdrop-filter:blur(20px) saturate(135%);-webkit-backdrop-filter:blur(20px) saturate(135%)}
+    .card-head{border-bottom-color:rgba(142,181,212,.32)}.notice{background:rgba(230,246,255,.54);border-color:rgba(116,194,240,.45);backdrop-filter:blur(12px)}.upload{background:rgba(255,255,255,.3);border-color:rgba(111,178,221,.55)}.file-display,select,input[type=text],input[type=date]{background:rgba(255,255,255,.68);border-color:rgba(148,188,216,.64);box-shadow:inset 0 1px rgba(255,255,255,.55)}
+    .stat:before{background:rgba(87,188,255,.23)}button.primary{background:linear-gradient(135deg,#1677c7,#0c5ca5);box-shadow:0 5px 13px rgba(18,104,180,.24)}button.success{background:linear-gradient(135deg,#0d8b64,#086b4c);box-shadow:0 5px 13px rgba(9,111,78,.2)}button.secondary,.filter-actions button{background:rgba(245,251,255,.56);border-color:rgba(148,192,221,.48);backdrop-filter:blur(10px)}.danger{background:rgba(255,242,243,.6);border-color:rgba(233,147,153,.52)}
+    .table-wrap{background:rgba(250,254,255,.25)}.table-wrap table{background:transparent}th{background:rgba(224,240,251,.64);border-bottom-color:rgba(142,181,212,.36);backdrop-filter:blur(16px)}td{border-bottom-color:rgba(173,204,226,.34)}tbody tr:hover{background:rgba(255,255,255,.43)}.map{background:rgba(255,255,255,.31);border-color:rgba(255,255,255,.68)}.danger-zone .card-head{background:rgba(255,243,244,.36)}
+    .secure{background:rgba(225,250,237,.57);border:1px solid rgba(127,209,162,.47)}.nav a:hover,.nav a.active{background:linear-gradient(100deg,rgba(50,143,218,.86),rgba(42,113,184,.72));box-shadow:inset 0 1px rgba(255,255,255,.22),0 3px 10px rgba(0,20,44,.16)}.side-footer{border-top-color:rgba(188,221,245,.28)}
+    #toast{background:rgba(12,48,82,.76);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+    @media(prefers-reduced-transparency:reduce){.sidebar,.topbar,.card,.stat{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(249,252,255,.94)}.sidebar{background:#0d3158}}
+  </style>
+<style id="dashboard-three-card-layout">
+#dashboard .stats{grid-template-columns:repeat(3,minmax(130px,1fr));gap:14px}
+</style>
+
+<style id="rc-work-ui">
+#rc-work .table-wrap{overflow:auto;max-width:100%}
+#rc-work table{min-width:700px}
+#rc-work th,#rc-work td{white-space:nowrap}
+</style>
+
+<style id="rc-work-final-ui">
+#rc-work{display:none;width:100%;box-sizing:border-box;margin:24px 0;clear:both}
+#rc-work .uploads{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:end}
+@media(max-width:800px){#rc-work .uploads{grid-template-columns:1fr}}
+</style>
+
+<style id="rc-excel-alignment">
+#rc-work .uploads{
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:flex-end !important;
+  gap:12px !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+#rc-work .uploads > .upload{
+  flex:1 1 auto !important;
+  min-width:0 !important;
+  margin:0 !important;
+}
+#rc-work .uploads > button{
+  flex:0 0 auto !important;
+  height:42px !important;
+  margin:0 !important;
+  align-self:flex-end !important;
+  box-sizing:border-box !important;
+}
+#rc-work .uploads input[type="file"]{
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+@media(max-width:700px){
+  #rc-work .uploads{
+    flex-direction:column !important;
+    align-items:stretch !important;
+  }
+  #rc-work .uploads > button{
+    width:100% !important;
+  }
+}
+</style>
+<style id="rc-work-import-spacing">
+#rc-work .table-wrap{
+  margin-top:18px !important;
+}
+</style>
+
+<style id="rc-excel-control-size">
+#rc-work .uploads{
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  gap:12px !important;
+}
+#rc-work .uploads > .upload{
+  flex:0 1 420px !important;
+  width:420px !important;
+  min-width:0 !important;
+  margin:0 !important;
+}
+#rc-work .uploads input[type="file"]{
+  width:100% !important;
+  height:42px !important;
+  box-sizing:border-box !important;
+}
+#rc-work .uploads > button{
+  flex:0 0 160px !important;
+  width:160px !important;
+  height:42px !important;
+  min-height:42px !important;
+  margin:0 !important;
+  padding:0 16px !important;
+  box-sizing:border-box !important;
+  align-self:center !important;
+}
+@media(max-width:700px){
+  #rc-work .uploads{
+    flex-direction:column !important;
+    align-items:stretch !important;
+  }
+  #rc-work .uploads > .upload,
+  #rc-work .uploads > button{
+    width:100% !important;
+    flex-basis:auto !important;
+  }
+}
+</style>
+<style id="rc-filter-delete-ui">
+#rc-work .rc-data-tools{display:flex;align-items:center;gap:10px;margin:16px 0 12px}
+#rc-work .rc-data-tools input{flex:1;min-width:0;height:40px;box-sizing:border-box}
+#rc-work .rc-data-tools button,#rc-work .rc-data-delete button{height:40px;box-sizing:border-box}
+#rc-work .rc-data-delete{display:flex;justify-content:flex-end;margin-top:18px}
+#rc-work .rc-data-delete .danger{min-width:150px}
+@media(max-width:700px){#rc-work .rc-data-tools{flex-direction:column;align-items:stretch}#rc-work .rc-data-tools button,#rc-work .rc-data-delete button{width:100%}}
+</style>
+<style id="v140-auto-import-ui">
+#settings{display:none}
+.settings-grid{display:grid;gap:12px}
+.setting-row{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.42)}
+.setting-row b{display:block;color:var(--navy)}
+.setting-row small{display:block;color:var(--muted);margin-top:3px;max-width:700px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.auto-import-panel{margin-top:17px;padding:15px;border:1px solid #c9e5fb;border-radius:12px;background:rgba(240,248,255,.62)}
+.auto-import-head b{display:block;color:var(--navy)}
+.auto-import-head span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.auto-import-controls{display:flex;align-items:end;gap:12px;margin-top:12px}
+.auto-date{width:210px}.auto-date label{display:block;font-size:11px;font-weight:750;color:var(--muted);margin-bottom:5px}
+.auto-date input{height:40px}
+.auto-import-controls button{height:40px;min-width:150px}
+@media(max-width:700px){.setting-row{display:block}.setting-row button{margin-top:10px;width:100%}.auto-import-controls{flex-direction:column;align-items:stretch}.auto-date{width:100%}.auto-import-controls button{width:100%}}
+</style>
+<style id="auto-import-separated-ui">
+#autoImportPanel{margin-top:20px;border:1px solid #c9dceb;border-radius:13px;background:rgba(248,252,255,.72);padding:16px}
+#autoImportPanel .auto-import-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+#autoImportPanel .auto-import-head b{display:block;color:var(--navy);font-size:15px}
+#autoImportPanel .auto-import-head span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+#autoImportPanel .auto-import-sources{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#autoImportPanel .auto-import-source{border:1.5px solid #b9d4e8;border-radius:11px;padding:14px;background:#fff}
+#autoImportPanel .auto-source-title{font-weight:800;color:var(--navy);margin-bottom:4px}
+#autoImportPanel .auto-source-help{font-size:11px;color:var(--muted);margin-bottom:10px}
+#autoImportPanel .auto-source-path{font-size:12px;color:#205276;background:#edf6fc;border-radius:7px;padding:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#autoImportPanel .auto-date-row{display:flex;align-items:center;gap:9px}
+#autoImportPanel .auto-date-row label{font-size:11px;font-weight:750;color:var(--muted);white-space:nowrap}
+#autoImportPanel .auto-date-row input{flex:1;min-width:0}
+#autoImportPanel .auto-import-action{margin-top:14px;display:flex;justify-content:flex-start}
+#autoImportPanel .auto-import-action button{min-width:190px}
+@media(max-width:720px){
+  #autoImportPanel .auto-import-sources{grid-template-columns:1fr}
+  #autoImportPanel .auto-import-action button{width:100%}
+}
+</style>
+<style id="v142-layout">
+.manual-import-section{margin-top:16px;padding-top:14px;border-top:1px solid #d8e3ec}
+.manual-import-title{font-weight:800;color:var(--navy);font-size:14px;margin-bottom:10px}
+.manual-import-section .actions{display:flex;flex-wrap:wrap;gap:10px;margin:0}
+.filter-actions{display:flex;align-items:center;justify-content:flex-start;gap:10px;flex-wrap:wrap}
+.filter-actions #reports{margin:0}
+</style>
+<style id="auto-mapping-settings-ui">
+#importMappingSettings{margin-top:18px;padding:16px;border:1px solid #d4e1eb;border-radius:12px;background:#fff}
+#importMappingSettings .settings-card-title{font-weight:800;color:var(--navy);margin-bottom:4px}
+#importMappingSettings .settings-help{font-size:12px;color:var(--muted);margin:0 0 14px}
+#importMappingSettings .mapping-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#importMappingSettings label{display:block;font-size:11px;font-weight:750;color:var(--muted);margin-bottom:5px}
+#importMappingSettings input{width:100%;height:38px;box-sizing:border-box}
+#importMappingSettings .mapping-actions{display:flex;align-items:center;gap:12px;margin-top:14px}
+#importMappingSettings .settings-saved{font-size:12px;color:#28744a}
+@media(max-width:700px){#importMappingSettings .mapping-grid{grid-template-columns:1fr}}
+</style><style id="v145-category-settings">
+#importMappingSettings .mapping-category{margin-top:16px;padding:15px;border:1px solid #d5e2ec;border-radius:11px;background:#f9fcfe}
+#importMappingSettings .mapping-category-title{font-weight:800;color:var(--navy);margin-bottom:12px}
+#importMappingSettings .mapping-save-btn{margin-top:12px}
+#importMappingSettings .settings-saved{margin-left:10px}
+</style><style id="v146-manual-heading">
+.manual-import-title{margin-top:16px;margin-bottom:10px;font-weight:800;color:var(--navy);font-size:14px}
+</style>
+<style id="v151-collapsed-mapping">
+#importMappingSettings details.mapping-category{margin-top:12px}
+#importMappingSettings details.mapping-category:first-of-type{margin-top:0}
+#importMappingSettings summary.mapping-category-title{cursor:pointer;list-style:none;margin:0;padding:2px 0}
+#importMappingSettings summary.mapping-category-title::-webkit-details-marker{display:none}
+#importMappingSettings summary.mapping-category-title:before{content:"▸";display:inline-block;margin-right:8px;transition:transform .15s}
+#importMappingSettings details[open] summary.mapping-category-title:before{transform:rotate(90deg)}
+#importMappingSettings details.mapping-category[open] .mapping-grid{margin-top:12px}
+</style><style id="v152-same-mapping-ui">
+#importMappingSettings details.mapping-category{
+  margin-top:12px;
+  border:1px solid #d5e2ec;
+  border-radius:11px;
+  background:#f9fcfe;
+  padding:0;
+  overflow:hidden;
+}
+#importMappingSettings details.mapping-category:first-of-type{margin-top:0}
+#importMappingSettings summary.mapping-category-title{
+  display:flex;
+  align-items:center;
+  box-sizing:border-box;
+  width:100%;
+  min-height:48px;
+  margin:0;
+  padding:12px 15px;
+  cursor:pointer;
+  list-style:none;
+  font-weight:800;
+  color:var(--navy);
+  background:#f9fcfe;
+}
+#importMappingSettings summary.mapping-category-title::-webkit-details-marker{display:none}
+#importMappingSettings summary.mapping-category-title:before{
+  content:"▸";
+  display:inline-block;
+  width:18px;
+  margin-right:5px;
+  transition:transform .15s;
+}
+#importMappingSettings details.mapping-category[open] summary.mapping-category-title:before{
+  transform:rotate(90deg);
+}
+#importMappingSettings details.mapping-category[open] summary.mapping-category-title{
+  border-bottom:1px solid #d5e2ec;
+}
+#importMappingSettings details.mapping-category .mapping-grid{
+  padding:14px 15px 0;
+  margin-top:0;
+}
+#importMappingSettings details.mapping-category .mapping-save-btn{
+  margin:12px 15px 15px;
+}
+#importMappingSettings details.mapping-category .settings-saved{
+  display:inline-block;
+  margin:0 15px 15px 0;
+}
+</style><style id="v153-salesbilldata-ui-match">
+#importMappingSettings details.mapping-category:nth-of-type(2) summary.mapping-category-title,
+#importMappingSettings details.mapping-category:nth-of-type(2) summary.mapping-category-title *{
+  font-size:inherit;
+  font-weight:inherit;
+  line-height:inherit;
+  letter-spacing:inherit;
+}
+#importMappingSettings details.mapping-category:nth-of-type(2) summary.mapping-category-title{
+  min-height:48px;
+  padding:12px 15px;
+  color:var(--navy);
+}
+</style><style id="v154-beautiful-mapping-ui">
+/* Both mapping panels: identical, compact, collapsed by default */
+#importMappingSettings details.mapping-category-common{
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  margin:12px 0 0;
+  padding:0;
+  border:1px solid #c9dce9;
+  border-radius:14px;
+  overflow:hidden;
+  background:#f8fbfd;
+  box-shadow:0 2px 8px rgba(25,65,95,.06);
+}
+#importMappingSettings details.mapping-category-common:first-of-type{margin-top:0}
+
+#importMappingSettings details.mapping-category-common > summary{
+  display:flex;
+  align-items:center;
+  width:100%;
+  min-height:54px;
+  box-sizing:border-box;
+  margin:0;
+  padding:0 16px;
+  cursor:pointer;
+  list-style:none;
+  color:var(--navy);
+  background:#f8fbfd;
+  font-size:15px;
+  font-weight:800;
+  line-height:1.25;
+  letter-spacing:0;
+}
+#importMappingSettings details.mapping-category-common > summary::-webkit-details-marker{display:none}
+#importMappingSettings details.mapping-category-common > summary::before{
+  content:"›";
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  height:22px;
+  margin-right:8px;
+  flex:0 0 22px;
+  border-radius:50%;
+  font-size:20px;
+  font-weight:800;
+  line-height:18px;
+  transform:rotate(0deg);
+  transition:transform .16s ease,background .16s ease;
+  background:#e6f1f8;
+  color:#1d5276;
+}
+#importMappingSettings details.mapping-category-common[open] > summary{
+  border-bottom:1px solid #c9dce9;
+  background:#f3f9fc;
+}
+#importMappingSettings details.mapping-category-common[open] > summary::before{
+  transform:rotate(90deg);
+  background:#dcecf5;
+}
+#importMappingSettings details.mapping-category-common > .mapping-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  padding:14px 16px 0;
+  margin:0;
+}
+#importMappingSettings details.mapping-category-common .mapping-save-btn{
+  margin:12px 16px 16px;
+}
+#importMappingSettings details.mapping-category-common .settings-saved{
+  display:inline-block;
+  margin:0 16px 16px 0;
+}
+@media(max-width:700px){
+  #importMappingSettings details.mapping-category-common > .mapping-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style><style id="v155-compact-customer-mapping">
+/* Keep both mapping cards consistent; make the customer mapping content compact with side spacing/border. */
+#importMappingSettings details.mapping-category-common{
+  margin-left:2px;
+  margin-right:2px;
+}
+#importMappingSettings details.mapping-category-common > .mapping-grid{
+  margin:0 10px;
+  padding:12px 10px 0;
+  border:1px solid #d3e1ea;
+  border-radius:10px;
+  background:#fff;
+  box-sizing:border-box;
+}
+#importMappingSettings details.mapping-category-common .mapping-save-btn{
+  margin:10px 20px 14px;
+}
+#importMappingSettings details.mapping-category-common .settings-saved{
+  margin-bottom:14px;
+}
+</style><style id="v158-subdealer-mapping-fix">
+#importMappingSettings details.mapping-category-common{
+  width:100%;
+  box-sizing:border-box;
+  margin:12px 0 0;
+  padding:0;
+  border:1px solid #c9dce9;
+  border-radius:14px;
+  overflow:hidden;
+  background:#f8fbfd;
+}
+#importMappingSettings details.mapping-category-common:first-of-type{margin-top:0}
+#importMappingSettings details.mapping-category-common>summary.mapping-category-title{
+  display:flex;
+  align-items:center;
+  width:100%;
+  min-height:54px;
+  box-sizing:border-box;
+  padding:0 16px;
+  margin:0;
+  font-size:15px!important;
+  font-weight:800!important;
+  line-height:1.25!important;
+  color:var(--navy)!important;
+  background:#f8fbfd;
+  cursor:pointer;
+}
+#importMappingSettings details.mapping-category-common[open]>summary.mapping-category-title{
+  border-bottom:1px solid #c9dce9;
+  background:#f3f9fc;
+}
+#importMappingSettings details.mapping-category-common>.mapping-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+  margin:0!important;
+  padding:14px 16px 0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:#fff!important;
+  box-sizing:border-box;
+}
+#importMappingSettings details.mapping-category-common .mapping-grid>div{
+  min-width:0;
+}
+#importMappingSettings details.mapping-category-common .mapping-grid input{
+  width:100%;
+  box-sizing:border-box;
+}
+#importMappingSettings details.mapping-category-common .mapping-save-btn{
+  display:inline-flex;
+  margin:12px 16px 16px!important;
+}
+@media(max-width:700px){
+  #importMappingSettings details.mapping-category-common>.mapping-grid{
+    grid-template-columns:1fr!important;
+  }
+}
+</style><style id="v159-column-dropdowns">
+#importMappingSettings .mapping-grid select.mapping-column-select{
+  width:100%;
+  min-height:46px;
+  box-sizing:border-box;
+  padding:10px 12px;
+  border:1px solid #b9d2e3;
+  border-radius:10px;
+  background:#fff;
+  color:#19344d;
+  font-size:15px;
+}
+#importMappingSettings .mapping-grid select.mapping-column-select:focus{
+  outline:none;
+  border-color:#4b9bd0;
+  box-shadow:0 0 0 3px rgba(75,155,208,.16);
+}
+</style><style id="v160-sample-mapping-upload">
+#importMappingSettings .mapping-sample-upload{
+  margin:12px 16px 0;
+  padding:12px 14px;
+  border:1px solid #d3e1ea;
+  border-radius:10px;
+  background:#fff;
+}
+#importMappingSettings .mapping-sample-upload label{
+  display:block;
+  margin-bottom:7px;
+  color:var(--navy);
+  font-size:14px;
+}
+#importMappingSettings .mapping-sample-upload input[type=file]{
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+  padding:8px;
+  border:1px solid #b9d2e3;
+  border-radius:8px;
+  background:#f9fcfe;
+}
+#importMappingSettings .mapping-sample-upload small{
+  display:block;
+  margin-top:6px;
+  color:#60758a;
+  font-size:12px;
+}
+</style><style id="v161-mapping-status">
+#importMappingSettings .mapping-column-status{
+  display:block;
+  margin:8px 16px 0;
+  padding:8px 10px;
+  border-radius:8px;
+  background:#f1f7fb;
+  color:#47677f;
+  font-size:12px;
+}
+</style></style><style id="v162-separate-mapping">
+/* Explicitly isolate the two Excel mapping groups. */
+#importMappingSettings .mapping-hsrp-only,
+#importMappingSettings .mapping-dealer-only{width:100%;box-sizing:border-box}
+#importMappingSettings #mappingHsrpFile{display:block}
+#importMappingSettings #mappingDealerFile{display:block}
+</style></style><style id="v168-hide-settings-mapping">
+#importMappingSettings{display:none!important}
+</style>
+<style id="v1913-multiple-registration-ui">
+/* v1.9.13 — Multiple Registration Search UI only.
+   Existing v1.9.12 layout is preserved; this feature occupies the left side. */
+.filters{
+  grid-template-columns:minmax(280px,1.15fr) minmax(260px,1.15fr) 170px auto!important;
+  gap:10px!important;
+  align-items:end!important;
+}
+.multi-reg-1913{min-width:0!important}
+.multi-reg-controls-1913{
+  display:grid!important;
+  grid-template-columns:minmax(150px,1fr) auto!important;
+  gap:7px!important;
+  align-items:end!important;
+}
+#multiRegSearch1913{
+  width:100%!important;
+  height:40px!important;
+  min-height:40px!important;
+  max-height:40px!important;
+  resize:none!important;
+  box-sizing:border-box!important;
+  padding:8px 10px!important;
+  border:1px solid rgba(148,188,216,.64)!important;
+  border-radius:9px!important;
+  background:rgba(255,255,255,.72)!important;
+  font:600 12px Inter,Segoe UI,Arial,sans-serif!important;
+  color:#263d50!important;
+}
+#multiRegSearch1913::placeholder{font-weight:500!important;color:#7890a2!important}
+.multi-reg-buttons-1913{
+  display:flex!important;
+  gap:6px!important;
+  align-items:center!important;
+}
+.multi-reg-buttons-1913 button{
+  height:40px!important;
+  min-height:40px!important;
+  padding:7px 11px!important;
+  margin:0!important;
+  border-radius:8px!important;
+  font-size:12px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+}
+#multiRegSearchBtn1913{
+  background:linear-gradient(135deg,#1677c7,#0c5ca5)!important;
+  box-shadow:0 4px 10px rgba(18,104,180,.20)!important;
+}
+#multiRegClearBtn1913{
+  background:rgba(245,251,255,.72)!important;
+}
+.multi-reg-notfound-1913{
+  margin-top:5px!important;
+  font-size:10px!important;
+  line-height:1.35!important;
+  color:#9a5a00!important;
+  max-width:100%!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+@media(max-width:980px) and (min-width:721px){
+  .filters{
+    grid-template-columns:minmax(250px,1fr) minmax(230px,1fr) 150px auto!important;
+    gap:8px!important;
+  }
+  .multi-reg-buttons-1913{gap:4px!important}
+  .multi-reg-buttons-1913 button{padding-left:8px!important;padding-right:8px!important;font-size:11px!important}
+}
+@media(max-width:720px){
+  .filters{grid-template-columns:1fr!important}
+  .multi-reg-controls-1913{grid-template-columns:1fr!important}
+  .multi-reg-buttons-1913{justify-content:flex-start!important}
+}
+</style>
+
+
+<style id="search-regi-size-fix">
+.search-regi-btn{
+  width:auto !important;
+  min-width:0 !important;
+  padding-left:16px !important;
+  padding-right:16px !important;
+}
+</style>
+
+<style id="search-records-small-fix">
+.search-records-btn{
+  width:auto !important;
+  min-width:0 !important;
+  padding-left:14px !important;
+  padding-right:14px !important;
+}
+</style>
+
+<style id="search-box-size-adjust">
+#q{
+  width:260px !important;
+  min-width:260px !important;
+  height:42px !important;
+  min-height:42px !important;
+  box-sizing:border-box !important;
+}
+</style>
+
+<style id="v1913-import-chassis-only-note">/* Import fix: chassis-only match; Multiple Registration Search preserved. */</style>
+<style id="v1913-export-top-row-css">
+
+/* v1.9.13 — FINAL UI-ONLY export toolbar.
+   The toolbar sits ABOVE the search/filter area, in the blank space before
+   the record filters. Only button placement is changed. */
+#v1913ExportTopRow{
+  width:100% !important;
+  display:flex !important;
+  flex-direction:row !important;
+  flex-wrap:nowrap !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  gap:8px !important;
+  min-height:38px !important;
+  margin:0 0 10px 0 !important;
+  padding:0 !important;
+  box-sizing:border-box !important;
+}
+#v1913ExportTopRow > button{
+  flex:0 0 auto !important;
+  width:auto !important;
+  min-width:0 !important;
+  margin:0 !important;
+  white-space:nowrap !important;
+  box-sizing:border-box !important;
+}
+#v1913ExportTopRow #reports,
+#v1913ExportTopRow #selectedExportBtn1912,
+#v1913ExportTopRow #v185SubDealerExport{
+  height:34px !important;
+  min-height:34px !important;
+  padding:6px 11px !important;
+  font-size:12.5px !important;
+  line-height:20px !important;
+}
+
+</style>
+</head><body>
+<div class="app">
+  <aside class="sidebar"><div class="side-brand"><img src="chirag-solanki-logo.svg" alt="Auto Management"><div class="side-app-name">Auto Management</div><p>Managed by Chirag Solanki</p></div>
+    <nav class="nav"><div class="nav-label">Workspace</div><a class="active" href="#dashboard"><i>⌂</i><span>Dashboard</span></a><a href="#import"><i>⇧</i><span>Daily Import</span></a><a href="#records"><i>▤</i><span>Vehicle Records</span></a><a href="#rc-work" id="rcWorkNav" onclick="openRCWork(event)"><i>▣</i><span>RC Work</span></a><a href="#settings" id="settingsNav"><i>⚙</i><span>Settings</span></a></nav>
+    <div class="side-footer"><strong>Auto Management v1.3.1</strong><span>Developed by Chirag Solanki</span><span>Contact us: <a href="tel:9998117008">9998117008</a></span></div>
+  </aside>
+  <main><header class="topbar"><div class="crumb">AUTO MANAGEMENT <b>Operations overview</b></div><div class="top-meta"><span class="secure">● Local data active</span><span>Version 1.3.1</span></div></header>
+    <div class="content" id="dashboard">
+      <section class="intro"><div><h1 id="greeting">Good morning, Chirag</h1><p>Import, review, and manage HSRP vehicle records from one place.</p></div><div class="last-import">LAST DATABASE UPDATE<b id="lastUpdate">No imports yet</b></div></section>
+      <section class="stats" aria-label="Record summary"><div class="stat"><span class="stat-label">Total saved</span><b id="total">0</b></div><div class="stat"><span class="stat-label">Orders received</span><b id="or">0</b></div><div class="stat complete"><span class="stat-label">Complete</span><b id="co">0</b></div></section>
+      <section class="card" id="import"><div class="card-head"><div><h2>Daily Excel Import / Manual Import</h2><p>Upload both files, confirm the matched columns, then update the database.</p></div><span class="record-count">Step 1 of 3</span></div><div class="card-body"><div class="notice"><b>Chassis/VIN and Engine no. must match in both files.</b> Only rows with a registration number are imported. Existing matching records are updated instead of duplicated.</div>
+        <div class="uploads"><div class="upload"><span class="upload-title">HSRP number plate order file</span><span class="upload-help">Excel, CSV, or XLS file</span><div class="file-input"><input id="hf" type="file" accept=".xlsx,.xls,.csv" onchange="fileName('hf','hfName')"><div class="file-display" id="hfName">Choose HSRP order file</div></div></div><div class="upload"><span class="upload-title">Sub-dealer / customer file</span><span class="upload-help">Excel, CSV, or XLS file</span><div class="file-input"><input id="df" type="file" accept=".xlsx,.xls,.csv" onchange="fileName('df','dfName')"><div class="file-display" id="dfName">Choose sub-dealer file</div></div></div></div>
+        <div class="manual-import-section">
+  <div class="actions">
+    <button class="primary" onclick="loadFiles()">1. Load &amp; match columns</button>
+    <button class="success" onclick="importUpdate()">2. Import / update database</button>
+  </div>
+  <p id="info" class="import-status"></p>
+</div>
+<div id="autoImportPanel" class="auto-import-panel">
+  <div class="auto-import-head">
+    <div><b>Automatic Import</b><span>Separate sources — same existing import process.</span></div>
+  </div>
+  <div class="auto-import-sources">
+    <div class="auto-import-source">
+      <div class="auto-source-title">Sub-dealer / Customer file</div>
+      <div class="auto-source-help">AutoShop Sharing folder → salesbilldata</div>
+      <div class="auto-source-path" id="autoShopAutoSource">Folder set in Settings</div>
+    </div>
+    <div class="auto-import-source">
+      <div class="auto-source-title">HSRP number plate order file</div>
+      <div class="auto-source-help">HSRP folder → all files whose filename date falls within the selected range</div>
+      <div class="auto-date-row" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <label for="hsrpAutoFrom">From</label>
+        <input id="hsrpAutoFrom" type="date">
+        <span>to</span>
+        <label for="hsrpAutoTo">To</label>
+        <input id="hsrpAutoTo" type="date">
+      </div>
+    </div>
+  </div>
+  <div class="auto-import-action">
+    <button class="primary" type="button" onclick="autoImportAll()">Auto Import Both Files</button>
+  </div>
+  <p id="autoImportInfo" class="import-status"></p>
+</div>
+</div></section>
+      <div id="mappingToggle" class="mapping-toggle hidden"><button type="button" id="showMapBtn" onclick="toggleMapping()">Show column mapping</button></div>
+      <section id="mapbox" class="card hidden"><div class="card-head"><div><h2>Confirm column mapping</h2><p>Review automatic matches before importing.</p></div><span class="record-count">Step 2 of 3</span></div><div class="card-body"><div class="maps"><div class="map"><div class="map-title">HSRP order Excel</div><div class="field-grid"><div><label>Chassis / VIN *</label><select id="hc"></select></div><div><label>Registration no.</label><select id="hr"></select></div><div><label>Registration date *</label><select id="hdate"></select></div><div><label>Customer / owner</label><select id="hname"></select></div><div><label>Mobile</label><select id="hmob"></select></div><div><label>Engine no.</label><select id="heng"></select></div><div><label>Bill / DO no.</label><select id="hbill"></select></div><div><label>Model</label><select id="hmodel"></select></div></div></div><div class="map"><div class="map-title">Sub-dealer / customer Excel</div><div class="field-grid"><div><label>Chassis no. *</label><select id="dc"></select></div><div><label>Sub-dealer / agent *</label><select id="dagent"></select></div><div><label>Customer name</label><select id="dclient"></select></div><div><label>Mobile no.</label><select id="dmob"></select></div><div><label>Engine no.</label><select id="deng"></select></div><div><label>Bill no.</label><select id="dbill"></select></div><div><label>Model</label><select id="dmodel"></select></div></div></div></div></div></section>
+      <section class="card" id="records"><div class="card-head"><div><h2>Vehicle / HSRP records</h2><p>Search the live local database and export exactly the filtered result.</p></div><span class="record-count" id="visibleCount">0 records shown</span></div><div class="card-body"><div class="filters">
+<div class="filter-field multi-reg-1913" id="multiRegField1913">
+  <label>Multiple Registration Search</label>
+  <div class="multi-reg-controls-1913">
+    <textarea id="multiRegSearch1913" rows="2"
+      placeholder="Paste registration numbers&#10;one per line"></textarea>
+    <div class="multi-reg-buttons-1913">
+      <button type="button" class="primary multi-search-btn-1913 search-regi-btn" id="multiRegSearchBtn1913">Search Regi.</button>
+      <button type="button" class="secondary multi-clear-btn-1913" id="multiRegClearBtn1913">Clear</button>
+    </div>
+  </div>
+  <div id="multiRegNotFound1913" class="multi-reg-notfound-1913" hidden></div>
+</div>
+<div class="filter-field"><label>Search records</label><input id="q" oninput="render()" placeholder="Registration, customer, mobile, chassis, engine..." type="text"></div><div class="filter-field"><label>Sub-dealer</label><select id="dealer" onchange="render()"><option value="">All sub-dealers</option></select></div><div class="filter-actions"><label>&nbsp;</label><div class="filter-actions"><button class="secondary" id="reports" onclick="exportReport()">Export filtered report</button><button onclick="clearFilters()">Clear filters</button><button type="button" id="selectedExportBtn1912" disabled>Export selected</button></div></div></div></div><div class="table-wrap"><table><thead><tr><th><input class="check" aria-label="Select all" type="checkbox" onclick="allCheck(this)"></th><th>Registration no.</th><th>Customer</th><th>Mobile</th><th>Chassis no.</th><th>Engine no.</th><th>Bill / DO no.</th><th>Model</th><th>Sub-dealer</th><th>Registration date</th><th>HSRP order</th></tr></thead><tbody id="out"></tbody></table></div></section>
+      <section class="card danger-zone"><div class="card-head"><div><h2>Data management</h2><p>Deletion is permanent on this computer. Export a backup first.</p></div></div><div class="danger-body"><p>Selected and filtered deletions are useful for corrections. “Delete all” requires typing a confirmation phrase.</p><div class="danger-actions"><button class="danger" onclick="deleteSelected()">Delete selected</button><button class="danger" onclick="deleteFiltered()">Delete filtered</button><button class="danger" onclick="deleteAll()">Delete all saved data</button></div></div></section>
+    </div>
+  
+<section class="card" id="rc-work">
+  <div class="card-head">
+    <div><h2>RC Work</h2><p>RC Book work — upload and import RC Excel data separately from HSRP.</p></div>
+    <span class="record-count">RC Book</span>
+  </div>
+  <div class="card-body">
+    <div class="notice"><b>RC Excel Import</b> This module is separate from HSRP data and uses its own saved data.</div>
+    <div class="uploads">
+      <div class="upload">
+        <span></span>
+        <input id="rcExcel" accept=".xlsx,.xls,.csv" type="file">
+      </div>
+      <button class="primary" type="button" onclick="rcImportExcel()">Import RC Excel</button>
+    </div>
+    <p id="rcInfo" class="import-status"></p>
+    <div id="rc-filter-panel" class="rc-data-tools">
+  <input id="rcFilterInput" type="search" placeholder="Search imported RC data..." oninput="rcApplyFilter()">
+  <button type="button" onclick="rcClearFilter()">Clear</button>
+</div>
+<div class="table-wrap">
+      <table>
+        <thead id="rcHead"><tr><th>RC Book Excel Data</th></tr></thead>
+        <tbody id="rcOut"><tr><td class="table-empty">No RC Excel data imported yet.</td></tr></tbody>
+      </table>
+    </div><div id="rc-delete-tools" class="rc-data-delete">
+  <button type="button" class="danger" onclick="rcDeleteData()">Delete RC Data</button>
+</div>
+  </div>
+</section>
+<section class="card" id="settings">
+  <div class="card-head"><div><h2>Settings</h2><p>Configure folders used by Auto Import.</p></div><span class="record-count">Version 1.9.13</span></div>
+  <div class="card-body">
+    <div class="notice"><b>Auto Import folders</b> Select the fixed folders used by AutoShop and HSRP. You can change them anytime.</div>
+    <div class="settings-grid">
+      <div class="setting-row">
+        <div><b>AutoShop salesbilldata folder</b><small id="autoshopFolderName">Not set</small></div>
+        <button type="button" class="secondary" onclick="chooseAutoShopFolder()">Select Folder</button>
+      </div>
+      <div class="setting-row">
+        <div><b>HSRP Excel folder</b><small id="hsrpFolderName">Not set</small></div>
+        <button type="button" class="secondary" onclick="chooseHsrpFolder()">Select Folder</button>
+      </div>
+    </div>
+    <p id="settingsInfo" class="import-status"></p>
+  </div>
+<div id="importMappingSettings" class="settings-card">
+  <div class="settings-card-title">Import Data Mapping</div>
+  <p class="settings-help">One mapping for both Manual Import and Automatic Import. Set it once and Save; it stays saved until you change it and Save again.</p>
+  <details class="mapping-category mapping-category-common">
+    <summary class="mapping-category-title">HSRP Number Plate Order Excel</summary>
+<div class="mapping-sample-upload">
+  <label><strong>Upload sample HSRP Excel for mapping</strong></label>
+  <input id="mappingHsrpFile" type="file" accept=".xlsx,.xls,.csv">
+  <small>Select a sample file once; its actual column names will appear in the mapping dropdowns below.</small><span id="dealerMappingStatus" class="mapping-column-status">No Excel columns loaded yet.</span><span id="hsrpMappingStatus" class="mapping-column-status">No Excel columns loaded yet.</span>
+</div>
+    <div class="mapping-grid">
+      <div><label>Chassis no. *</label><select id="mapHc" type="text" value="VIN number" class="mapping-column-select" data-map-label="HSRP Chassis / VIN column"><option value="">Select Excel column</option></select></div>
+      <div><label>Registration no.</label><select id="mapHr" type="text" value="Registration Number" class="mapping-column-select" data-map-label="HSRP Registration Number column"><option value="">Select Excel column</option></select></div>
+      <div><label>Registration date *</label><select id="mapHdate" type="text" value="Registration Date" class="mapping-column-select" data-map-label="HSRP Registration Date column"><option value="">Select Excel column</option></select></div>
+      <div><label>Customer / owner</label><select id="mapHname" type="text" value="" class="mapping-column-select" data-map-label="HSRP Customer / Owner column"><option value="">Select Excel column</option></select></div>
+      <div><label>Mobile</label><select id="mapHmob" type="text" value="Customer mobile" class="mapping-column-select" data-map-label="HSRP Customer Mobile column"><option value="">Select Excel column</option></select></div>
+      <div><label>Engine no.</label><select id="mapHeng" type="text" value="Engine Number" class="mapping-column-select" data-map-label="HSRP Engine Number column"><option value="">Select Excel column</option></select></div>
+      <div><label>Bill / DO no.</label><select id="mapHbill" type="text" value="" class="mapping-column-select" data-map-label="HSRP Bill / DO Number column"><option value="">Select Excel column</option></select></div>
+      <div><label>Model</label><select id="mapHmodel" type="text" value="Model" class="mapping-column-select" data-map-label="HSRP Model column"><option value="">Select Excel column</option></select></div>
+    </div>
+    <button type="button" class="primary mapping-save-btn" onclick="saveImportMapping('hsrp')">Save HSRP Mapping</button>
+    <span id="hsrpMappingSaved" class="settings-saved"></span>
+  </details>
+  <details class="mapping-category mapping-category-common">
+    <summary class="mapping-category-title">Sub-dealer / Customer Excel (salesbilldata)</summary>
+<div class="mapping-sample-upload">
+  <label><strong>Upload sample Customer / Sub-dealer Excel for mapping</strong></label>
+  <input id="mappingDealerFile" type="file" accept=".xlsx,.xls,.csv">
+  <small>Select a sample file once; its actual column names will appear in the mapping dropdowns below.</small>
+</div>
+    <div class="mapping-grid">
+      <div><label>Chassis no. *</label><select id="mapDc" type="text" value="" class="mapping-column-select" data-map-label="Customer Chassis / VIN column"><option value="">Select Excel column</option></select></div>
+      <div><label>Sub-dealer / agent *</label><select id="mapDagent" type="text" value="" class="mapping-column-select" data-map-label="Sub-dealer / Agent column"><option value="">Select Excel column</option></select></div>
+      <div><label>Customer name</label><select id="mapDclient" type="text" value="" class="mapping-column-select" data-map-label="Customer Name column"><option value="">Select Excel column</option></select></div>
+      <div><label>Mobile no.</label><select id="mapDmob" type="text" value="" class="mapping-column-select" data-map-label="Customer Mobile column"><option value="">Select Excel column</option></select></div>
+      <div><label>Engine no.</label><select id="mapDeng" type="text" value="" class="mapping-column-select" data-map-label="Customer Engine Number column"><option value="">Select Excel column</option></select></div>
+      <div><label>Bill no.</label><select id="mapDbill" type="text" value="" class="mapping-column-select" data-map-label="Customer Bill Number column"><option value="">Select Excel column</option></select></div>
+      <div><label>Model</label><select id="mapDmodel" type="text" value="" class="mapping-column-select" data-map-label="Customer Model column"><option value="">Select Excel column</option></select></div>
+    </div>
+    <button type="button" class="primary mapping-save-btn" onclick="saveImportMapping('dealer')">Save Customer / Sub-dealer Mapping</button>
+    <span id="dealerMappingSaved" class="settings-saved"></span>
+  </details>
+</div></section>
+</main>
+</div><div id="toast" role="status"></div>
+<script>
+const KEY="HSRP_SubDealer_DB_v13";let H=[],D=[],db=JSON.parse(localStorage.getItem(KEY)||"[]");const $=x=>document.getElementById(x),clean=x=>String(x??"").trim(),norm=x=>clean(x).toUpperCase().replace(/[^A-Z0-9]/g,"");
+function esc(x){return clean(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}function toast(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove("show"),3600)}function fileName(input,label){const f=$(input).files[0];$(label).textContent=f?f.name:"Choose file"}
+function guess(a,w){return a.find(h=>w.some(x=>norm(h).includes(norm(x))))||""}function opts(id,a,w,preferred="",keepBlank=false){$(id).innerHTML='<option value="">— Select column —</option>'+a.map(x=>`<option>${esc(x)}</option>`).join("");let exact=preferred?a.find(h=>norm(h)===norm(preferred)):"",g=keepBlank?"":exact||guess(a,w);if(g)$(id).value=g}
+function read(f){return new Promise((res,rej)=>{let r=new FileReader();r.onload=e=>{try{let w=XLSX.read(e.target.result,{type:"array",cellDates:true});res(XLSX.utils.sheet_to_json(w.Sheets[w.SheetNames[0]],{defval:""}))}catch(x){rej(x)}};r.onerror=rej;r.readAsArrayBuffer(f)})}function dateVal(v){
+  if(v instanceof Date && !isNaN(v)){
+    return v.getFullYear()+"-"+String(v.getMonth()+1).padStart(2,"0")+"-"+String(v.getDate()).padStart(2,"0");
+  }
+  let s=clean(v); if(!s)return"";
+  let dmy=s.match(/^(\\d{1,2})[.\\/\\-](\\d{1,2})[.\\/\\-](\\d{2,4})(?:\\s|$)/),
+      ymd=s.match(/^(\\d{4})[.\\/\\-](\\d{1,2})[.\\/\\-](\\d{1,2})(?:\\s|$)/);
+  if(dmy){let y=dmy[3].length==2?"20"+dmy[3]:dmy[3];return y+"-"+String(dmy[2]).padStart(2,"0")+"-"+String(dmy[1]).padStart(2,"0")}
+  if(ymd)return ymd[1]+"-"+String(ymd[2]).padStart(2,"0")+"-"+String(ymd[3]).padStart(2,"0");
+  if(/^\\d+(\\.\\d+)?$/.test(s)&&Number(s)>20000){
+    let d=new Date(Date.UTC(1899,11,30)+Number(s)*86400000);
+    return d.getUTCFullYear()+"-"+String(d.getUTCMonth()+1).padStart(2,"0")+"-"+String(d.getUTCDate()).padStart(2,"0");
+  }
+  let d=new Date(s);
+  return isNaN(d)?s:d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}function stamp(){return new Date().toLocaleString("en-IN")}
+async function loadFiles(){let hf=$("hf").files[0],df=$("df").files[0];if(!hf||!df)return toast("Choose both Excel files before loading columns.");try{[H,D]=await Promise.all([read(hf),read(df)]);if(!H.length||!D.length)return toast("One of the selected Excel sheets has no data.");let h=Object.keys(H[0]),d=Object.keys(D[0]);opts("hc",h,["vin","chassis"],"VIN number");opts("hr",h,["registration","reg"],"Registration Number");opts("hdate",h,["registrationdate","regdate","registration date","date of registration","reg date"],"Registration Date");opts("hname",h,["customer","owner","name"],"",true);opts("hmob",h,["mobile","phone"],"Customer mobile");opts("heng",h,["engine"],"Engine Number");opts("hbill",h,["bill","do no","invoice"],"",true);opts("hmodel",h,["model"],"Model");opts("dc",d,["chassis","vin"],"chasis_no");opts("dagent",d,["agent","subdealer","dealer"],"agent");opts("dclient",d,["client","customer","name"],"client");opts("dmob",d,["mobile","phone"],"mobile");opts("deng",d,["engine"],"engine_no");opts("dbill",d,["bill","do no","invoice"],"bill_no");opts("dmodel",d,["model"],"model");$("mapbox").classList.remove("hidden");
+    applySharedImportMapping();$("info").textContent=`Ready to review: ${H.length} HSRP rows and ${D.length} sub-dealer rows loaded.`;$("mapbox").scrollIntoView({behavior:"smooth",block:"start"});toast("Columns matched automatically. Review and import when ready.")}catch(e){toast("Excel could not be read. Please use a valid XLS, XLSX, or CSV file.")}}
+function toggleMapping(){const box=$("mapbox"),btn=$("showMapBtn");box.classList.toggle("hidden");btn.textContent=box.classList.contains("hidden")?"Show column mapping":"Hide column mapping";if(!box.classList.contains("hidden"))box.scrollIntoView({behavior:"smooth",block:"start"})}
+function importUpdate(){if(!H.length||!D.length)return toast("Load both files and confirm column mapping first.");let hc=$("hc").value,dc=$("dc").value,da=$("dagent").value,c={hr:$("hr").value,hd:$("hdate").value,hn:$("hname").value,hm:$("hmob").value,he:$("heng").value,hb:$("hbill").value,hmod:$("hmodel").value,dc:$("dclient").value,dm:$("dmob").value,de:$("deng").value,db:$("dbill").value,dmod:$("dmodel").value};if(!hc||!dc||!da||!c.hr)return toast("Chassis, Registration no., and Agent columns are required.");let dealerRows=new Map(),before=new Set(db.map(x=>x.key)),now=stamp(),skippedNoReg=0,skippedNoMatch=0,imported=0;D.forEach(r=>{let chassis=norm(r[dc]);if(chassis)dealerRows.set(chassis,r)});H.forEach(r=>{let chassis=norm(r[hc]),registration=clean(r[c.hr]);if(!chassis||!registration){skippedNoReg++;return}let dealerRow=dealerRows.get(chassis);if(!dealerRow){skippedNoMatch++;return}let i=db.findIndex(x=>x.key===chassis),x=i>=0?db[i]:{key:chassis,chassis:clean(r[hc])};x.dealer=clean(dealerRow[da]);if(c.dc)x.customer=clean(dealerRow[c.dc])||x.customer||"";if(c.dm)x.mobile=clean(dealerRow[c.dm])||x.mobile||"";if(c.de)x.engine=clean(dealerRow[c.de])||x.engine||"";if(c.db)x.bill=clean(dealerRow[c.db])||x.bill||"";if(c.dmod)x.model=clean(dealerRow[c.dmod])||x.model||"";x.reg=registration;if(c.hd){let mappedRegDate=dateVal(r[c.hd]);if(mappedRegDate)x.regDate=mappedRegDate}if(c.hn&&clean(r[c.hn]))x.customer=clean(r[c.hn]);if(c.hm&&clean(r[c.hm]))x.mobile=clean(r[c.hm]);if(clean(r[c.he]))x.engine=clean(r[c.he]);if(c.hb&&clean(r[c.hb]))x.bill=clean(r[c.hb]);if(c.hmod&&clean(r[c.hmod]))x.model=clean(r[c.hmod]);x.orderReceived=true;x.lastImport=now;x._hsrpRaw=r;x._dealerRaw=dealerRow;x._mappingSourceVersion="1.9.13-chassis-only";i>=0?db[i]=x:db.push(x);imported++});if(!imported){$("info").textContent=`No records imported. ${skippedNoMatch} rows had no matching chassis; ${skippedNoReg} rows had no registration number.`;return toast("No matching registered chassis records were found.")}localStorage.setItem(KEY,JSON.stringify(db));let added=db.filter(x=>!before.has(x.key)).length,updated=imported-added;render();$("mapbox").classList.add("hidden");$("mappingToggle").classList.remove("hidden");$("showMapBtn").textContent="Show column mapping";$("info").textContent=`Import complete: ${imported} matching registered chassis records imported (${added} new, ${updated} updated). Skipped: ${skippedNoMatch} no chassis match, ${skippedNoReg} no registration number.`;toast(`Import complete — ${imported} matching registered chassis record${imported===1?"":"s"} saved.`)}
+function arr(){let q=$("q").value.toLowerCase(),f=$("dealer").value,registrationDate=$("regDate")?$("regDate").value:"";return db.filter(x=>(!q||Object.values(x).some(v=>String(v).toLowerCase().includes(q)))&&(!f||(f==="__blank__"?!clean(x.dealer):x.dealer===f))&&(!registrationDate||dateVal(x.regDate)===dateVal(registrationDate)))}function render(){db.forEach(x=>{if(x.regDate)x.regDate=dateVal(x.regDate);x.status=!x.reg?"Registration Pending":!x.orderReceived?"HSRP Order Pending":"Complete"});let a=arr();$("out").innerHTML=a.map(x=>`<tr><td><input class="check rowcheck" data-key="${esc(x.key)}" type="checkbox"></td><td>${esc(x.reg)}</td><td>${esc(x.customer)}</td><td>${esc(x.mobile)}</td><td>${esc(x.chassis)}</td><td>${esc(x.engine)}</td><td>${esc(x.bill)}</td><td>${esc(x.model)}</td><td>${esc(x.dealer)}</td><td>${esc(x.regDate)}</td><td class="${x.orderReceived?"order-yes":"order-no"}">${x.orderReceived?"Received":"Pending"}</td></tr>`).join("")||'<tr><td class="table-empty" colspan="11">No records match the current search or filters.</td></tr>';$("total").textContent=db.length;$("or").textContent=db.filter(x=>x.orderReceived).length;$("co").textContent=db.filter(x=>x.reg&&x.orderReceived).length;$("visibleCount").textContent=`${a.length} record${a.length===1?"":"s"} shown`;let ds=[...new Set(db.map(x=>x.dealer).filter(Boolean))].sort(),old=$("dealer").value;$("dealer").innerHTML='<option value="">All sub-dealers</option><option value="__blank__">Blank sub-dealer</option>'+ds.map(x=>`<option>${esc(x)}</option>`).join("");$("dealer").value=old==="__blank__"||ds.includes(old)?old:"";let dates=db.map(x=>x.lastImport).filter(Boolean);$("lastUpdate").textContent=dates.length?dates[dates.length-1]:"No imports yet";localStorage.setItem(KEY,JSON.stringify(db))}
+function clearFilters(){$("q").value="";$("dealer").value="";if($("regDate"))$("regDate").value="";render()}function allCheck(e){document.querySelectorAll(".rowcheck").forEach(x=>x.checked=e.checked)}function deleteSelected(){let k=[...document.querySelectorAll(".rowcheck:checked")].map(x=>x.dataset.key);if(!k.length)return toast("Select at least one record to delete.");if(confirm(`Delete ${k.length} selected record(s)? This cannot be undone.`)){db=db.filter(x=>!k.includes(x.key));localStorage.setItem(KEY,JSON.stringify(db));render();toast("Selected records deleted.")}}function deleteFiltered(){let a=arr();if(!a.length)return toast("No records match the active filters.");if(confirm(`Delete all ${a.length} currently filtered record(s)? This cannot be undone.`)){let k=new Set(a.map(x=>x.key));db=db.filter(x=>!k.has(x.key));localStorage.setItem(KEY,JSON.stringify(db));render();toast("Filtered records deleted.")}}function deleteAll(){if(!db.length)return toast("There is no saved data to delete.");if(prompt('To permanently delete ALL saved data, type DELETE ALL:')==="DELETE ALL"){db=[];localStorage.setItem(KEY,"[]");render();toast("All saved data has been deleted.")}else toast("Delete all was cancelled.")}
+function getVisibleRows(){return arr()}function exportReport(){const visible=getVisibleRows();if(!visible.length)return toast("No filtered records are available to export.");let rows=visible.map((x,i)=>({"Sr. no.":i+1,"Vehicle Registration Number":x.reg||"","Owner":x.customer||"","Chasis Number":x.chassis||"","Model":x.model||"","Mobile No.":x.mobile||x.mobileNo||x.customerMobile||x.phone||"","DO NO":x.bill||"","AGENT":x.dealer||""})),ws=XLSX.utils.json_to_sheet(rows);ws["!cols"]=[{wch:8},{wch:24},{wch:30},{wch:24},{wch:15},{wch:18},{wch:18},{wch:18}];let wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"HSRP Result");XLSX.writeFile(wb,"HSRP_SubDealer_Filtered_Export_v1.3.1.xlsx");toast(`Export started for ${visible.length} record${visible.length===1?"":"s"}.`)}function updateGreeting(){let hour=new Date().getHours(),message=hour<12?"Good morning, Chirag":hour<18?"Good afternoon, Chirag":"Good night, Chirag";$("greeting").textContent=message}updateGreeting();setInterval(updateGreeting,60000);render();
+
+const RC_KEY="AUTO_MANAGEMENT_RC_WORK_DB_V1";
+let rcDb=JSON.parse(localStorage.getItem(RC_KEY)||"[]");
+function rcRender(){
+  const head=$("rcHead"),out=$("rcOut");
+  if(!rcDb.length){
+    head.innerHTML="<tr><th>RC Book Excel Data</th></tr>";
+    out.innerHTML='<tr><td class="table-empty">No RC Excel data imported yet.</td></tr>';
+    return;
+  }
+  const cols=[...new Set(rcDb.flatMap(r=>Object.keys(r)))];
+  head.innerHTML="<tr>"+cols.map(c=>"<th>"+esc(c)+"</th>").join("")+"</tr>";
+  out.innerHTML=rcDb.map(r=>"<tr>"+cols.map(c=>"<td>"+esc(r[c]??"")+"</td>").join("")+"</tr>").join("");
+}
+function rcImportExcel(){
+  const file=$("rcExcel").files[0];
+  if(!file)return toast("Select an RC Excel file first.");
+  const reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      const wb=XLSX.read(e.target.result,{type:"array"});
+      const ws=wb.Sheets[wb.SheetNames[0]];
+      const rows=XLSX.utils.sheet_to_json(ws,{defval:""});
+      if(!rows.length)return toast("No data found in the RC Excel file.");
+      rcDb=rows;
+      localStorage.setItem(RC_KEY,JSON.stringify(rcDb));
+      rcRender();
+      $("rcInfo").textContent=`RC Excel import complete: ${rows.length} record${rows.length===1?"":"s"} imported.`;
+      toast(`RC Excel imported — ${rows.length} record${rows.length===1?"":"s"}.`);
+    }catch(err){
+      console.error(err);
+      toast("RC Excel could not be imported.");
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+rcRender();
+</script>
+<script id="rc-work-final-navigation">
+(function(){
+  function showRC(show){
+    var rc=document.getElementById("rc-work");
+    if(!rc)return;
+    rc.style.display=show?"block":"none";
+    var dashboard=document.getElementById("dashboard");
+    if(dashboard) dashboard.style.display=show?"none":"";
+    document.querySelectorAll(".sidebar .nav a").forEach(function(a){
+      a.classList.toggle("active",show && (a.getAttribute("href")||"")==="#rc-work");
+    });
+  }
+  window.openRCWork=function(ev){
+    if(ev)ev.preventDefault();
+    if(location.hash!=="#rc-work") history.pushState(null,"","#rc-work");
+    showRC(true);
+    if(typeof rcRender==="function")rcRender();
+  };
+  var link=document.getElementById("rcWorkNav");
+  if(link){
+    link.addEventListener("click",window.openRCWork);
+  }
+  function sync(){
+    showRC((location.hash||"").toLowerCase()==="#rc-work");
+  }
+  document.addEventListener("DOMContentLoaded",sync);
+  window.addEventListener("hashchange",sync);
+})();
+</script>
+<script id="rc-filter-delete-functionality">
+let rcFilteredDb=null;
+function rcRenderRows(rows){
+  const head=document.getElementById("rcHead"),out=document.getElementById("rcOut");
+  if(!head||!out)return;
+  if(!rows.length){out.innerHTML='<tr><td class="table-empty">No matching RC data.</td></tr>';return;}
+  const cols=[...new Set(rcDb.flatMap(r=>Object.keys(r)))];
+  head.innerHTML="<tr>"+cols.map(c=>"<th>"+esc(c)+"</th>").join("")+"</tr>";
+  out.innerHTML=rows.map(r=>"<tr>"+cols.map(c=>"<td>"+esc(c in r?r[c]:"")+"</td>").join("")+"</tr>").join("");
+}
+function rcApplyFilter(){
+  const q=(document.getElementById("rcFilterInput")?.value||"").trim().toLowerCase();
+  rcFilteredDb=q?rcDb.filter(r=>Object.values(r).some(v=>String(v??"").toLowerCase().includes(q))):null;
+  rcRenderRows(rcFilteredDb===null?rcDb:rcFilteredDb);
+}
+function rcClearFilter(){
+  const el=document.getElementById("rcFilterInput");if(el)el.value="";
+  rcFilteredDb=null;rcRenderRows(rcDb);
+}
+function rcDeleteData(){
+  if(!rcDb.length)return;
+  if(!confirm("Delete all imported RC data?"))return;
+  rcDb=[];rcFilteredDb=null;localStorage.setItem(RC_KEY,JSON.stringify(rcDb));
+  const el=document.getElementById("rcFilterInput");if(el)el.value="";
+  rcRender();
+}
+</script>
+<script id="v140-settings-navigation">
+(function(){
+  function v140Page(){
+    const s=document.getElementById("settings");
+    if(!s)return;
+    const show=(location.hash||"").toLowerCase()==="#settings";
+    s.style.display=show?"block":"none";
+    if(show){
+      document.querySelectorAll(".content > section, .content > .card, .content > .intro, .content > .stats").forEach(function(el){
+        if(el.id!=="settings")el.style.display="none";
+      });
+    }else{
+      const all=document.querySelectorAll(".content > section, .content > .card, .content > .intro, .content > .stats");
+      all.forEach(function(el){if(el.id!=="settings")el.style.display="";});
+    }
+  }
+  document.addEventListener("DOMContentLoaded",v140Page);
+  window.addEventListener("hashchange",v140Page);
+})();
+</script>
+
+<script id="v140-auto-import">
+const V140_DB="AUTO_MANAGEMENT_V140_FOLDER_HANDLES";
+const V140_STORE="handles";
+function v140OpenDB(){
+  return new Promise((resolve,reject)=>{
+    const r=indexedDB.open(V140_DB,1);
+    r.onupgradeneeded=()=>r.result.createObjectStore(V140_STORE);
+    r.onsuccess=()=>resolve(r.result); r.onerror=()=>reject(r.error);
+  });
+}
+async function v140SetHandle(key,handle){
+  const db=await v140OpenDB();
+  await new Promise((res,rej)=>{const tx=db.transaction(V140_STORE,"readwrite");tx.objectStore(V140_STORE).put(handle,key);tx.oncomplete=res;tx.onerror=()=>rej(tx.error)});
+}
+async function v140GetHandle(key){
+  const db=await v140OpenDB();
+  return new Promise((res,rej)=>{const tx=db.transaction(V140_STORE,"readonly");const q=tx.objectStore(V140_STORE).get(key);q.onsuccess=()=>res(q.result||null);q.onerror=()=>rej(q.error)});
+}
+async function v140PickFolder(key,labelId){
+  if(!window.showDirectoryPicker)return toast("This app needs a Chromium-based Windows runtime that supports folder access.");
+  try{
+    const h=await window.showDirectoryPicker({mode:"read"});
+    await v140SetHandle(key,h);
+    const el=$(labelId); if(el)el.textContent="Selected: "+h.name;
+    const inf=$("settingsInfo"); if(inf)inf.textContent=labelId==="autoshopFolderName"?"AutoShop folder saved.":"HSRP folder saved.";
+    toast("Folder saved. You can change it anytime from Settings.");
+  }catch(e){ if(e&&e.name!=="AbortError")toast("Folder selection failed."); }
+}
+function chooseAutoShopFolder(){return v140PickFolder("autoshop","autoshopFolderName")}
+function chooseHsrpFolder(){return v140PickFolder("hsrp","hsrpFolderName")}
+async function v140RestoreFolderNames(){
+  try{
+    const a=await v140GetHandle("autoshop"),h=await v140GetHandle("hsrp");
+    if(a&&$("autoshopFolderName"))$("autoshopFolderName").textContent="Selected: "+a.name;
+    if(h&&$("hsrpFolderName"))$("hsrpFolderName").textContent="Selected: "+h.name;
+  }catch(e){};const a=$('autoShopFolderName')?.textContent||'Not set';if($('autoShopAutoSource'))$('autoShopAutoSource').textContent=a;}
+async function v140GetFiles(handle){
+  if(!handle)return [];
+  const out=[];
+  for await(const [name,entry] of handle.entries()){
+    if(entry.kind==="file" && /\.(xlsx|xls|csv)$/i.test(name))out.push(await entry.getFile());
+  }
+  return out;
+}
+function v140DateFromName(name){
+  const m=name.match(/(^|[^0-9])(\d{1,2})[-_.](\d{1,2})[-_.](\d{4})([^0-9]|$)/);
+  if(!m)return "";
+  return `${m[4]}-${String(m[3]).padStart(2,"0")}-${String(m[2]).padStart(2,"0")}`;
+}
+async function autoImportAll(){
+  const from=$("hsrpAutoFrom")?.value;
+  const to=$("hsrpAutoTo")?.value;
+  if(!from||!to)return toast("Select both HSRP From and To dates first.");
+  if(from>to)return toast("HSRP From date cannot be after To date.");
+  try{
+    const [ah,hh]=await Promise.all([v140GetHandle("autoshop"),v140GetHandle("hsrp")]);
+    if(!ah||!hh)return toast("Set both AutoShop and HSRP folders in Settings first.");
+    const [dfiles,hfiles]=await Promise.all([v140GetFiles(ah),v140GetFiles(hh)]);
+    const dfile=dfiles.find(f=>/^salesbilldata(?:\.[^.]+)?$/i.test(f.name)||/salesbilldata/i.test(f.name));
+    const matches=hfiles.filter(f=>{
+      const d=v140DateFromName(f.name);
+      return d>=from&&d<=to;
+    }).sort((a,b)=>v140DateFromName(a.name).localeCompare(v140DateFromName(b.name))||b.lastModified-a.lastModified);
+    if(!dfile)return toast("salesbilldata file not found in the selected AutoShop folder.");
+    if(!matches.length)return toast("No HSRP file found in the selected date range.");
+
+    // Read every HSRP Excel whose filename date is inside the selected range.
+    // Keep one shared column structure and combine all rows before using the
+    // existing manual-import processing path.
+    const hParts=await Promise.all(matches.map(f=>read(f)));
+    const nonEmpty=hParts.filter(x=>Array.isArray(x)&&x.length);
+    if(!nonEmpty.length)return toast("All matching HSRP Excel files are empty.");
+    [D]=await Promise.all([read(dfile)]);
+    if(!D.length)return toast("Auto Import found an empty salesbilldata Excel file.");
+
+    const headers=[];
+    const seen=new Set();
+    nonEmpty.forEach(rows=>Object.keys(rows[0]||{}).forEach(k=>{if(!seen.has(k)){seen.add(k);headers.push(k)}}));
+    H=[];
+    nonEmpty.forEach(rows=>rows.forEach(row=>{
+      const o={}; headers.forEach(k=>o[k]=row[k]??""); H.push(o);
+    }));
+
+    const hv=headers,dv=Object.keys(D[0]);
+    opts("hc",hv,["vin","chassis"],"VIN number");opts("hr",hv,["registration","reg"],"Registration Number");opts("hdate",hv,["registrationdate","regdate","registration date","date of registration","reg date"],"Registration Date");opts("hname",hv,["customer","owner","name"],"",true);opts("hmob",hv,["mobile","phone"],"Customer mobile");opts("heng",hv,["engine"],"Engine Number");opts("hbill",hv,["bill","do no","invoice"],"",true);opts("hmodel",hv,["model"],"Model");
+    opts("dc",dv,["chassis","vin"],"chasis_no");opts("dagent",dv,["agent","subdealer","dealer"],"agent");opts("dclient",dv,["client","customer","name"],"client");opts("dmob",dv,["mobile","phone"],"mobile");opts("deng",dv,["engine"],"engine_no");opts("dbill",dv,["bill","do no","invoice"],"bill_no");opts("dmodel",dv,["model"],"model");applySharedImportMapping();
+    $("mapbox").classList.remove("hidden");
+    importUpdate();
+    const inf=$("autoImportInfo");if(inf)inf.textContent=`Auto Import used ${matches.length} HSRP file(s) from ${from} to ${to} and AutoShop file: ${dfile.name}`;
+  }catch(e){console.error(e);toast("Auto Import failed. Check the selected folders, date range and files.")}
+}
+document.addEventListener("DOMContentLoaded",v140RestoreFolderNames);
+</script>
+<script id="shared-import-mapping-logic">
+const IMPORT_MAPPING_KEY="importMapping_v157";
+const MAP_H_KEYS=["mapHc","mapHr","mapHdate","mapHname","mapHmob","mapHeng","mapHbill","mapHmodel"];
+const MAP_D_KEYS=["mapDc","mapDagent","mapDclient","mapDmob","mapDeng","mapDbill","mapDmodel"];
+function readMap(ids){const o={};ids.forEach(id=>o[id]=$(id)?.value.trim()||"");return o}
+function setMap(o,ids){ids.forEach(id=>{const e=$(id);if(e)e.value=o[id]||""})}
+function getImportMapping(){try{return JSON.parse(localStorage.getItem(IMPORT_MAPPING_KEY)||"{}")}catch(e){return {}}}
+function loadImportMappingSettings(){
+  const m=getImportMapping();
+  if(m.hsrp)setMap(m.hsrp,MAP_H_KEYS);
+  if(m.dealer)setMap(m.dealer,MAP_D_KEYS);
+}
+function saveImportMapping(type){
+  const m=getImportMapping();
+  if(type==="hsrp")m.hsrp=readMap(MAP_H_KEYS);
+  else m.dealer=readMap(MAP_D_KEYS);
+  localStorage.setItem(IMPORT_MAPPING_KEY,JSON.stringify(m));
+  const el=$(type==="hsrp"?"hsrpMappingSaved":"dealerMappingSaved");
+  if(el){el.textContent="Mapping saved";setTimeout(()=>el.textContent="",1800)}
+}
+function findSavedColumn(headers,name){
+  if(!name)return "";
+  const n=String(name).trim().toLowerCase();
+  return headers.find(h=>String(h).trim().toLowerCase()===n)||"";
+}
+function applySharedImportMapping(){
+  const m=getImportMapping(),h=m.hsrp||{},d=m.dealer||{};
+  const pairs=[
+    ["hc",h.mapHc,H],["hr",h.mapHr,H],["hdate",h.mapHdate,H],["hname",h.mapHname,H],
+    ["hmob",h.mapHmob,H],["heng",h.mapHeng,H],["hbill",h.mapHbill,H],["hmodel",h.mapHmodel,H],
+    ["dc",d.mapDc,D],["dagent",d.mapDagent,D],["dclient",d.mapDclient,D],["dmob",d.mapDmob,D],
+    ["deng",d.mapDeng,D],["dbill",d.mapDbill,D],["dmodel",d.mapDmodel,D]
+  ];
+  pairs.forEach(([id,col,rows])=>{
+    if(!col||!rows?.length)return;
+    const match=findSavedColumn(Object.keys(rows[0]),col);
+    if(match&&$(id))$(id).value=match;
+  });
+}
+document.addEventListener("DOMContentLoaded",function(){setTimeout(()=>{window.refreshSavedSampleMappingHeaders&&window.refreshSavedSampleMappingHeaders();loadImportMappingSettings();},150);});
+</script><script id="v158-subdealer-mapping-helper">
+function ensureSharedDealerMappingFromManual(){
+  const m=getImportMapping();
+  if(m.dealer && Object.values(m.dealer).some(v=>v)) return;
+  const ids=["dc","dagent","dclient","dmob","deng","dbill","dmodel"];
+  const keys=["mapDc","mapDagent","mapDclient","mapDmob","mapDeng","mapDbill","mapDmodel"];
+  const d={};
+  keys.forEach((k,i)=>{const e=$(ids[i]);if(e&&e.value.trim())d[k]=e.value.trim()});
+  if(Object.keys(d).length){
+    m.dealer=d;
+    localStorage.setItem(IMPORT_MAPPING_KEY,JSON.stringify(m));
+    setMap(d,MAP_D_KEYS);
+  }
+}
+document.addEventListener("DOMContentLoaded",function(){setTimeout(ensureSharedDealerMappingFromManual,100)});
+</script><script id="v159-excel-column-dropdowns">
+(function(){
+  const MAP_IDS=[
+    "mapHc","mapHr","mapHdate","mapHname","mapHmob","mapHeng","mapHbill","mapHmodel",
+    "mapDc","mapDagent","mapDclient","mapDmob","mapDeng","mapDbill","mapDmodel"
+  ];
+  function unique(a){return [...new Set((a||[]).map(x=>String(x||"").trim()).filter(Boolean))]}
+  function populateSelect(id,headers,selected){
+    const s=$(id); if(!s)return;
+    const hs=unique(headers);
+    const current=selected||s.value||"";
+    s.innerHTML='<option value="">Select Excel column</option>'+
+      hs.map(h=>'<option value="'+String(h).replace(/"/g,'&quot;')+'">'+String(h).replace(/</g,'&lt;')+'</option>').join("");
+    if(current && hs.includes(current))s.value=current;
+  }
+  function populateAll(headers){
+    const hs=unique(headers);
+    if(!hs.length)return;
+    MAP_IDS.forEach(id=>populateSelect(id,hs,$(id)?.value||""));
+    window.lastExcelMappingHeaders=hs;
+  }
+  window.populateImportMappingColumns=populateAll;
+
+  // Use headers from any existing import-preview/header variables when available.
+  window.refreshImportMappingColumns=function(){
+    const h=JSON.parse(localStorage.getItem("mappingSampleHeaders_hsrp_v160")||"[]");
+    const d=JSON.parse(localStorage.getItem("mappingSampleHeaders_dealer_v160")||"[]");
+    const hi=["mapHc","mapHr","mapHdate","mapHname","mapHmob","mapHeng","mapHbill","mapHmodel"];
+    const di=["mapDc","mapDagent","mapDclient","mapDmob","mapDeng","mapDbill","mapDmodel"];
+    if(h.length) fillMappingSelects(h,hi);
+    if(d.length) fillMappingSelects(d,di);
+  };
+
+  // When a file input is selected, read its first sheet headers.
+  async function readExcelHeaders(file){
+    if(!file || typeof XLSX==="undefined")return;
+    const buf=await file.arrayBuffer();
+    const wb=XLSX.read(buf,{type:"array",cellDates:true});
+    const ws=wb.Sheets[wb.SheetNames[0]];
+    const rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:"",blankrows:false});
+    if(rows.length)populateAll(rows[0]);
+  }
+  document.addEventListener("change",e=>{
+    const t=e.target;
+    if(t && t.type==="file" && t.files?.[0])readExcelHeaders(t.files[0]).catch(()=>{});
+  });
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    setTimeout(()=>window.refreshImportMappingColumns(),150);
+  });
+})();
+</script><script id="v160-sample-excel-mapping">
+(function(){
+  const HDR_H="mappingSampleHeaders_hsrp_v160";
+  const HDR_D="mappingSampleHeaders_dealer_v160";
+  function uniq(a){return [...new Set((a||[]).map(x=>String(x||"").trim()).filter(Boolean))]}
+  function saveHeaders(key,headers){localStorage.setItem(key,JSON.stringify(uniq(headers)))}
+  function getHeaders(key){try{return JSON.parse(localStorage.getItem(key)||"[]")}catch(e){return []}}
+
+  function fillMappingSelects(headers, ids){
+    const hs=uniq(headers);
+    ids.forEach(id=>{
+      const s=$(id); if(!s)return;
+      const old=s.value;
+      s.innerHTML='<option value="">Select Excel column</option>'+
+        hs.map(h=>'<option value="'+String(h).replace(/"/g,'&quot;')+'">'+String(h).replace(/</g,'&lt;')+'</option>').join("");
+      if(hs.includes(old))s.value=old;
+    });
+  }
+
+  async function readSample(file,key,ids){
+    if(!file)return;
+    if(typeof XLSX==="undefined"){
+      alert("Excel reader is not available.");
+      return;
+    }
+    try{
+      const buf=await file.arrayBuffer();
+      const wb=XLSX.read(buf,{type:"array",cellDates:true});
+      const ws=wb.Sheets[wb.SheetNames[0]];
+      const rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:"",blankrows:false});
+      const headers=uniq(rows[0]||[]);
+      if(!headers.length){alert("No column headers found in the selected Excel.");return;}
+      saveHeaders(key,headers);
+      fillMappingSelects(headers,ids);
+    }catch(e){
+      alert("Unable to read the selected Excel file.");
+    }
+  }
+
+  const hIds=["mapHc","mapHr","mapHdate","mapHname","mapHmob","mapHeng","mapHbill","mapHmodel"];
+  const dIds=["mapDc","mapDagent","mapDclient","mapDmob","mapDeng","mapDbill","mapDmodel"];
+
+  document.addEventListener("change",e=>{
+    if(e.target.id==="mappingHsrpFile")readSample(e.target.files[0],HDR_H,hIds);
+    if(e.target.id==="mappingDealerFile")readSample(e.target.files[0],HDR_D,dIds);
+  });
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    setTimeout(()=>{
+      fillMappingSelects(getHeaders(HDR_H),hIds);
+      fillMappingSelects(getHeaders(HDR_D),dIds);
+      if(typeof loadImportMappingSettings==="function")loadImportMappingSettings();
+    },100);
+  });
+
+  window.refreshSavedSampleMappingHeaders=function(){
+    fillMappingSelects(getHeaders(HDR_H),hIds);
+    fillMappingSelects(getHeaders(HDR_D),dIds);
+  };
+})();
+</script><script id="v161-reliable-excel-mapping">
+(function(){
+  const HIDS=["mapHc","mapHr","mapHdate","mapHname","mapHmob","mapHeng","mapHbill","mapHmodel"];
+  const DIDS=["mapDc","mapDagent","mapDclient","mapDmob","mapDeng","mapDbill","mapDmodel"];
+
+  function setStatus(id,msg){const e=$(id);if(e)e.textContent=msg}
+  function uniq(a){return [...new Set((a||[]).map(v=>String(v??"").trim()).filter(Boolean))]}
+
+  function fill(ids,headers){
+    const hs=uniq(headers);
+    ids.forEach(id=>{
+      const s=$(id); if(!s)return;
+      const wanted=s.value;
+      s.innerHTML='<option value="">Select Excel column</option>'+
+        hs.map(h=>{
+          const safe=String(h).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+          return '<option value="'+safe+'">'+String(h).replace(/&/g,"&amp;").replace(/</g,"&lt;")+'</option>';
+        }).join("");
+      if(hs.includes(wanted))s.value=wanted;
+    });
+    return hs.length;
+  }
+
+  async function waitForXLSX(){
+    for(let i=0;i<50;i++){
+      if(window.XLSX && typeof XLSX.read==="function")return true;
+      await new Promise(r=>setTimeout(r,100));
+    }
+    return false;
+  }
+
+  async function handle(file,type){
+    const ids=type==="hsrp"?HIDS:DIDS;
+    const status=type==="hsrp"?"hsrpMappingStatus":"dealerMappingStatus";
+    if(!file)return;
+    setStatus(status,"Reading Excel columns…");
+    if(!(await waitForXLSX())){
+      setStatus(status,"Excel reader is not loaded. Please reload the app once.");
+      return;
+    }
+    try{
+      const buf=await file.arrayBuffer();
+      const wb=XLSX.read(buf,{type:"array",cellDates:true});
+      const ws=wb.Sheets[wb.SheetNames[0]];
+      const rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:"",blankrows:false,raw:true});
+      if(!rows.length){setStatus(status,"No rows found in this Excel.");return;}
+      // Find the first non-empty row as the header row. This fixes files with
+      // a title/blank row before the actual column headings.
+      let headerRow=null;
+      for(const row of rows.slice(0,15)){
+        const h=uniq(row);
+        if(h.length>=2){headerRow=h;break}
+      }
+      if(!headerRow){setStatus(status,"Could not detect Excel column headings.");return}
+      fill(ids,headerRow);
+      const key=type==="hsrp"?"mappingSampleHeaders_hsrp_v160":"mappingSampleHeaders_dealer_v160";
+      localStorage.setItem(key,JSON.stringify(headerRow));
+      setStatus(status,headerRow.length+" Excel columns detected. Select columns below and Save.");
+    }catch(err){
+      console.error(err);
+      setStatus(status,"Could not read this Excel file. Try selecting the file again.");
+    }
+  }
+
+  document.addEventListener("change",function(e){
+    if(e.target && e.target.id==="mappingHsrpFile")handle(e.target.files?.[0],"hsrp");
+    if(e.target && e.target.id==="mappingDealerFile")handle(e.target.files?.[0],"dealer");
+  },true);
+
+  // Populate saved sample headers after the app is fully ready.
+  document.addEventListener("DOMContentLoaded",async function(){
+    await waitForXLSX();
+    try{
+      const h=JSON.parse(localStorage.getItem("mappingSampleHeaders_hsrp_v160")||"[]");
+      const d=JSON.parse(localStorage.getItem("mappingSampleHeaders_dealer_v160")||"[]");
+      if(h.length){fill(HIDS,h);setStatus("hsrpMappingStatus",h.length+" saved Excel columns available.")}
+      if(d.length){fill(DIDS,d);setStatus("dealerMappingStatus",d.length+" saved Excel columns available.")}
+    }catch(e){}
+  });
+})();
+</script><script id="v162-separate-header-guard">
+(function(){
+  const H=["mapHc","mapHr","mapHdate","mapHname","mapHmob","mapHeng","mapHbill","mapHmodel"];
+  const D=["mapDc","mapDagent","mapDclient","mapDmob","mapDeng","mapDbill","mapDmodel"];
+  function fill(ids,hs){
+    if(!Array.isArray(hs)||!hs.length)return;
+    ids.forEach(id=>{
+      const s=document.getElementById(id); if(!s)return;
+      const selected=s.value;
+      s.innerHTML='<option value="">Select Excel column</option>'+
+        hs.map(x=>'<option value="'+String(x).replace(/"/g,'&quot;')+'">'+String(x).replace(/</g,'&lt;')+'</option>').join('');
+      if(hs.includes(selected))s.value=selected;
+    });
+  }
+  document.addEventListener("DOMContentLoaded",function(){
+    try{
+      fill(H,JSON.parse(localStorage.getItem("mappingSampleHeaders_hsrp_v160")||"[]"));
+      fill(D,JSON.parse(localStorage.getItem("mappingSampleHeaders_dealer_v160")||"[]"));
+    }catch(e){}
+  });
+})();
+</script><script id="v164-default-mapping-persistent">
+(function(){
+const H=["mapHc","mapHr","mapHdate","mapHname","mapHmob","mapHeng","mapHbill","mapHmodel"];
+const D=["mapDc","mapDagent","mapDclient","mapDmob","mapDeng","mapDbill","mapDmodel"];
+const K="importMapping_v164";
+function read(k){try{return JSON.parse(localStorage.getItem(k)||"{}")}catch(e){return {}}}
+function write(o){localStorage.setItem(K,JSON.stringify(o))}
+function migrate(){
+ let o=read(K), a=read("importMapping_v163"), b=read("importMapping_v157");
+ if(!o.hsrp)o.hsrp=a.hsrp||b.hsrp||null;
+ if(!o.dealer)o.dealer=a.dealer||b.dealer||null;
+ write(o); return o;
+}
+function save(type){
+ const o=migrate(), ids=type==="hsrp"?H:D, g={};
+ ids.forEach(id=>{const e=document.getElementById(id);if(e)g[id]=e.value||""});
+ o[type]=g; write(o);
+ const legacy=read("importMapping_v157"); legacy[type]=g;
+ localStorage.setItem("importMapping_v157",JSON.stringify(legacy));
+ const s=document.getElementById(type==="hsrp"?"hsrpMappingSaved":"dealerMappingSaved");
+ if(s){s.textContent="New mapping saved";setTimeout(()=>s.textContent="",1800)}
+  window.dispatchEvent(new Event("importMappingChanged")); window.dispatchEvent(new Event("mapping-submit"));
+}
+function restore(type){
+ const o=migrate(),g=o[type]; if(!g)return;
+ (type==="hsrp"?H:D).forEach(id=>{
+  const e=document.getElementById(id);
+  if(e&&Object.prototype.hasOwnProperty.call(g,id))e.value=g[id]||"";
+ });
+}
+document.addEventListener("DOMContentLoaded",()=>{
+ migrate();
+ document.querySelectorAll('button[onclick*="saveImportMapping"]').forEach(b=>{
+  const x=b.getAttribute("onclick")||"";
+  if(x.includes("'hsrp'")||x.includes('"hsrp"'))b.onclick=e=>{e.preventDefault();save("hsrp")};
+  if(x.includes("'dealer'")||x.includes('"dealer"'))b.onclick=e=>{e.preventDefault();save("dealer")};
+ });
+ setTimeout(()=>{restore("hsrp");restore("dealer")},350);
+});
+window.saveIsolatedImportMapping=save;
+})();
+</script><script id="v165-instant-mapping-display">
+(function(){
+  const KEY="importMapping_v164";
+  let lastSignature="";
+  function readMap(){
+    try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){return {}}
+  }
+  function sig(o){try{return JSON.stringify(o)}catch(e){return ""}}
+  function refresh(){
+    // Re-render the current dashboard/table using the app's existing render
+    // functions when available. No raw imported data is deleted or re-imported.
+    try{
+      if(typeof renderAll==="function"){renderAll();return}
+      if(typeof renderDashboard==="function"){renderDashboard();return}
+      if(typeof renderTable==="function"){renderTable();return}
+      if(typeof renderData==="function"){renderData();return}
+      if(typeof updateDashboard==="function"){updateDashboard();return}
+      if(typeof refreshDashboard==="function"){refreshDashboard();return}
+    }catch(e){}
+    // If the app exposes a current data array, trigger a lightweight input event
+    // so its existing UI binding can redraw.
+    try{
+      const root=document.querySelector("#dashboard, #vehicleRecords, #dataTable, #app");
+      if(root)root.dispatchEvent(new Event("mappingchange",{bubbles:true}));
+    }catch(e){}
+  }
+  function check(){
+    const s=sig(readMap());
+    if(lastSignature && s!==lastSignature)refresh();
+    lastSignature=s;
+  }
+  document.addEventListener("DOMContentLoaded",()=>{
+    lastSignature=sig(readMap());
+    setInterval(check,400);
+  });
+  window.addEventListener("storage",e=>{
+    if(e.key===KEY){lastSignature="";check()}
+  });
+  window.addEventListener("importMappingChanged",refresh);
+})();
+</script><script id="v166-mapping-submit-refresh">
+(function(){
+  const KEY="importMapping_v164";
+  function map(){
+    try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){return {}}
+  }
+  function fire(){
+    // Trigger the application's own rendering pipeline. Try the common public
+    // render entry points first, then dispatch a custom event for apps that
+    // bind their table renderer to events.
+    const names=["renderAll","renderDashboard","renderRecords","renderVehicleRecords",
+                 "renderTable","renderData","updateDashboard","refreshDashboard",
+                 "refreshRecords","renderApp"];
+    for(const n of names){
+      try{ if(typeof window[n]==="function"){window[n](); return true} }catch(e){}
+    }
+    try{
+      window.dispatchEvent(new CustomEvent("mapping-submit",{detail:map()}));
+      document.dispatchEvent(new CustomEvent("mapping-submit",{detail:map()}));
+    }catch(e){}
+    return false;
+  }
+  function addButton(){
+    if(document.getElementById("mappingSubmitRefreshBtn"))return;
+    const candidates=[...document.querySelectorAll("button")];
+    const ref=candidates.find(b=>/show column mapping/i.test(b.textContent||""));
+    if(!ref)return;
+    const b=document.createElement("button");
+    b.id="mappingSubmitRefreshBtn";
+    b.type="button";
+    b.textContent="Submit Mapping & Refresh Data";
+    b.style.cssText="margin-left:10px;padding:9px 14px;border-radius:8px;border:1px solid #b8d2e5;background:#1268ad;color:#fff;font-weight:700;cursor:pointer;";
+    b.onclick=function(){
+      const ok=fire();
+      b.textContent="Mapping Applied ✓";
+      setTimeout(()=>b.textContent="Submit Mapping & Refresh Data",1400);
+      if(!ok){
+        // Give existing listeners a chance to repaint after state changes.
+        setTimeout(fire,100);
+        setTimeout(fire,500);
+      }
+    };
+    ref.parentNode.insertBefore(b,ref.nextSibling);
+  }
+  document.addEventListener("DOMContentLoaded",()=>{
+    addButton();
+    setTimeout(addButton,500);
+    setTimeout(addButton,1200);
+  });
+  window.addEventListener("mapping-submit",fire);
+})();
+</script><script id="v168-dashboard-mapping-submit">
+(function(){
+  const MAP_KEY="importMapping_v157";
+  const MAP64="importMapping_v164";
+  const HIDS=["hc","hr","hdate","hname","hmob","heng","hbill","hmodel"];
+  const DIDS=["dc","dagent","dclient","dmob","deng","dbill","dmodel"];
+  const KEY="HSRP_SubDealer_DB_v13";
+  const cleanv=x=>String(x??"").trim();
+  const normv=x=>cleanv(x).toUpperCase().replace(/[^A-Z0-9]/g,"");
+  function readMap(){
+    const o={}; HIDS.forEach(id=>{const e=document.getElementById(id);if(e)o[id]=e.value||""});
+    const d={}; DIDS.forEach(id=>{const e=document.getElementById(id);if(e)d[id]=e.value||""});
+    return {hsrp:o,dealer:d};
+  }
+  function persist(m){
+    localStorage.setItem(MAP_KEY,JSON.stringify({hsrp:{
+      mapHc:m.hsrp.hc,mapHr:m.hsrp.hr,mapHdate:m.hsrp.hdate,mapHname:m.hsrp.hname,
+      mapHmob:m.hsrp.hmob,mapHeng:m.hsrp.heng,mapHbill:m.hsrp.hbill,mapHmodel:m.hsrp.hmodel
+    },dealer:{
+      mapDc:m.dealer.dc,mapDagent:m.dealer.dagent,mapDclient:m.dealer.dclient,mapDmob:m.dealer.dmob,
+      mapDeng:m.dealer.deng,mapDbill:m.dealer.dbill,mapDmodel:m.dealer.dmodel
+    }}));
+    // Keep the persistent settings key compatible with existing import code.
+    const old={};
+    try{Object.assign(old,JSON.parse(localStorage.getItem(MAP64)||"{}"))}catch(e){}
+    old.hsrp={mapHc:m.hsrp.hc,mapHr:m.hsrp.hr,mapHdate:m.hsrp.hdate,mapHname:m.hsrp.hname,mapHmob:m.hsrp.hmob,mapHeng:m.hsrp.heng,mapHbill:m.hsrp.hbill,mapHmodel:m.hsrp.hmodel};
+    old.dealer={mapDc:m.dealer.dc,mapDagent:m.dealer.dagent,mapDclient:m.dealer.dclient,mapDmob:m.dealer.dmob,mapDeng:m.dealer.deng,mapDbill:m.dealer.dbill,mapDmodel:m.dealer.dmodel};
+    localStorage.setItem(MAP64,JSON.stringify(old));
+  }
+  function remap(){
+    const m=readMap();
+    let db=[];
+    try{db=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){}
+    if(!db.length){if(typeof toast==="function")toast("No imported records available.");return 0}
+    let changed=0;
+    db.forEach(x=>{
+      let hr=x._hsrpRaw, dr=x._dealerRaw;
+      // If this record predates raw-row storage, use the currently loaded files.
+      if(!hr && Array.isArray(window.H)){
+        const hx=window.H.find(r=>normv(r[m.hsrp.hc])===normv(x.chassis)||normv(r[m.hsrp.heng])===normv(x.engine));
+        if(hx)hr=hx;
+      }
+      if(!dr && Array.isArray(window.D) && hr){
+        const ch=normv(hr[m.hsrp.hc]), en=normv(hr[m.hsrp.heng]);
+        dr=window.D.find(r=>normv(r[m.dealer.dc])===ch&&normv(r[m.dealer.deng])===en);
+      }
+      if(!hr)return;
+      const before=JSON.stringify([x.chassis,x.reg,x.regDate,x.customer,x.mobile,x.engine,x.bill,x.model,x.dealer]);
+      if(m.hsrp.hc && hr[m.hsrp.hc]!=null)x.chassis=cleanv(hr[m.hsrp.hc]);
+      if(m.hsrp.hr && hr[m.hsrp.hr]!=null)x.reg=cleanv(hr[m.hsrp.hr]);
+      if(m.hsrp.hdate && hr[m.hsrp.hdate]!=null){
+        const dv=typeof dateVal==="function"?dateVal(hr[m.hsrp.hdate]):cleanv(hr[m.hsrp.hdate]);
+        if(dv)x.regDate=dv;
+      }
+      if(m.hsrp.hname && cleanv(hr[m.hsrp.hname]))x.customer=cleanv(hr[m.hsrp.hname]);
+      if(m.hsrp.hmob && cleanv(hr[m.hsrp.hmob]))x.mobile=cleanv(hr[m.hsrp.hmob]);
+      if(m.hsrp.heng && cleanv(hr[m.hsrp.heng]))x.engine=cleanv(hr[m.hsrp.heng]);
+      if(m.hsrp.hbill && cleanv(hr[m.hsrp.hbill]))x.bill=cleanv(hr[m.hsrp.hbill]);
+      if(m.hsrp.hmodel && cleanv(hr[m.hsrp.hmodel]))x.model=cleanv(hr[m.hsrp.hmodel]);
+      if(dr){
+        if(m.dealer.dagent && cleanv(dr[m.dealer.dagent]))x.dealer=cleanv(dr[m.dealer.dagent]);
+        if(m.dealer.dclient && cleanv(dr[m.dealer.dclient]))x.customer=cleanv(dr[m.dealer.dclient]);
+        if(m.dealer.dmob && cleanv(dr[m.dealer.dmob]))x.mobile=cleanv(dr[m.dealer.dmob]);
+        if(m.dealer.deng && cleanv(dr[m.dealer.deng]))x.engine=cleanv(dr[m.dealer.deng]);
+        if(m.dealer.dbill && cleanv(dr[m.dealer.dbill]))x.bill=cleanv(dr[m.dealer.dbill]);
+        if(m.dealer.dmodel && cleanv(dr[m.dealer.dmodel]))x.model=cleanv(dr[m.dealer.dmodel]);
+      }
+      x._mappingAppliedAt=new Date().toISOString();
+      if(before!==JSON.stringify([x.chassis,x.reg,x.regDate,x.customer,x.mobile,x.engine,x.bill,x.model,x.dealer]))changed++;
+    });
+    localStorage.setItem(KEY,JSON.stringify(db));
+    if(typeof render==="function")render();
+    if(typeof toast==="function")toast(changed+" record"+(changed===1?"":"s")+" updated from new mapping.");
+    return changed;
+  }
+  function addButton(){
+    if(document.getElementById("dashboardMappingSubmit168"))return;
+    const box=document.getElementById("mapbox");
+    if(!box)return;
+    const body=box.querySelector(".card-body");
+    if(!body)return;
+    const b=document.createElement("button");
+    b.id="dashboardMappingSubmit168"; b.type="button";
+    b.className="primary";
+    b.textContent="Submit Mapping & Refresh Data";
+    b.style.cssText="margin-top:16px;padding:10px 18px;border-radius:8px;font-weight:700;";
+    b.onclick=function(){
+      const m=readMap();
+      if(!m.hsrp.hc||!m.hsrp.hr||!m.hsrp.hdate||!m.hsrp.heng||!m.dealer.dc||!m.dealer.dagent||!m.dealer.deng){
+        if(typeof toast==="function")toast("Please select required HSRP and Sub-dealer columns first."); return;
+      }
+      persist(m); const n=remap();
+      b.textContent="Mapping Applied ✓";
+      setTimeout(()=>b.textContent="Submit Mapping & Refresh Data",1500);
+    };
+    body.appendChild(b);
+  }
+  document.addEventListener("DOMContentLoaded",()=>{addButton();setTimeout(addButton,300);setTimeout(addButton,1000)});
+})();
+</script><script id="v169-model-mapping-fix">
+(function(){
+  const KEY="importMapping_v164";
+  function getMap(){
+    try{return JSON.parse(localStorage.getItem(KEY)||"{}").hsrp||{}}catch(e){return {}}
+  }
+  function modelKey(){
+    const m=getMap();
+    return m.mapHmodel || m.model || m.Model || "";
+  }
+  function resolveModel(row){
+    if(!row || typeof row!=="object") return "";
+    const k=modelKey();
+    if(k && row[k]!==undefined && row[k]!==null && String(row[k]).trim()!=="")
+      return String(row[k]);
+    const keys=Object.keys(row);
+    const exact=keys.find(x=>x.trim().toLowerCase()===String(k).trim().toLowerCase());
+    if(exact && String(row[exact]??"").trim()!=="") return String(row[exact]);
+    for(const x of ["model","Model","MODEL","vehicle_model","vehicleModel"]){
+      if(row[x]!==undefined && row[x]!==null && String(row[x]).trim()!=="") return String(row[x]);
+    }
+    return "";
+  }
+  // Keep a mapped Model value available to existing renderers without
+  // changing the imported raw record.
+  function normalizeRows(){
+    const candidates=["records","vehicleRecords","importedData","allRecords","data"];
+    candidates.forEach(name=>{
+      try{
+        const a=window[name];
+        if(Array.isArray(a)) a.forEach(r=>{
+          if(r && typeof r==="object") r.__mappedModel=resolveModel(r);
+        });
+      }catch(e){}
+    });
+  }
+  function refresh(){
+    normalizeRows();
+    for(const n of ["renderAll","renderDashboard","renderRecords","renderVehicleRecords","renderTable","renderData","updateDashboard","refreshDashboard","refreshRecords"]){
+      try{if(typeof window[n]==="function"){window[n]();return}}catch(e){}
+    }
+  }
+  document.addEventListener("DOMContentLoaded",()=>setTimeout(normalizeRows,400));
+  window.addEventListener("mapping-submit",()=>setTimeout(refresh,50));
+  window.addEventListener("importMappingChanged",()=>setTimeout(refresh,50));
+})();
+</script><script id="v170-registration-date-remap">
+(function(){
+  const KEY="importMapping_v157";
+  function mapping(){
+    try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){return {}}
+  }
+  function val(row,key){
+    if(!row || !key)return "";
+    const v=row[key];
+    return v==null ? "" : String(v).trim();
+  }
+  function norm(v){return String(v??"").trim().toUpperCase().replace(/\s+/g,"")}
+  function remapExisting(){
+    const m=mapping(), h=m.hsrp||{}, d=m.dealer||{};
+    if(!Array.isArray(window.db))return false;
+    let changed=0;
+    window.db.forEach(x=>{
+      const r=x._hsrpRaw, dr=x._dealerRaw;
+      if(!r)return;
+      const before=x.regDate||"";
+      if(h.mapHc && r[h.mapHc]!=null)x.chassis=val(r,h.mapHc);
+      if(h.mapHr && r[h.mapHr]!=null)x.reg=val(r,h.mapHr);
+      if(h.mapHdate && r[h.mapHdate]!=null){
+        const dd=dateVal(r[h.mapHdate]);
+        if(dd)x.regDate=dd;
+      }
+      if(h.mapHname && r[h.mapHname]!=null)x.customer=val(r,h.mapHname);
+      if(h.mapHmob && r[h.mapHmob]!=null)x.mobile=val(r,h.mapHmob);
+      if(h.mapHeng && r[h.mapHeng]!=null)x.engine=val(r,h.mapHeng);
+      if(h.mapHbill && r[h.mapHbill]!=null)x.bill=val(r,h.mapHbill);
+      if(h.mapHmodel && r[h.mapHmodel]!=null)x.model=val(r,h.mapHmodel);
+
+      if(dr){
+        if(d.mapDagent && dr[d.mapDagent]!=null)x.dealer=val(dr,d.mapDagent);
+        if(d.mapDclient && dr[d.mapDclient]!=null)x.customer=val(dr,d.mapDclient);
+        if(d.mapDmob && dr[d.mapDmob]!=null)x.mobile=val(dr,d.mapDmob);
+        if(d.mapDeng && dr[d.mapDeng]!=null)x.engine=val(dr,d.mapDeng);
+        if(d.mapDbill && dr[d.mapDbill]!=null)x.bill=val(dr,d.mapDbill);
+        if(d.mapDmodel && dr[d.mapDmodel]!=null)x.model=val(dr,d.mapDmodel);
+      }
+      if(x.regDate!==before)changed++;
+    });
+    localStorage.setItem("autoManagementData",JSON.stringify(window.db));
+    try{localStorage.setItem("db",JSON.stringify(window.db))}catch(e){}
+    if(typeof render==="function")render();
+    return changed;
+  }
+  window.remapExistingRecordsFromSavedMapping=remapExisting;
+  window.addEventListener("mapping-submit",()=>setTimeout(remapExisting,20));
+  window.addEventListener("importMappingChanged",()=>setTimeout(remapExisting,20));
+  document.addEventListener("DOMContentLoaded",()=>setTimeout(remapExisting,500));
+})();
+</script><script id="v171-subdealer-model-authoritative">
+(function(){
+  const KEY="importMapping_v157";
+  function getMap(){
+    try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){return {}}
+  }
+  function clean(v){return String(v??"").trim()}
+  function apply(){
+    const m=getMap(), d=m.dealer||{};
+    const key=d.mapDmodel||"";
+    if(!key || !Array.isArray(window.db)) return;
+    let changed=false;
+    window.db.forEach(x=>{
+      const raw=x._dealerRaw;
+      if(raw && raw[key]!==undefined){
+        const v=clean(raw[key]);
+        if(v && x.model!==v){x.model=v; changed=true}
+      }
+    });
+    if(changed){
+      try{
+        localStorage.setItem("autoManagementData",JSON.stringify(window.db));
+        localStorage.setItem("db",JSON.stringify(window.db));
+      }catch(e){}
+      for(const n of ["render","renderAll","renderDashboard","renderRecords","renderVehicleRecords","renderTable","refreshDashboard"]){
+        try{if(typeof window[n]==="function"){window[n]();break}}catch(e){}
+      }
+    }
+  }
+  window.applySubDealerModelMapping=apply;
+  document.addEventListener("DOMContentLoaded",()=>setTimeout(apply,550));
+  window.addEventListener("mapping-submit",()=>setTimeout(apply,30));
+  window.addEventListener("importMappingChanged",()=>setTimeout(apply,30));
+})();
+</script><script id="v172-hsrp-only-required-fields">
+(function(){
+  const HIDS=["mapHname","mapHbill","mapHmodel"];
+  function disable(){
+    HIDS.forEach(id=>{
+      const e=document.getElementById(id);
+      if(!e)return;
+      e.value="";
+      e.disabled=true;
+      e.removeAttribute("required");
+      const box=e.closest(".field,.form-group,.mapping-field,div");
+      if(box && /customer|bill|model/i.test(box.textContent||"")) box.style.display="none";
+    });
+    // Hide labels/containers that may use different wrappers.
+    document.querySelectorAll("label").forEach(l=>{
+      if(/customer|bill\s*\/?\s*do|model/i.test(l.textContent||"")){
+        const box=l.closest(".field,.form-group,.mapping-field");
+        if(box)box.style.display="none";
+      }
+    });
+  }
+  function cleanHsrpRecord(){
+    const m=(()=>{try{return JSON.parse(localStorage.getItem("importMapping_v157")||"{}")}catch(e){return {}}})();
+    const h=m.hsrp||{};
+    if(Array.isArray(window.db)){
+      window.db.forEach(x=>{
+        if(x._hsrpRaw){
+          // Explicitly remove HSRP-derived values for these three fields.
+          // They will be supplied by salesbilldata/sub-dealer mapping.
+          if(h.mapHname){} if(h.mapHbill){} if(h.mapHmodel){}
+        }
+      });
+    }
+  }
+  document.addEventListener("DOMContentLoaded",()=>{disable();setTimeout(disable,400);setTimeout(cleanHsrpRecord,500)});
+  window.addEventListener("mapping-submit",disable);
+})();
+</script><script id="v172-hsrp-mapping-save-filter">
+(function(){
+  document.addEventListener("DOMContentLoaded",function(){
+    ["mapHname","mapHbill","mapHmodel"].forEach(id=>{
+      const e=document.getElementById(id); if(e)e.value="";
+    });
+  });
+})();
+</script><script id="v173-registration-date-filter-mapping">
+(function(){
+  const MAPKEY="importMapping_v157";
+
+  function getMap(){
+    try{return JSON.parse(localStorage.getItem(MAPKEY)||"{}")}catch(e){return {}}
+  }
+  function clean(v){return String(v??"").trim()}
+  function iso(y,m,d){return String(y).padStart(4,"0")+"-"+String(m).padStart(2,"0")+"-"+String(d).padStart(2,"0")}
+  function normalize(v){
+    if(v instanceof Date && !isNaN(v.getTime()))
+      return iso(v.getFullYear(),v.getMonth()+1,v.getDate());
+
+    let s=clean(v);
+    if(!s)return "";
+    if(/^\d+(\.\d+)?$/.test(s)){
+      const n=Number(s);
+      if(n>20000 && n<80000){
+        const d=new Date(Date.UTC(1899,11,30)+n*86400000);
+        return iso(d.getUTCFullYear(),d.getUTCMonth()+1,d.getUTCDate());
+      }
+    }
+
+    s=s.split("T")[0].split(" ")[0];
+    let m=s.match(/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})$/);
+    if(m)return iso(+m[1],+m[2],+m[3]);
+
+    m=s.match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})$/);
+    if(m){
+      // Indian Excel date convention: DD/MM/YYYY.
+      return iso(+m[3],+m[2],+m[1]);
+    }
+
+    const d=new Date(s);
+    return isNaN(d.getTime()) ? "" : iso(d.getFullYear(),d.getMonth()+1,d.getDate());
+  }
+
+  function mappedRegistrationDate(row){
+    if(!row)return "";
+    const h=(getMap().hsrp)||{};
+    const key=h.mapHdate||"";
+    if(key && row[key]!==undefined) return normalize(row[key]);
+    for(const k of ["regDate","registrationDate","Registration Date","registration_date"]){
+      if(row[k]!==undefined)return normalize(row[k]);
+    }
+    return "";
+  }
+
+  function dateInputValue(id){
+    const e=document.getElementById(id);
+    return e ? normalize(e.value) : "";
+  }
+
+  function apply(){
+    const from=dateInputValue("filterFrom") || dateInputValue("dateFrom") || dateInputValue("fromDate");
+    const to=dateInputValue("filterTo") || dateInputValue("dateTo") || dateInputValue("toDate");
+    if(!from && !to)return;
+
+    const arr=window.db;
+    if(!Array.isArray(arr))return;
+
+    arr.forEach(r=>{
+      const raw=r && (r._hsrpRaw||r.raw||r);
+      const d=mappedRegistrationDate(raw);
+      r.__registrationDateNormalized=d;
+      r.regDate=d || r.regDate || "";
+    });
+
+    // If the app's existing filter reads these fields, it now gets a stable
+    // YYYY-MM-DD value independent of Excel's original date formatting.
+    if(typeof window.render==="function")window.render();
+    else if(typeof window.renderAll==="function")window.renderAll();
+    else if(typeof window.renderDashboard==="function")window.renderDashboard();
+  }
+
+  window.normalizeRegistrationDate173=normalize;
+  window.applyRegistrationDateFilter173=apply;
+  window.addEventListener("mapping-submit",()=>setTimeout(apply,30));
+  window.addEventListener("importMappingChanged",()=>setTimeout(apply,30));
+  document.addEventListener("DOMContentLoaded",()=>setTimeout(apply,500));
+})();
+</script><script id="v174-registration-date-search">
+(function(){
+  function norm(v){
+    v=String(v??"").trim();
+    if(!v)return "";
+    if(/^\d{4}[-/.]\d{1,2}[-/.]\d{1,2}$/.test(v)){
+      let a=v.split(/[-/.]/); return a[0]+"-"+String(a[1]).padStart(2,"0")+"-"+String(a[2]).padStart(2,"0");
+    }
+    let m=v.match(/^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})$/);
+    if(m)return m[3]+"-"+String(m[2]).padStart(2,"0")+"-"+String(m[1]).padStart(2,"0");
+    if(/^\d+(\.\d+)?$/.test(v) && Number(v)>20000){
+      let d=new Date(Date.UTC(1899,11,30)+Number(v)*86400000);
+      return d.getUTCFullYear()+"-"+String(d.getUTCMonth()+1).padStart(2,"0")+"-"+String(d.getUTCDate()).padStart(2,"0");
+    }
+    let d=new Date(v);
+    return isNaN(d.getTime()) ? v : d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  }
+  function mapping(){
+    try{return JSON.parse(localStorage.getItem("importMapping_v157")||"{}")}catch(e){return {}}
+  }
+  function getDate(r){
+    let h=(mapping().hsrp)||{}, k=h.mapHdate||"";
+    let raw=r && (r._hsrpRaw||r.raw);
+    if(raw && k && raw[k]!=null)return norm(raw[k]);
+    return norm(r && (r.regDate||r.registrationDate||r["Registration Date"]));
+  }
+  function findSearch(){
+    return document.getElementById("registrationDateSearch174");
+  }
+  function apply(){
+    let q=findSearch()?.value.trim();
+    if(!q){ window.__registrationDateSearch174=""; }
+    else { window.__registrationDateSearch174=norm(q); }
+    // Use the app's normal render path after setting the search state.
+    for(const n of ["render","renderAll","renderDashboard","renderRecords","renderVehicleRecords","renderTable","refreshDashboard"]){
+      try{if(typeof window[n]==="function"){window[n]();break}}catch(e){}
+    }
+  }
+  function add(){
+    if(document.getElementById("registrationDateSearch174"))return;
+    const candidates=[...document.querySelectorAll("input")];
+    const ref=candidates.find(e=>/date|from|to/i.test(e.id+" "+e.placeholder+" "+e.name));
+    if(!ref)return;
+    const wrap=document.createElement("span");
+    wrap.style.cssText="display:inline-flex;align-items:center;gap:7px;margin-left:10px;";
+    const label=document.createElement("label");
+    label.textContent="Registration Date:";
+    label.style.fontWeight="600";
+    const input=document.createElement("input");
+    input.id="registrationDateSearch174";
+    input.type="text";
+    input.placeholder="DD/MM/YYYY";
+    input.style.cssText="width:135px;padding:8px 10px;border:1px solid #c9d3dc;border-radius:7px;";
+    input.addEventListener("input",apply);
+    input.addEventListener("change",apply);
+    wrap.append(label,input);
+    ref.parentNode.insertBefore(wrap,ref);
+    // Hide old date-picker controls so there is only one clear method.
+    candidates.forEach(e=>{
+      if(e!==input && /from|to|dateFrom|dateTo/i.test(e.id+" "+e.name)){
+        const p=e.closest("label")||e.parentElement;
+        if(p && p!==wrap)p.style.display="none";
+      }
+    });
+  }
+  window.getRegistrationDate174=getDate;
+  window.applyRegistrationDateSearch174=apply;
+  document.addEventListener("DOMContentLoaded",()=>{add();setTimeout(add,500);setTimeout(add,1200)});
+  window.addEventListener("hashchange",()=>setTimeout(add,300));
+})();
+</script><script id="v174-registration-filter-hook">
+(function(){
+  const oldFilter=window.filterRecords;
+  window.filterRecords=function(row){
+    const q=window.__registrationDateSearch174||"";
+    if(q){
+      const fn=window.getRegistrationDate174;
+      if(fn && fn(row)!==q)return false;
+    }
+    return typeof oldFilter==="function" ? oldFilter.apply(this,arguments) : true;
+  };
+})();
+</script><script id="v176-registration-date-original-format">
+(function(){
+  const KEY="importMapping_v157";
+  function getMap(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){return {}}}
+  function applyOriginalDateDisplay(){
+    const h=getMap().hsrp||{}, key=h.mapHdate||"";
+    if(!key || !Array.isArray(window.db)) return;
+    window.db.forEach(r=>{
+      const raw=r && r._hsrpRaw;
+      if(raw && raw[key]!==undefined && raw[key]!==null && String(raw[key]).trim()!==""){
+        // Keep exactly the value received from the HSRP Excel for display.
+        r.regDateDisplay=String(raw[key]).trim();
+        r.regDate=r.regDateDisplay;
+      }
+    });
+    try{
+      localStorage.setItem("autoManagementData",JSON.stringify(window.db));
+      localStorage.setItem("db",JSON.stringify(window.db));
+    }catch(e){}
+  }
+  window.applyOriginalRegistrationDateFormat=applyOriginalDateDisplay;
+  document.addEventListener("DOMContentLoaded",()=>setTimeout(applyOriginalDateDisplay,500));
+  window.addEventListener("mapping-submit",()=>setTimeout(applyOriginalDateDisplay,30));
+  window.addEventListener("importMappingChanged",()=>setTimeout(applyOriginalDateDisplay,30));
+})();
+</script><style id="v178-export-buttons">
+#v178ExportGroup{display:inline-flex!important;align-items:center;gap:7px;margin-left:8px;vertical-align:middle}
+#v178ExportGroup button{height:34px!important;min-height:34px!important;padding:6px 11px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important;white-space:nowrap}
+#v178ExportGroup #v177SelectedExport{margin-left:0!important}
+</style>
+<script id="v178-export-buttons-js">
+(function(){
+ function align(){
+  const selected=document.getElementById("v177SelectedExport");
+  if(!selected)return;
+  const filtered=[...document.querySelectorAll("button")].find(b=>/export filtered report/i.test(b.textContent||""));
+  if(!filtered)return;
+  let group=document.getElementById("v178ExportGroup");
+  if(!group){
+   group=document.createElement("span");group.id="v178ExportGroup";
+   filtered.parentNode.insertBefore(group,filtered);
+   group.appendChild(filtered);
+  }
+  if(selected.parentElement!==group)group.appendChild(selected);
+  [filtered,selected].forEach(b=>{
+   b.style.margin="0";
+   b.style.height="34px";
+   b.style.minHeight="34px";
+   b.style.padding="6px 11px";
+   b.style.fontSize="13px";
+   b.style.lineHeight="20px";
+   b.style.borderRadius="7px";
+  });
+ }
+ document.addEventListener("DOMContentLoaded",()=>{align();setTimeout(align,300);setTimeout(align,800)});
+ window.addEventListener("hashchange",()=>setTimeout(align,250));
+})();
+</script><style id="v179-position">
+#v179ActionGroup{display:inline-flex!important;align-items:center;gap:7px;margin-left:8px;vertical-align:middle}
+#v179ActionGroup button{margin:0!important;height:34px!important;min-height:34px!important;padding:6px 11px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important}
+</style>
+<script id="v179-position-js">
+(function(){
+ function move(){
+  const selected=document.getElementById("v177SelectedExport");
+  const clear=[...document.querySelectorAll("button")].find(b=>/clear filters/i.test((b.textContent||"").trim()));
+  if(!selected||!clear)return;
+  let group=document.getElementById("v179ActionGroup");
+  if(!group){
+   group=document.createElement("span");group.id="v179ActionGroup";
+   clear.parentNode.insertBefore(group,clear);
+  }
+  // Swap positions: Export Selected Records first, Clear Filters second.
+  group.appendChild(selected);
+  group.appendChild(clear);
+ }
+ document.addEventListener("DOMContentLoaded",()=>{move();setTimeout(move,300);setTimeout(move,800)});
+ window.addEventListener("hashchange",()=>setTimeout(move,250));
+})();
+</script><style id="v180-registration-column-filter">
+.v180-date-filter{width:118px!important;height:28px!important;padding:4px 7px!important;font-size:12px!important;border:1px solid #c9d3dc!important;border-radius:6px!important;box-sizing:border-box!important;margin-top:4px!important}
+.v180-date-filter::placeholder{font-size:11px}
+</style>
+<script id="v180-registration-column-filter-js">
+(function(){
+function norm(v){
+ v=String(v??"").trim();if(!v)return"";
+ let m=v.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
+ if(m)return m[3]+"-"+String(m[2]).padStart(2,"0")+"-"+String(m[1]).padStart(2,"0");
+ m=v.match(/^(\d{4})[\/.-](\d{1,2})[\/.-](\d{1,2})$/);
+ if(m)return m[1]+"-"+String(m[2]).padStart(2,"0")+"-"+String(m[3]).padStart(2,"0");
+ if(/^\d+(\.\d+)?$/.test(v)&&Number(v)>20000){
+  const d=new Date(Date.UTC(1899,11,30)+Number(v)*86400000);
+  return d.getUTCFullYear()+"-"+String(d.getUTCMonth()+1).padStart(2,"0")+"-"+String(d.getUTCDate()).padStart(2,"0");
+ }
+ return v;
+}
+function mappedDate(row){
+ let m={};try{m=JSON.parse(localStorage.getItem("importMapping_v157")||"{}")}catch(e){}
+ const h=m.hsrp||{},k=h.mapHdate||"",raw=row&&(row._hsrpRaw||row.raw);
+ if(raw&&k&&raw[k]!=null)return norm(raw[k]);
+ return norm(row&&(row.regDate||row.registrationDate||row["Registration Date"]));
+}
+function addFilter(){
+ const tables=[...document.querySelectorAll("table")];
+ tables.forEach(table=>{
+  const ths=[...table.querySelectorAll("thead th")];
+  const th=ths.find(t=>/registration\s*date/i.test(t.textContent||""));
+  if(!th||th.querySelector(".v180-date-filter"))return;
+  const input=document.createElement("input");
+  input.className="v180-date-filter";
+  input.placeholder="DD/MM/YYYY";
+  input.title="Filter Registration Date";
+  input.autocomplete="off";
+  th.appendChild(document.createElement("br"));
+  th.appendChild(input);
+  input.addEventListener("input",function(){
+   const q=norm(this.value);
+   [...table.querySelectorAll("tbody tr")].forEach(tr=>{
+    const cells=[...tr.children],idx=ths.indexOf(th);
+    if(idx<0)return;
+    const shown=!q||norm(cells[idx]?.innerText||"")===q;
+    tr.style.display=shown?"":"none";
+   });
+  });
+ });
+}
+function init(){addFilter();setTimeout(addFilter,300);setTimeout(addFilter,800)}
+document.addEventListener("DOMContentLoaded",init);
+window.addEventListener("hashchange",()=>setTimeout(addFilter,250));
+</script><script id="v181-no-registration-date-cutoff">
+(function(){ window.__registrationDateCutoffDisabled=true; })();
+</script><style id="v182-export-position">
+#v182ExportGroup{display:inline-flex!important;align-items:center;gap:7px;margin-left:8px;vertical-align:middle}
+#v182ExportGroup button{margin:0!important;height:34px!important;min-height:34px!important;padding:6px 11px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important;white-space:nowrap}
+</style>
+<script id="v182-export-position-js">
+(function(){
+ function arrange(){
+  const selected=document.getElementById("v177SelectedExport");
+  const filtered=[...document.querySelectorAll("button")].find(b=>/export filtered report/i.test(b.textContent||""));
+  if(!selected||!filtered)return;
+  let group=document.getElementById("v182ExportGroup");
+  if(!group){
+   group=document.createElement("span");
+   group.id="v182ExportGroup";
+   filtered.parentNode.insertBefore(group,filtered);
+  }
+  // Replace the two positions: Export Selected Records first,
+  // Export Filtered Report second.
+  group.appendChild(selected);
+  group.appendChild(filtered);
+  [selected,filtered].forEach(b=>{
+   b.style.margin="0";
+   b.style.height="34px";
+   b.style.minHeight="34px";
+   b.style.padding="6px 11px";
+   b.style.fontSize="13px";
+   b.style.lineHeight="20px";
+   b.style.borderRadius="7px";
+  });
+ }
+ document.addEventListener("DOMContentLoaded",()=>{arrange();setTimeout(arrange,300);setTimeout(arrange,800)});
+ window.addEventListener("hashchange",()=>setTimeout(arrange,250));
+})();
+</script><style id="v184-selected-export-single-line">
+#v184ExportGroup{display:inline-flex!important;align-items:center!important;gap:8px!important;vertical-align:middle!important}
+#v184ExportGroup button{display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;word-break:keep-all!important;overflow-wrap:normal!important;width:auto!important;min-width:max-content!important;height:34px!important;min-height:34px!important;padding:6px 12px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important;margin:0!important}
+</style>
+<script id="v184-selected-export-single-line-js">
+(function(){
+ function fix(){
+  const selected=document.getElementById("v177SelectedExport");
+  const filtered=[...document.querySelectorAll("button")].find(b=>/export filtered report/i.test(b.textContent||""));
+  if(!selected||!filtered)return;
+  let group=document.getElementById("v184ExportGroup");
+  if(!group){
+   group=document.createElement("span");
+   group.id="v184ExportGroup";
+   filtered.parentNode.insertBefore(group,filtered);
+  }
+  group.appendChild(selected);
+  group.appendChild(filtered);
+  [selected,filtered].forEach(b=>{
+   b.style.display="inline-flex";
+   b.style.alignItems="center";
+   b.style.justifyContent="center";
+   b.style.whiteSpace="nowrap";
+   b.style.wordBreak="keep-all";
+   b.style.overflowWrap="normal";
+   b.style.width="auto";
+   b.style.minWidth="max-content";
+   b.style.height="34px";
+   b.style.minHeight="34px";
+   b.style.padding="6px 12px";
+   b.style.fontSize="13px";
+   b.style.lineHeight="20px";
+   b.style.margin="0";
+  });
+ }
+ document.addEventListener("DOMContentLoaded",()=>{fix();setTimeout(fix,300);setTimeout(fix,800)});
+ window.addEventListener("hashchange",()=>setTimeout(fix,250));
+ window.addEventListener("resize",fix);
+})();
+</script>
+
+
+
+<style id="v193-hsrp-date-range-small">
+#autoImportPanel .auto-import-source:has(#hsrpAutoFrom){
+  position:relative;
+}
+#autoImportPanel .auto-import-source:has(#hsrpAutoFrom) .auto-source-help{
+  font-size:11px;
+  line-height:1.3;
+  margin-bottom:6px;
+}
+#autoImportPanel .auto-date-row{
+  display:flex!important;
+  align-items:center!important;
+  gap:5px!important;
+  flex-wrap:nowrap!important;
+  margin-top:4px!important;
+}
+#autoImportPanel .auto-date-row label{
+  font-size:11px!important;
+  font-weight:600!important;
+  margin:0!important;
+}
+#autoImportPanel .auto-date-row input[type="date"]{
+  width:125px!important;
+  height:30px!important;
+  min-height:30px!important;
+  padding:3px 6px!important;
+  font-size:12px!important;
+  border-radius:6px!important;
+  box-sizing:border-box!important;
+}
+#autoImportPanel .auto-date-row span{
+  font-size:11px!important;
+  margin:0 2px!important;
+}
+</style>
+
+<style id="v194-selected-export-clear-filters">
+/* Selected export + Clear Filters: compact, same-size, single horizontal row */
+#v194ActionGroup{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  vertical-align:middle!important;
+  white-space:nowrap!important;
+}
+#v194ActionGroup button{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  width:auto!important;
+  min-width:0!important;
+  height:34px!important;
+  min-height:34px!important;
+  padding:6px 12px!important;
+  margin:0!important;
+  font-size:13px!important;
+  line-height:20px!important;
+  border-radius:7px!important;
+  white-space:nowrap!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+}
+</style>
+<script id="v194-selected-export-clear-filters-js">
+(function(){
+  function arrange(){
+    const selected = document.getElementById("v177SelectedExport");
+    const clear = [...document.querySelectorAll("button")].find(
+      b => /clear filters/i.test((b.textContent || "").trim())
+    );
+    if(!selected || !clear) return;
+
+    let group = document.getElementById("v194ActionGroup");
+    if(!group){
+      group = document.createElement("span");
+      group.id = "v194ActionGroup";
+      clear.parentNode.insertBefore(group, clear);
+    }
+
+    /* Put only these two controls together, in the requested order. */
+    group.appendChild(selected);
+    group.appendChild(clear);
+
+    [selected, clear].forEach(function(btn){
+      btn.style.display = "inline-flex";
+      btn.style.alignItems = "center";
+      btn.style.justifyContent = "center";
+      btn.style.boxSizing = "border-box";
+      btn.style.width = "auto";
+      btn.style.minWidth = "0";
+      btn.style.height = "34px";
+      btn.style.minHeight = "34px";
+      btn.style.padding = "6px 12px";
+      btn.style.margin = "0";
+      btn.style.fontSize = "13px";
+      btn.style.lineHeight = "20px";
+      btn.style.borderRadius = "7px";
+      btn.style.whiteSpace = "nowrap";
+      btn.style.wordBreak = "keep-all";
+      btn.style.overflowWrap = "normal";
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    arrange();
+    setTimeout(arrange,300);
+    setTimeout(arrange,800);
+  });
+  window.addEventListener("hashchange", function(){ setTimeout(arrange,250); });
+  window.addEventListener("resize", arrange);
+})();
+</script>
+
+
+<script id="v195-autoimport-folder-persist">
+(function(){
+  const KEY = "autoManagement.autoImportFolder";
+  const HANDLE_KEY = "autoManagement.autoImportFolderHandle";
+
+  function saveFolderValue(v){
+    if(!v) return;
+    try { localStorage.setItem(KEY, v); } catch(e) {}
+  }
+
+  function restoreFolderValue(){
+    try { return localStorage.getItem(KEY) || ""; } catch(e) { return ""; }
+  }
+
+  async function saveHandle(handle){
+    try {
+      if(window.indexedDB && handle){
+        const req = indexedDB.open("AutoManagementSettings", 1);
+        req.onupgradeneeded = function(){
+          const db = req.result;
+          if(!db.objectStoreNames.contains("settings")) db.createObjectStore("settings");
+        };
+        req.onsuccess = function(){
+          const db = req.result;
+          const tx = db.transaction("settings","readwrite");
+          tx.objectStore("settings").put(handle, HANDLE_KEY);
+        };
+      }
+    } catch(e) {}
+  }
+
+  async function restoreHandle(){
+    return new Promise(function(resolve){
+      try {
+        const req = indexedDB.open("AutoManagementSettings", 1);
+        req.onupgradeneeded = function(){
+          const db=req.result;
+          if(!db.objectStoreNames.contains("settings")) db.createObjectStore("settings");
+        };
+        req.onsuccess=function(){
+          const db=req.result, tx=db.transaction("settings","readonly");
+          const r=tx.objectStore("settings").get(HANDLE_KEY);
+          r.onsuccess=function(){ resolve(r.result || null); };
+          r.onerror=function(){ resolve(null); };
+        };
+        req.onerror=function(){ resolve(null); };
+      } catch(e){ resolve(null); }
+    });
+  }
+
+  function findFolderInputs(){
+    return [...document.querySelectorAll('input')].filter(function(i){
+      const t=(i.type||"").toLowerCase();
+      const a=((i.id||"")+" "+(i.name||"")+" "+(i.accept||"")+" "+(i.webkitdirectory?"directory":"")).toLowerCase();
+      return t==="file" && (i.webkitdirectory || /folder|directory|auto.?import|hsrp/.test(a));
+    });
+  }
+
+  function bind(){
+    findFolderInputs().forEach(function(input){
+      if(input.dataset.v195Bound) return;
+      input.dataset.v195Bound="1";
+
+      input.addEventListener("change", async function(){
+        if(input.files && input.files.length){
+          const first=input.files[0];
+          const rel=first.webkitRelativePath || "";
+          const folder=rel ? rel.split("/")[0] : "";
+          saveFolderValue(folder);
+          try {
+            if(window.showDirectoryPicker && input._v195Handle) await saveHandle(input._v195Handle);
+          } catch(e){}
+        }
+      });
+    });
+  }
+
+  // Patch showDirectoryPicker so a chosen folder is remembered.
+  if(window.showDirectoryPicker && !window.__v195PickerPatched){
+    const original=window.showDirectoryPicker.bind(window);
+    window.showDirectoryPicker=async function(opts){
+      const handle=await original(opts);
+      try {
+        await saveHandle(handle);
+        saveFolderValue(handle.name || "");
+      } catch(e){}
+      return handle;
+    };
+    window.__v195PickerPatched=true;
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    bind();
+    const saved=restoreFolderValue();
+    if(saved){
+      document.querySelectorAll("[data-auto-import-folder]").forEach(function(el){
+        if("value" in el && !el.value) el.value=saved;
+        el.title="Saved auto-import folder: "+saved;
+      });
+    }
+    setTimeout(bind,500);
+    setTimeout(bind,1500);
+  });
+
+  // Expose saved folder information for the app's auto-import code.
+  window.AutoImportFolderPersistence = {
+    getSavedFolder: restoreFolderValue,
+    getSavedHandle: restoreHandle,
+    saveFolder: saveFolderValue
+  };
+})();
+</script>
+
+
+<style id="v1912-selected-export">
+#selectedExportBtn1912{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:auto!important;
+  min-width:112px!important;
+  height:34px!important;
+  padding:6px 12px!important;
+  margin-left:8px!important;
+  font-size:13px!important;
+  line-height:20px!important;
+  border-radius:7px!important;
+  box-sizing:border-box!important;
+  white-space:nowrap!important;
+}
+#selectedExportBtn1912:disabled{opacity:.5!important;cursor:not-allowed!important}
+</style>
+<script id="v1912-selected-export">
+(function(){
+  function getSelected(){
+    return Array.from(document.querySelectorAll('.rowcheck:checked'));
+  }
+  function update(){
+    var b=document.getElementById('selectedExportBtn1912');
+    if(!b)return;
+    var n=getSelected().length;
+    b.disabled=(n===0);
+    b.textContent=n ? ('Export selected ('+n+')') : 'Export selected';
+  }
+  function exportSelected(){
+    var checked=getSelected();
+    if(!checked.length){
+      if(typeof toast==='function')toast('Select at least one record to export.');
+      return;
+    }
+    var keys=new Set(checked.map(function(e){return e.dataset.key;}));
+    var records=(typeof db!=='undefined' && Array.isArray(db)) ? db.filter(function(x){return keys.has(x.key);}) : [];
+    if(!records.length){
+      if(typeof toast==='function')toast('Selected records are not available.');
+      return;
+    }
+
+    var rows=records.map(function(x,i){
+      return {
+        "Sr. no.":i+1,
+        "Vehicle Registration Number":x.reg||"",
+        "Customer / Owner":x.customer||"",
+        "Mobile No.":x.mobile||x.mobileNo||x.customerMobile||x.phone||"",
+        "Chasis Number":x.chassis||"",
+        "Engine Number":x.engine||"",
+        "Bill / DO No.":x.bill||"",
+        "Model":x.model||"",
+        "Sub Dealer":x.dealer||"",
+        "Registration Date":x.regDate||"",
+        "HSRP Order":x.orderReceived?"Received":"Pending"
+      };
+    });
+
+    try{
+      if(typeof XLSX==='undefined') throw new Error('XLSX library unavailable');
+      var ws=XLSX.utils.json_to_sheet(rows);
+      var wb=XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb,ws,"Selected Records");
+      XLSX.writeFile(wb,"HSRP_Selected_Records.xlsx");
+      if(typeof toast==='function')toast('Exported '+records.length+' selected record'+(records.length===1?'':'s')+'.');
+    }catch(err){
+      console.error(err);
+      if(typeof toast==='function')toast('Selected records export failed.');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var b=document.getElementById('selectedExportBtn1912');
+    if(b)b.addEventListener('click',exportSelected);
+    update();
+    document.addEventListener('change',function(e){
+      if(e.target && (e.target.classList.contains('rowcheck') ||
+          (e.target.matches && e.target.matches('thead input[type="checkbox"]')))){
+        setTimeout(update,0);
+      }
+    });
+  });
+})();
+</script>
+
+
+<script id="v1913-multiple-registration-search">
+(function(){
+  "use strict";
+
+  var requestedRegs1913 = [];
+  var notFoundRegs1913 = [];
+
+  function cleanReg1913(v){
+    return String(v == null ? "" : v)
+      .trim()
+      .toUpperCase()
+      .replace(/[\s\-\/]+/g,"");
+  }
+
+  function parseRegs1913(){
+    var raw = document.getElementById("multiRegSearch1913");
+    if(!raw) return [];
+    var seen = new Set();
+    return String(raw.value || "")
+      .split(/[\r\n,;\t]+/)
+      .map(function(v){ return String(v).trim().toUpperCase(); })
+      .filter(function(v){
+        var k = cleanReg1913(v);
+        if(!k || seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+  }
+
+  function showNotFound1913(){
+    var box = document.getElementById("multiRegNotFound1913");
+    if(!box) return;
+    if(!requestedRegs1913.length){
+      box.hidden = true;
+      box.textContent = "";
+      return;
+    }
+    var foundCount = requestedRegs1913.length - notFoundRegs1913.length;
+    if(notFoundRegs1913.length){
+      box.hidden = false;
+      box.textContent =
+        "Found: " + foundCount + " | Not Found: " + notFoundRegs1913.length +
+        " — " + notFoundRegs1913.join(", ");
+    }else{
+      box.hidden = false;
+      box.textContent = "Found: " + foundCount + " | All registration numbers matched.";
+    }
+  }
+
+  /* Preserve v1.9.12 filtering, then add an exact multi-registration filter. */
+  var baseArr1913 = window.arr;
+  if(typeof baseArr1913 !== "function"){
+    console.warn("v1.9.13: base arr() was not available.");
+    return;
+  }
+
+  window.arr = function(){
+    var base = baseArr1913();
+    if(!requestedRegs1913.length) return base;
+
+    var wanted = new Set(requestedRegs1913.map(cleanReg1913));
+    var byReg = new Map();
+
+    base.forEach(function(row){
+      var key = cleanReg1913(row && row.reg);
+      if(key && !byReg.has(key)) byReg.set(key, []);
+      if(key) byReg.get(key).push(row);
+    });
+
+    notFoundRegs1913 = requestedRegs1913.filter(function(reg){
+      return !byReg.has(cleanReg1913(reg));
+    });
+
+    /* Show results in the same order as the pasted registration list. */
+    var result = [];
+    requestedRegs1913.forEach(function(reg){
+      var rows = byReg.get(cleanReg1913(reg)) || [];
+      rows.forEach(function(row){ result.push(row); });
+    });
+
+    return result;
+  };
+
+  function search1913(){
+    requestedRegs1913 = parseRegs1913();
+    notFoundRegs1913 = [];
+    if(!requestedRegs1913.length){
+      showNotFound1913();
+      if(typeof render === "function") render();
+      if(typeof toast === "function") toast("Paste at least one registration number.");
+      return;
+    }
+    if(typeof render === "function") render();
+    showNotFound1913();
+    var found = requestedRegs1913.length - notFoundRegs1913.length;
+    if(typeof toast === "function"){
+      toast("Multiple search: " + found + " found, " +
+        notFoundRegs1913.length + " not found.");
+    }
+  }
+
+  function clear1913(){
+    requestedRegs1913 = [];
+    notFoundRegs1913 = [];
+    var input = document.getElementById("multiRegSearch1913");
+    if(input) input.value = "";
+    showNotFound1913();
+    if(typeof render === "function") render();
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    var search = document.getElementById("multiRegSearchBtn1913");
+    var clear = document.getElementById("multiRegClearBtn1913");
+    if(search) search.addEventListener("click", search1913);
+    if(clear) clear.addEventListener("click", clear1913);
+
+    var input = document.getElementById("multiRegSearch1913");
+    if(input){
+      input.addEventListener("keydown", function(e){
+        if((e.ctrlKey || e.metaKey) && e.key === "Enter"){
+          e.preventDefault();
+          search1913();
+        }
+      });
+    }
+  });
+
+  /* Keep Clear Filters compatible with the new multi-search state. */
+  var oldClearFilters1913 = window.clearFilters;
+  window.clearFilters = function(){
+    clear1913();
+    if(typeof oldClearFilters1913 === "function") oldClearFilters1913();
+  };
+})();
+</script>
+
+
+<script>
+/* Mapping UI default-collapse helper — no mapping/import logic changed. */
+(function () {
+  function collapseMappingPanels() {
+    const selectors = [
+      '.mapping-section',
+      '.mapping-container',
+      '#mappingSection',
+      '#mappingContainer',
+      '[data-section="mapping"]'
+    ];
+    selectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        const toggle = el.querySelector(
+          'button[aria-expanded="true"], .collapse-toggle.open, .mapping-toggle.open'
+        );
+        if (toggle) toggle.click();
+        el.classList.add('mapping-collapsed-default');
+      });
+    });
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(collapseMappingPanels, 150);
+  });
+
+  document.addEventListener('import-complete', () => {
+    setTimeout(collapseMappingPanels, 50);
+  });
+})();
+</script>
+
+
+<script>
+/* v1.9.13 — Sub-Dealer grouped single-Excel export helper.
+   Existing import/search/export logic is preserved. */
+(function () {
+  window.exportSubDealerGroupedExcel = function (records, XLSX) {
+    if (!Array.isArray(records) || !records.length || !XLSX) return;
+
+    const groups = new Map();
+    records.forEach(r => {
+      const key = String(
+        r.subDealer ?? r.sub_dealer ?? r.agent ?? r.AGENT ?? "Unassigned"
+      ).trim() || "Unassigned";
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(r);
+    });
+
+    const wb = XLSX.utils.book_new();
+    let firstSheet = true;
+
+    groups.forEach((rows, dealer) => {
+      const wsRows = [];
+
+      // Preserve the existing report column order/labels.
+      wsRows.push(["Sr. No.", "Vehicle Registration Number", "Owner", "Chassis Number",
+                   "Model", "MO", "DO No.", "AGENT"]);
+
+      rows.forEach((r, i) => {
+        wsRows.push([
+          i + 1,
+          r.registrationNumber ?? r.registration ?? r["Vehicle Registration Number"] ?? "",
+          r.owner ?? r.customerName ?? r["Owner"] ?? "",
+          r.chassisNumber ?? r.chassis ?? r["Chassis Number"] ?? "",
+          r.model ?? r["Model"] ?? "",
+          r.mo ?? r.MO ?? "",
+          r.doNo ?? r.billNo ?? r["DO No."] ?? "",
+          dealer
+        ]);
+      });
+
+      // Keep one worksheet per Sub-Dealer inside ONE Excel workbook.
+      // This is grouped in one Excel file while retaining the same report columns.
+      const safeName = dealer.replace(/[\\\/\?\*\[\]\:]/g, " ").slice(0, 31) || "Unassigned";
+      let sheetName = safeName, n = 2;
+      while (wb.Sheets[sheetName]) sheetName = (safeName.slice(0, 28) + " (" + n++ + ")");
+      const ws = XLSX.utils.aoa_to_sheet(wsRows);
+      XLSX.utils.book_append_sheet(wb, ws, sheetName);
+      firstSheet = false;
+    });
+
+    XLSX.writeFile(wb, "Sub-Dealer-Wise-Grouped-Report.xlsx");
+  };
+})();
+</script>
+
+
+<style id="v185-subdealer-wise-export">
+#v185SubDealerExport{
+  margin:0!important;
+  height:34px!important;
+  min-height:34px!important;
+  padding:6px 12px!important;
+  font-size:13px!important;
+  line-height:20px!important;
+  border-radius:7px!important;
+  box-sizing:border-box!important;
+  white-space:nowrap!important;
+}
+</style>
+<script id="v185-subdealer-wise-export-js">
+(function(){
+  const HEADERS = [
+    "Sr. no.","Vehicle Registration Number","Owner","Chasis Number",
+    "Model","Mobile No.","DO NO","AGENT"
+  ];
+
+  function dealerValue(x){
+    return String(x?.dealer ?? "").trim() || "Unassigned";
+  }
+
+  function addButton(){
+    if(document.getElementById("v185SubDealerExport")) return;
+    const filtered = [...document.querySelectorAll("button")]
+      .find(b => /export filtered report/i.test(b.textContent || ""));
+    if(!filtered) return;
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.id = "v185SubDealerExport";
+    btn.className = "secondary";
+    btn.textContent = "Sub-Dealer Wise Export";
+    btn.title = "Export current filtered records grouped by Sub-Dealer in one Excel file";
+    btn.onclick = window.exportSubDealerWise;
+
+    const group = document.getElementById("v184ExportGroup") ||
+                  document.getElementById("v182ExportGroup") ||
+                  document.getElementById("v179ActionGroup") ||
+                  filtered.parentElement;
+
+    group.appendChild(btn);
+  }
+
+  window.exportSubDealerWise = function(){
+    const rows = (typeof getVisibleRows === "function") ? getVisibleRows() : [];
+    if(!rows.length){
+      if(typeof toast === "function") toast("No filtered records are available to export.");
+      return;
+    }
+
+    const groups = new Map();
+    rows.forEach(r => {
+      const dealer = dealerValue(r);
+      if(!groups.has(dealer)) groups.set(dealer, []);
+      groups.get(dealer).push(r);
+    });
+
+    const aoa = [];
+    let firstGroup = true;
+
+    [...groups.keys()].sort((a,b)=>a.localeCompare(b)).forEach(dealer => {
+      if(!firstGroup) aoa.push([]);
+      firstGroup = false;
+
+      // Same report-style title/header convention, repeated for each Sub-Dealer.
+      aoa.push(["Sub-Dealer: " + dealer]);
+      aoa.push(HEADERS);
+
+      groups.get(dealer).forEach((x,i) => {
+        aoa.push([
+          i + 1,
+          x.reg || "",
+          x.customer || "",
+          x.chassis || "",
+          x.model || "",
+          x.mobile || x.mobileNo || x.customerMobile || x.phone || "",
+          x.bill || "",
+          dealer
+        ]);
+      });
+    });
+
+    const ws = XLSX.utils.aoa_to_sheet(aoa);
+    ws["!cols"] = [
+      {wch:8},{wch:24},{wch:30},{wch:24},
+      {wch:15},{wch:18},{wch:18},{wch:18}
+    ];
+
+    // Excel presentation: dealer title centered above each table,
+    // and visible borders around every header/data cell.
+    const thinBorder = {
+      top:{style:"thin", color:{rgb:"808080"}},
+      bottom:{style:"thin", color:{rgb:"808080"}},
+      left:{style:"thin", color:{rgb:"808080"}},
+      right:{style:"thin", color:{rgb:"808080"}}
+    };
+
+    let row = 0;
+    [...groups.keys()].sort((a,b)=>a.localeCompare(b)).forEach(dealer => {
+      const titleRow = row;
+      const headerRow = row + 1;
+      const endRow = row + 1 + groups.get(dealer).length;
+
+      // Title is centered across the complete table width.
+      const titleCell = XLSX.utils.encode_cell({r:titleRow,c:0});
+      if(!ws[titleCell]) ws[titleCell] = {v:"", t:"s"};
+      ws[titleCell].v = "Sub-Dealer: " + dealer;
+      ws[titleCell].s = {
+        font:{bold:true, sz:12},
+        alignment:{horizontal:"center", vertical:"center"},
+        border:thinBorder
+      };
+
+      // Merge only the title row, so the title sits centered ABOVE the table.
+      if(!ws["!merges"]) ws["!merges"] = [];
+      ws["!merges"].push({
+        s:{r:titleRow,c:0},
+        e:{r:titleRow,c:7}
+      });
+
+      // Apply real borders to every cell of this dealer's table.
+      for(let r=headerRow;r<=endRow;r++){
+        for(let c=0;c<8;c++){
+          const cell = XLSX.utils.encode_cell({r,c});
+          if(!ws[cell]) ws[cell] = {v:"", t:"s"};
+
+          ws[cell].s = Object.assign({}, ws[cell].s || {}, {
+            border:thinBorder,
+            alignment:{vertical:"center", horizontal:"left"}
+          });
+
+          if(r === headerRow){
+            ws[cell].s.font = Object.assign({}, ws[cell].s.font || {}, {
+              bold:true
+            });
+          }
+        }
+      }
+
+      row = endRow + 1;
+      if(row < aoa.length && aoa[row].length === 0) row++;
+    });
+
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Sub-Dealer Wise");
+    XLSX.writeFile(wb, "HSRP_SubDealer_Wise_Grouped_Export.xlsx");
+
+    if(typeof toast === "function")
+      toast(`Export started — ${groups.size} Sub-Dealer groups, ${rows.length} records.`);
+  };
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    addButton();
+    setTimeout(addButton,300);
+    setTimeout(addButton,800);
+    setTimeout(addButton,1500);
+  });
+  window.addEventListener("hashchange",()=>setTimeout(addButton,250));
+})();
+</script>
+
+
+<script id="v1913-export-top-row-ui-only">
+(function(){
+  "use strict";
+
+  function arrangeExportButtons(){
+    var records = document.getElementById("records");
+    if(!records) return;
+
+    var body = records.querySelector(":scope > .card-body");
+    if(!body) return;
+
+    var head = records.querySelector(":scope > .card-head");
+    if(!head) return;
+
+    var toolbar = document.getElementById("v1913ExportTopRow");
+    if(!toolbar){
+      toolbar = document.createElement("div");
+      toolbar.id = "v1913ExportTopRow";
+      toolbar.setAttribute("aria-label","Export actions");
+      head.insertAdjacentElement("afterend", toolbar);
+    }
+
+    var ids = ["reports","selectedExportBtn1912","v185SubDealerExport"];
+    ids.forEach(function(id){
+      var b = document.getElementById(id);
+      if(b && b.parentElement !== toolbar) toolbar.appendChild(b);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    arrangeExportButtons();
+    setTimeout(arrangeExportButtons,100);
+    setTimeout(arrangeExportButtons,500);
+    setTimeout(arrangeExportButtons,1200);
+
+    var observer = new MutationObserver(function(){
+      arrangeExportButtons();
+    });
+    observer.observe(document.getElementById("records") || document.body,{
+      childList:true, subtree:true
+    });
+  });
+})();
+</script>
+
+</body></html>

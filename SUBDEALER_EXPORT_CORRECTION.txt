@@ -1,0 +1,1 @@
+Correction: Sub-Dealer name is a separate centered title row immediately above each table. The title is not merged into the table. All borders are applied to every header and data cell inside each Sub-Dealer table. Existing grouping/data/import/search/export logic is unchanged.

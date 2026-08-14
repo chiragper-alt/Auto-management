@@ -1,0 +1,5 @@
+Sub-Dealer Wise Excel final style fix.
+- Sub-Dealer name is centered above each table across the table width.
+- Every header and data cell in every dealer table has a visible all-side border.
+- Switched XLSX writer to xlsx-js-style because the previous SheetJS build did not persist cell styles.
+- Grouping, data selection and export contents remain unchanged.
