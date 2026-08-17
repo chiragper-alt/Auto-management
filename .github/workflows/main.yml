@@ -22,13 +22,23 @@ jobs:
 
       - run: npm install
 
-      - name: Build and publish Windows Setup
+      - name: Build Windows Setup
+        shell: pwsh
+        run: |
+          npx electron-builder --win nsis --publish never
+
+      - name: Upload to GitHub Release
         shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if ("${{ github.event_name }}" -eq "push") {
-            npm run release
+            $tag = "${{ github.ref_name }}"
           } else {
-            npx electron-builder --win nsis --publish never
+            $tag = "v1.9.16"
           }
+
+          gh release upload $tag `
+            dist/*.exe `
+            dist/*.blockmap `
+            --clobber
