@@ -21,7 +21,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
       - name: Install dependencies
         run: npm install
@@ -30,3 +29,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run release
+        
+- uses: actions/setup-node@v4
+  with:
+    node-version: 22
+
+- run: npm install
+
+- name: Build and publish Windows Setup
+  env:
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  run: npm run release
