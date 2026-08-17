@@ -1,6 +1,6 @@
 {
   "name": "auto-management",
-  "version": "1.9.15",
+  "version": "1.9.16",
   "description": "Auto Management",
   "main": "main.js",
   "scripts": {
@@ -8,10 +8,10 @@
     "release": "electron-builder --win nsis --publish always"
   },
   "dependencies": {
-    "electron": "^37.2.6",
     "electron-updater": "^6.6.2"
   },
   "devDependencies": {
+    "electron": "^37.2.6",
     "electron-builder": "^26.0.12"
   },
   "build": {
@@ -25,7 +25,8 @@
       "main.js",
       "package.json",
       "chirag-solanki-logo.svg",
-      "resources/**/*"
+      "resources/**/*",
+      "preload.js"
     ],
     "win": {
       "target": [
@@ -36,7 +37,8 @@
           ]
         }
       ],
-      "artifactName": "Auto-Management-Setup-${version}.${ext}"
+      "artifactName": "Auto-Management-Setup-${version}.${ext}",
+      "icon": "resources/auto-management.ico"
     },
     "nsis": {
       "oneClick": false,

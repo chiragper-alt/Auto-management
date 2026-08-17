@@ -1,0 +1,8 @@
+v1.9.16 FIX31 based on FIX30.
+Fixed export button row using the actual v1913ExportTopRow container.
+Buttons remain on one clean row with consistent sizing and spacing; responsive wrap retained.
+Removed duplicate export notification behavior. The existing native Electron notification is now the single notification.
+View File and Show/Open Folder actions remain on the native notification.
+Notification auto-hide increased to 15 seconds.
+Notification is positioned top-right below the top toolbar to avoid overlapping export buttons.
+No import, pending, database, or dashboard logic changed.

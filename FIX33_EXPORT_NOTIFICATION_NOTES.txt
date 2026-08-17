@@ -1,0 +1,8 @@
+v1.9.16 FIX33 based on FIX32.
+Export notification redesigned as one compact centered translucent glass card.
+Notification text now says 'File exported'; exported filename shown underneath.
+View File is the only action and is placed below the exported file information.
+Electron uses native openExportFile; browser HTML uses a Blob URL for View File.
+Notification remains visible for 15 seconds.
+Export toolbar uses equal flexible widths and is constrained inside its card.
+No import, pending, database, or dashboard logic changed.

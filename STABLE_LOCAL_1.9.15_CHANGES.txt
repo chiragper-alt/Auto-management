@@ -1,0 +1,16 @@
+Base: uploaded Auto_Management_v1.9.16_SETTINGS_HEADING_ALIGNED(3).zip
+Version remains 1.9.15 for LOCAL TEST USE.
+
+Applied safely:
+1. HSRP Auto Import no longer requires From/To date selection.
+2. HSRP folder is scanned for unimported Excel/CSV files.
+3. Successfully imported HSRP files are tracked by SHA-256 fingerprint in local app storage.
+4. Re-running Auto Import skips previously imported files.
+5. Modified files get a new fingerprint and can be processed as a new file.
+6. HSRP Customer/Owner, Bill/DO and Model are NOT imported from HSRP Excel and are hidden from the HSRP mapping UI.
+7. Customer/Owner, Bill/DO and Model continue to come from salesbilldata/sub-dealer mapping.
+8. Settings heading alignment corrected only in the Settings card header.
+9. Duplicate Submit Mapping & Refresh Data helper was removed; the existing single helper remains.
+10. Manual Import, records search, filters, exports and other modules were not intentionally redesigned.
+
+TEST FIRST. Do not replace the stable installed build until verification is complete.

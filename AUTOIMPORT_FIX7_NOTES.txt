@@ -1,0 +1,4 @@
+v1.9.16 FIX18 - Auto Import exact chassis matching fix.
+Added dedicated chassis normalization and strict exact matching across all chassis/VIN-looking columns.
+No fuzzy/partial chassis matching.
+FIX6 reset import history and FIX5 HSRP text-based .xls reader retained.

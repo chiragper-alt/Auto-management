@@ -1,0 +1,7 @@
+v1.9.16 Dashboard FIX13, based directly on stable FIX11.
+Cards: Complete, HSRP Order Pending, HSRP Order Received.
+Complete = registration number present AND HSRP order received.
+HSRP Order Pending = registration number present AND HSRP order not received.
+HSRP Order Received = all database records with HSRP order received.
+Registration-less HSRP rows remain excluded from database import, exactly as before.
+Auto Import logic and all other functionality unchanged.

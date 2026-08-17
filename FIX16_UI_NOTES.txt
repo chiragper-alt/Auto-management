@@ -1,0 +1,4 @@
+v1.9.16 FIX16 UI-only build based on FIX15.
+Fixes the Vehicle/HSRP records toolbar and search/filter alignment seen in the screenshot.
+Export buttons stay in one aligned toolbar; Registration Date, search, and Sub-dealer controls use a responsive grid.
+No import, database, matching, pending-state, or export logic was changed.

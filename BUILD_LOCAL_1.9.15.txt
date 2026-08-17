@@ -1,0 +1,15 @@
+Auto Management v1.9.16 — LOCAL STABLE EXE BUILD
+
+This package is prepared for local Windows NSIS EXE build only.
+Do NOT run `npm run release` for v1.9.16.
+
+1. Open CMD in this folder.
+2. Run: npm install
+3. If electron-builder reports a corrupted NSIS cache, close Electron/Node processes and delete:
+   %LOCALAPPDATA%\electron-builder\Cache\nsis-resources-3.4.1
+4. Run: npm run dist
+5. Installer will be created under dist\Auto-Management-Setup-1.9.15.exe
+
+Important: Electron is a development dependency so electron-builder can build correctly.
+The existing app functionality and version 1.9.15 are unchanged.
+GitHub publishing is not part of the local build.

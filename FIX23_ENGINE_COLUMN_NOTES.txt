@@ -1,0 +1,4 @@
+v1.9.16 FIX23 based on FIX22.
+Removed Engine No. from the visible Vehicle / HSRP records table only.
+Engine No. data, import mapping, matching logic, search, and export logic are preserved.
+No Auto Import, pending, database, delete-modal, or other UI logic was changed.

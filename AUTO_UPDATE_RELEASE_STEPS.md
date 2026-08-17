@@ -1,9 +1,9 @@
-# v1.9.15 Release
+# v1.9.16 Release
 
 1. Copy this package's contents into `chiragper-alt/Auto-management`.
 2. Commit/push.
 3. Verify `package.json` version = `1.9.15`.
-4. Create/push Git tag `v1.9.15`.
+4. Create/push Git tag `v1.9.16`.
 5. GitHub Actions builds and publishes the Windows NSIS installer.
 
 Expected asset:

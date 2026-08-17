@@ -1,0 +1,29 @@
+Auto Management v1.9.16 Release Candidate
+=========================================
+Base: v1.9.15 FIX36 verified working source.
+
+Included:
+- All verified v1.9.15 stable features
+- FIX36 verified Delete Salesbill Data feature
+- Custom Windows application icon
+- Export folder setting
+- Export success notification / View File
+- Auto Import and existing pending/import logic
+- Electron menu hidden
+- Windows NSIS installer
+- GitHub publish configuration for auto-update
+
+Version:
+- package.json: 1.9.16
+- Release tag: v1.9.16
+
+Build:
+1. Delete dist if present.
+2. npm install
+3. npm run dist        # local installer test
+4. npm run release     # GitHub release publishing
+
+IMPORTANT:
+- Verify the local 1.9.16 installer before publishing the GitHub release.
+- Do not publish until the user explicitly confirms v1.9.16 is verified.
+- HTML/source and EXE must come from this same source tree.

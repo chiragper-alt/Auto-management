@@ -1,0 +1,5 @@
+v1.9.16 local test build.
+Auto Import now uses explicit fields for the known exports: HSRP VIN number + Registration Number + Registration Date; salesbilldata chasis_no + agent + client + mobile + bill_no + model.
+Strict normalized VIN/chassis equality only; no fuzzy/partial matching.
+HSRP customer/model/bill are not imported from HSRP; salesbilldata remains authoritative for those fields.
+Reset Import History retained. Button label is now 'Auto Import'.

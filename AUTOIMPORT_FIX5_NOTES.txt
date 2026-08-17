@@ -1,0 +1,4 @@
+v1.9.16 local test — Auto Import button/data display fix.
+Root cause: FIX4 contained two literal \n characters inserted into JavaScript statements, causing a syntax error and preventing all JS event handlers from loading. This made the Auto Import button unresponsive and data/status not render.
+FIX5 removes those accidental literal sequences. No import logic is changed.
+The TSV .xls reader fix from FIX4 is retained.

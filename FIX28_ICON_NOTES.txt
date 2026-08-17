@@ -1,0 +1,6 @@
+v1.9.16 FIX28 based on FIX27.
+Added a crisp custom Windows .ico with 16/24/32/48/64/128/256 sizes.
+Uses the existing Auto Management/vehicle mark on a high-contrast blue rounded-square background.
+Configured electron-builder Windows icon and BrowserWindow icon.
+Do not modify app.html UI or application logic for this icon-only change.
+Build from this clean source; delete dist before npm run dist to avoid stale icon caching.

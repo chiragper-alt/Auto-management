@@ -1,0 +1,7 @@
+v1.9.16 FIX24 based on FIX23.
+Settings now has an Export folder option.
+Selected folder is used for Excel exports; if not selected, exports use the normal Windows Downloads folder.
+Folder handle is persisted in the existing IndexedDB folder-handle store.
+If selected-folder permission expires, the app requests read/write permission and safely falls back to Downloads if unavailable.
+Applied to filtered report, selected records, and Sub-Dealer Wise exports.
+No import, pending, database, or Engine-column logic was changed.

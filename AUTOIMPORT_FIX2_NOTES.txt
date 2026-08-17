@@ -1,0 +1,6 @@
+v1.9.16 local test fix 2.
+Root cause fixed: Auto Import was combining all unimported HSRP files into one dataset and then applying saved mapping. With many files/different headers this could map the wrong chassis column and report thousands of false no-match rows.
+Fix: each HSRP file is read and mapped independently; fresh column guesses are used for every file; only successful files are marked imported.
+No date range is required.
+HSRP Customer/Owner, Bill/DO and Model remain sourced from salesbilldata only.
+Version remains 1.9.15 for local testing.

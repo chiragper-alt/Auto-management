@@ -1,0 +1,1 @@
+v1.9.16 FIX22 based directly on FIX21. Fixed Delete All modal button visibility/styling so Cancel and Delete all are always visible, labeled, sized, and clickable. No application/data/import logic changed.

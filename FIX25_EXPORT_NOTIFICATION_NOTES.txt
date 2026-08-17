@@ -1,0 +1,8 @@
+v1.9.16 FIX25 based on FIX24.
+Added top-center export completed notification.
+EXE notification has Open File and Show in Folder actions using native Electron APIs.
+EXE export folder selection is native Windows and persists selected path.
+When no folder is selected, EXE exports go to Downloads.
+Browser/source mode retains existing folder-handle behavior and Downloads fallback.
+All export types use the shared save helper.
+Existing import/pending/database/delete/engine logic preserved.

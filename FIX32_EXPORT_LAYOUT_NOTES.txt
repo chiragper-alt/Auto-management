@@ -1,0 +1,7 @@
+v1.9.16 FIX32 based on FIX31.
+Export toolbar now uses equal flexible button widths so all three buttons remain inside the records card.
+Sub-Dealer Wise Export is prevented from overflowing the available toolbar width.
+Export notification actions are moved below the filename/details; View File and Show in Folder no longer sit awkwardly beside the title/text.
+Close button is positioned in the notification corner.
+15-second notification duration preserved.
+No import, pending, database, or dashboard logic changed.

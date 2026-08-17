@@ -1,0 +1,8 @@
+v1.9.16 FIX21 FINAL SAFE based on FIX19.
+FIX20 was discarded because its app.html became corrupted and rendered JavaScript as page content.
+FIX21 restores the complete valid FIX19 app.html and applies only two targeted fixes:
+1) Hide Electron native File/Edit/View/Window/Help menu.
+2) Replace unreliable prompt() Delete All confirmation with an in-app modal requiring DELETE ALL.
+Auto Import permission fix from FIX19 is preserved.
+Pending/master-chassis logic is preserved.
+No database/import matching logic changed.

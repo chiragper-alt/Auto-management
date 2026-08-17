@@ -1,0 +1,4 @@
+v1.9.16 FIX18 based on FIX17.
+Actually removes/hides the unused top Registration Date search control visible in the records UI.
+Handles the dynamically-created registrationDateSearch174 control and any matching filter field.
+No import, database, matching, pending, or export logic changed.

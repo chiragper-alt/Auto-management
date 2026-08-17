@@ -1,0 +1,7 @@
+v1.9.16 local test — HSRP reader fix.
+Root cause confirmed with supplied files: the supplied HSRP .xls is actually a tab-delimited text export with an .xls extension.
+Previous reader treated the entire line as one Excel header, so chassis mapping failed and produced 641 false no-match files.
+Fix: read() detects text-based .xls files and parses them as TSV before normal Excel parsing.
+Supplied test data: 44 HSRP rows, 32 chassis values match salesbilldata after normalization.
+Auto Import should therefore be able to process the matching rows from this file.
+Version remains 1.9.15 for local testing.

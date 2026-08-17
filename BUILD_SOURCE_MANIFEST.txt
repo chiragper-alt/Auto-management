@@ -1,0 +1,14 @@
+AUTO MANAGEMENT v1.9.16 — FIX18 STABLE BUILD SOURCE
+===================================================
+Authoritative UI source: app.html
+Application entry: main.js
+Package metadata: package.json
+Version: 1.9.15
+
+IMPORTANT:
+- Build from this complete source folder.
+- Do NOT replace only app.html inside an older build/source folder.
+- Delete dist before building so stale FIX18/FIX13 artifacts are not packaged.
+- Run npm install, then npm run dist.
+- Do not publish/release this build to GitHub yet; it is the local stable 1.9.15 build.
+- Existing import/database/pending logic is preserved.

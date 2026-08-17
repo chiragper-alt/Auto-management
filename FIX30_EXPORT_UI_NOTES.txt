@@ -1,0 +1,5 @@
+v1.9.16 FIX30 based on FIX29.
+Export buttons normalized into a consistent responsive row; existing labels and handlers preserved.
+Export notification auto-hide increased from 9 seconds to 15 seconds.
+View File / Open Folder / close buttons receive consistent visible styling.
+No import, pending, database, dashboard, or export storage logic changed.

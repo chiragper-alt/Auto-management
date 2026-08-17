@@ -1,0 +1,4 @@
+v1.9.16 FIX17 based on FIX16.
+Removed/hidden the unused Registration Date filter from the records UI.
+Underlying registration-date data/import/export logic was not changed.
+No Auto Import, pending-state, database, or matching logic changed.

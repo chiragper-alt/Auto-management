@@ -1,0 +1,6 @@
+v1.9.16 FIX29 based on FIX28.
+Export notification explicitly includes a visible 'View File' button and 'Open Folder' button.
+View File uses the Electron native openPath API when available; browser fallback uses the exported Blob when available.
+Notification is top-center and auto-hides after 9 seconds.
+Export folder and custom icon are preserved from FIX28.
+No import, pending, database, or dashboard logic changed.

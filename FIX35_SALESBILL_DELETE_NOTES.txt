@@ -1,0 +1,7 @@
+v1.9.16 FIX35 based on FIX34.
+Added a dedicated 'Delete Salesbill Data' button beside the existing Delete All control.
+The new action is intended to delete only Sub-dealer / Customer (salesbilldata) records.
+It does not intentionally delete HSRP vehicle records or import history.
+Added a separate confirmation prompt to prevent accidental deletion.
+Buttons are kept compact/responsive to avoid UI overlap.
+No import logic, pending logic, export UI, or dashboard logic was changed.

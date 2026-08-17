@@ -1,0 +1,3 @@
+v1.9.16 local test build based on FIX8.
+FIX11 corrects only the Auto Import UI. Both source cards are forced to equal responsive columns with minmax(0,1fr), preventing the first card's long wrapped status from collapsing the grid and making the second card excessively tall.
+Status text wraps inside its own box. Import logic and data mapping are unchanged.

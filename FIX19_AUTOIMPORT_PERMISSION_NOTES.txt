@@ -1,0 +1,7 @@
+v1.9.16 FIX19 based on FIX18.
+Fixes Auto Import folder scanning when saved File System Access permissions expire after restart/update.
+Auto Import now re-checks/request read permission before scanning saved folders.
+If permission is denied, the error specifically asks the user to re-select both folders in Settings.
+Individual unreadable files are skipped with a console warning instead of aborting the entire folder scan.
+Import history reset behavior remains: it only clears the imported-file registry and never deletes database records.
+No HSRP matching, pending logic, database schema, or UI logic was changed.

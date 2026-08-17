@@ -1,0 +1,5 @@
+v1.9.16 local test UI fix.
+AutoShop / Sub-dealer card now displays a live discovered salesbilldata file count instead of 'Not set'.
+Example: 'Found 1 salesbilldata file(s). Ready to import.'
+HSRP card remains unchanged and continues to show unimported HSRP file count.
+No import logic was changed in this UI-only fix.

@@ -1,0 +1,9 @@
+v1.9.16 FIX36 based on FIX35.
+Fixed the Salesbill Data delete action by using the existing working delete confirmation modal.
+Confirmation phrase: DELETE SALESBILL.
+Deletes current salesbilldata source state and derived pending-master state.
+Preserves HSRP vehicle records, chassis, registration, registration date, and HSRP order status.
+Clears salesbill-derived customer, dealer, mobile, engine, bill, model and dealer-raw fields from retained HSRP records.
+Restores the normal DELETE ALL modal text/button after Salesbill deletion.
+Responsive delete-button layout prevents overlap.
+No HSRP import/matching logic changed.

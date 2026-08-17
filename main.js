@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog } = require("electron");
+const { app, BrowserWindow, dialog, ipcMain, Menu, shell } = require("electron");
 const { autoUpdater } = require("electron-updater");
 const path = require("path");
 
@@ -8,12 +8,72 @@ function createWindow() {
     height: 900,
     minWidth: 1000,
     minHeight: 650,
-    webPreferences: { contextIsolation: true, nodeIntegration: false }
+    icon: path.join(__dirname, "resources", "auto-management.ico"),
+    webPreferences: { contextIsolation: true, nodeIntegration: false, preload: path.join(__dirname, "preload.js") }
   });
+  win.setMenuBarVisibility(false);
+  win.setAutoHideMenuBar(true);
   win.loadFile(path.join(__dirname, "app.html"));
 }
 
+
+
+ipcMain.handle("choose-export-folder", async () => {
+  const result = await dialog.showOpenDialog({
+    title: "Select Export Folder",
+    properties: ["openDirectory", "createDirectory"]
+  });
+  if (result.canceled || !result.filePaths[0]) return { canceled: true };
+  return { canceled: false, path: result.filePaths[0], name: path.basename(result.filePaths[0]) };
+});
+ipcMain.handle("save-export-file", async (_event, payload) => {
+  try {
+    let folder = String(payload?.folderPath || "");
+    const filename = path.basename(String(payload?.filename || ""));
+    const data = payload?.data;
+    if (!folder) folder = app.getPath("downloads");
+    if (!filename || !data) throw new Error("Invalid export request.");
+    const filePath = path.join(folder, filename);
+    require("fs").writeFileSync(filePath, Buffer.from(data, "base64"));
+    return { ok: true, path: filePath, filename, folder: path.basename(folder) };
+  } catch (error) {
+    return { ok: false, message: error?.message || "Unable to save export." };
+  }
+});
+ipcMain.handle("open-export-file", async (_event, filePath) => {
+  try { const result=await shell.openPath(String(filePath||"")); return {ok:!result,message:result||""}; }
+  catch(error){return {ok:false,message:error?.message||"Unable to open file."};}
+});
+ipcMain.handle("show-export-file", async (_event, filePath) => {
+  try { shell.showItemInFolder(String(filePath||"")); return {ok:true}; }
+  catch(error){return {ok:false,message:error?.message||"Unable to show file."};}
+});
+ipcMain.handle("check-for-update-manual", async () => {
+  try {
+    const currentVersion = app.getVersion();
+    const response = await fetch("https://api.github.com/repos/chiragper-alt/Auto-management/releases/latest", {
+      headers: { "User-Agent": "Auto-Management-Updater" }
+    });
+    if (!response.ok) {
+      return { ok: false, currentVersion, message: "Unable to check for updates right now." };
+    }
+    const release = await response.json();
+    const latestVersion = String(release.tag_name || "").replace(/^v/, "");
+    const hasUpdate = latestVersion && latestVersion !== currentVersion;
+    return {
+      ok: true,
+      currentVersion,
+      latestVersion,
+      hasUpdate,
+      url: release.html_url || ""
+    };
+  } catch (error) {
+    return { ok: false, currentVersion: app.getVersion(), message: "Unable to check for updates right now." };
+  }
+});
+
 app.whenReady().then(() => {
+  Menu.setApplicationMenu(null);
   createWindow();
 
   // Safe updater: checking/downloading is separate from the app UI.

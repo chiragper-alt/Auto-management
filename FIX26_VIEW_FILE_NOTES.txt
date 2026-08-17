@@ -1,0 +1,5 @@
+v1.9.16 FIX26 based on FIX25.
+Export notification primary action is labelled 'View File'.
+The existing action continues to open the exported file using the same native file-open behavior.
+Export Folder, Downloads fallback, and notification behavior are preserved.
+No import, pending, database, or other application logic changed.

@@ -149,6 +149,10 @@
 #rc-work .rc-data-delete .danger{min-width:150px}
 @media(max-width:700px){#rc-work .rc-data-tools{flex-direction:column;align-items:stretch}#rc-work .rc-data-tools button,#rc-work .rc-data-delete button{width:100%}}
 </style>
+<style id="v154-export-folder-ui">
+#settings .setting-row .secondary{white-space:nowrap}
+#settings #exportFolderName{font-weight:650}
+</style>
 <style id="v140-auto-import-ui">
 #settings{display:none}
 .settings-grid{display:grid;gap:12px}
@@ -191,7 +195,12 @@
 .filter-actions{display:flex;align-items:center;justify-content:flex-start;gap:10px;flex-wrap:wrap}
 .filter-actions #reports{margin:0}
 </style>
-<style id="auto-mapping-settings-ui">
+<style id="auto-mapping-settings-ui"><div id="aboutUpdateSection"><h3>About</h3>
+
+</div>
+</div>
+
+
 #importMappingSettings{margin-top:18px;padding:16px;border:1px solid #d4e1eb;border-radius:12px;background:#fff}
 #importMappingSettings .settings-card-title{font-weight:800;color:var(--navy);margin-bottom:4px}
 #importMappingSettings .settings-help{font-size:12px;color:var(--muted);margin:0 0 14px}
@@ -644,17 +653,847 @@
 }
 
 </style>
+<style id="v151-about-polish">
+/* v1.9.15 About UI polish: match the existing Settings card system without changing updater behavior. */
+#aboutSection.settings-card{
+  margin:0 20px 18px !important;
+  padding:0 !important;
+  border:1px solid var(--line) !important;
+  border-radius:var(--radius) !important;
+  background:rgba(255,255,255,.42) !important;
+  box-shadow:none !important;
+  overflow:hidden !important;
+}
+#aboutSection .settings-card-title{
+  padding:18px 20px 3px !important;
+  margin:0 !important;
+  color:var(--navy) !important;
+  font-size:16px !important;
+  line-height:1.25 !important;
+  font-weight:800 !important;
+}
+#aboutSection .settings-help{
+  padding:0 20px !important;
+  margin:0 0 14px !important;
+  color:var(--muted) !important;
+  font-size:12px !important;
+  line-height:1.45 !important;
+}
+#aboutSection .setting-row{
+  margin:0 !important;
+  padding:14px 16px !important;
+  border:0 !important;
+  border-top:1px solid rgba(220,230,239,.82) !important;
+  border-radius:0 !important;
+  background:rgba(255,255,255,.34) !important;
+  min-height:68px !important;
+}
+#aboutSection .setting-row > div{min-width:0}
+#aboutSection .setting-row b{font-size:13px !important;line-height:1.25 !important}
+#aboutSection .setting-row small{
+  margin-top:4px !important;
+  max-width:none !important;
+  white-space:normal !important;
+  font-size:12px !important;
+}
+#aboutSection #checkForUpdateButton{
+  flex:0 0 auto !important;
+  min-width:172px !important;
+  min-height:40px !important;
+  padding:9px 16px !important;
+  border-radius:9px !important;
+}
+#aboutSection #checkForUpdateStatus{
+  padding:0 20px !important;
+  margin:8px 0 14px !important;
+}
+@media(max-width:700px){
+  #aboutSection.settings-card{margin:0 14px 16px !important}
+  #aboutSection .setting-row{align-items:stretch !important;flex-direction:column !important}
+  #aboutSection #checkForUpdateButton{width:100% !important;min-width:0 !important}
+}
+</style>
+
+<style id="v1-9-15-settings-heading-align">
+/* Keep the Settings heading aligned with the inner About content grid. */
+#settings > .card-head{
+  padding-left:40px !important;
+  padding-right:40px !important;
+}
+@media(max-width:700px){
+  #settings > .card-head{
+    padding-left:20px !important;
+    padding-right:20px !important;
+  }
+}
+</style>
+
+<style id="v161-settings-heading-alignment-final">
+/* Settings heading: same content column, padding and baseline as the About card. */
+#settings > .card-head{
+  margin:0 20px !important;
+  padding:18px 20px 16px !important;
+  box-sizing:border-box !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  text-align:left !important;
+}
+#settings > .card-head > div{
+  margin:0 !important;
+  padding:0 !important;
+  text-align:left !important;
+}
+#settings > .card-head h2{
+  margin:0 !important;
+  padding:0 !important;
+  font-size:16px !important;
+  line-height:1.25 !important;
+  font-weight:800 !important;
+  text-align:left !important;
+}
+#settings > .card-head p{
+  margin:3px 0 0 !important;
+  padding:0 !important;
+  line-height:1.45 !important;
+  text-align:left !important;
+}
+#settings > .card-body{
+  padding:20px !important;
+}
+@media(max-width:700px){
+  #settings > .card-head{margin:0 14px !important;padding:16px 14px !important}
+  #settings > .card-body{padding:14px !important}
+}
+</style>
+
+
+<style id="v160-unimported-auto-import-ui-final">
+#autoImportPanel .auto-import-sources{grid-template-columns:1fr 1fr;gap:12px}
+#autoImportPanel .auto-import-source{min-height:88px;display:flex;flex-direction:column;justify-content:center}
+#autoImportPanel .auto-source-title{font-size:13px;margin-bottom:4px}
+#autoImportPanel .auto-source-help{line-height:1.45}
+#autoImportPanel .auto-import-action{justify-content:flex-start;margin-top:12px}
+#autoImportPanel .auto-import-action button{min-width:230px;height:40px}
+#autoImportPanel #hsrpAutoStatus{
+  font-size:12px;color:#205276;background:#edf6fc;border-radius:7px;
+  padding:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+@media(max-width:720px){
+  #autoImportPanel .auto-import-sources{grid-template-columns:1fr}
+  #autoImportPanel .auto-import-action button{width:100%}
+}
+</style>
+
+
+<style id="v173-hsrp-no-customer-bill-model-final">
+/* HSRP Excel is chassis/registration/date/order source only.
+   Customer/Owner, Bill/DO and Model come from salesbilldata. */
+#mapbox .map:first-child .field-grid > div:has(#hname),
+#mapbox .map:first-child .field-grid > div:has(#hbill),
+#mapbox .map:first-child .field-grid > div:has(#hmodel){display:none !important}
+#mapbox #hname,#mapbox #hbill,#mapbox #hmodel{display:none !important}
+</style>
+
+
+<style id="v160-autoshop-import-count-ui">
+#autoImportPanel #autoShopAutoSource{
+  font-size:12px;color:#205276;background:#edf6fc;border-radius:7px;
+  padding:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+</style>
+
+<style id="v162-reset-import-history-ui">
+#autoImportPanel .auto-import-action{display:flex!important;align-items:center!important;gap:10px!important;flex-wrap:wrap!important}
+#autoImportPanel .auto-import-action button{min-width:190px;height:40px}
+#autoImportPanel .auto-import-action button.secondary{min-width:170px}
+@media(max-width:720px){#autoImportPanel .auto-import-action button{width:100%}}
+</style>
+
+<style id="v165-auto-import-ui-final">
+/* FINAL Auto Import UI correction — layout only; import logic untouched. */
+#autoImportPanel .auto-import-sources{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  gap:14px !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  align-items:stretch !important;
+}
+#autoImportPanel .auto-import-source{
+  width:auto !important;
+  min-width:0 !important;
+  min-height:88px !important;
+  height:auto !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+#autoImportPanel .auto-source-title,
+#autoImportPanel .auto-source-help,
+#autoImportPanel .auto-source-path{
+  min-width:0 !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+#autoImportPanel .auto-source-title{
+  font-size:13px !important;
+  line-height:1.3 !important;
+}
+#autoImportPanel .auto-source-help{
+  font-size:11px !important;
+  line-height:1.4 !important;
+  margin-bottom:9px !important;
+}
+#autoImportPanel .auto-source-path{
+  width:100% !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+  word-break:normal !important;
+  line-height:1.4 !important;
+  min-height:38px !important;
+}
+#autoImportPanel .auto-import-action{
+  margin-top:14px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:10px !important;
+  flex-wrap:wrap !important;
+}
+#autoImportPanel .auto-import-action button{
+  height:40px !important;
+  min-width:190px !important;
+  flex:0 0 auto !important;
+}
+#autoImportPanel .auto-import-action button.secondary{
+  min-width:170px !important;
+}
+@media(max-width:720px){
+  #autoImportPanel .auto-import-sources{grid-template-columns:1fr !important}
+  #autoImportPanel .auto-import-action button{width:100% !important}
+}
+</style>
+
+
+<style id="v165-records-search-ui-fix">
+/* Records/search UI alignment only — no data/import logic changes. */
+#recordsPanel .records-toolbar,
+#vehicleRecords .records-toolbar{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  gap:12px !important;
+  flex-wrap:wrap !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+#recordsPanel .records-filters,
+#vehicleRecords .records-filters{
+  display:grid !important;
+  grid-template-columns:minmax(260px,1fr) minmax(170px,220px) minmax(220px,1.4fr) minmax(180px,240px) auto !important;
+  align-items:end !important;
+  gap:12px !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+}
+#recordsPanel .records-filters > *,
+#vehicleRecords .records-filters > *{
+  min-width:0 !important;
+  box-sizing:border-box !important;
+}
+#recordsPanel input,
+#recordsPanel select,
+#vehicleRecords input,
+#vehicleRecords select{
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+#recordsPanel .records-filters label,
+#vehicleRecords .records-filters label{
+  display:block !important;
+  margin-bottom:6px !important;
+  line-height:1.25 !important;
+}
+@media(max-width:1100px){
+  #recordsPanel .records-filters,
+  #vehicleRecords .records-filters{
+    grid-template-columns:minmax(220px,1fr) minmax(170px,220px) minmax(220px,1fr) auto !important;
+  }
+}
+@media(max-width:760px){
+  #recordsPanel .records-toolbar,
+  #vehicleRecords .records-toolbar{
+    justify-content:flex-start !important;
+  }
+  #recordsPanel .records-filters,
+  #vehicleRecords .records-filters{
+    grid-template-columns:1fr 1fr !important;
+  }
+}
+</style>
+
+
+<style id="v166-hide-unused-registration-date">
+/* Registration Date filter is unused in the current workflow.
+   Hide only the UI control; keep underlying data untouched for safety. */
+#recordsPanel label:has(+ input[placeholder*="DD/MM/YYYY"]),
+#vehicleRecords label:has(+ input[placeholder*="DD/MM/YYYY"]),
+#recordsPanel input[placeholder*="DD/MM/YYYY"],
+#vehicleRecords input[placeholder*="DD/MM/YYYY"]{
+  display:none !important;
+}
+</style>
+
+
+<style id="v168-remove-unused-registration-date-ui">
+/* Current workflow does not use the top Registration Date filter.
+   Hide only that filter control; do not touch stored/imported registration-date data. */
+#records #registrationDateSearch174,
+#vehicleRecords #registrationDateSearch174{
+  display:none !important;
+}
+</style>
+<script id="v168-remove-unused-registration-date-ui-js">
+(function(){
+  "use strict";
+  function removeUnusedDateUI(){
+    var root=document.getElementById("records") || document;
+    var input=root.querySelector("#registrationDateSearch174");
+    if(input){
+      var wrap=input.closest("span");
+      if(wrap) wrap.style.setProperty("display","none","important");
+      else input.style.setProperty("display","none","important");
+    }
+
+    /* Also remove any top-level filter item whose label is exactly
+       "Registration Date:" / "Registration date". */
+    root.querySelectorAll(".filter-field").forEach(function(field){
+      var label=field.querySelector("label");
+      if(label && /^registration date:?$/i.test((label.textContent||"").trim())){
+        field.style.setProperty("display","none","important");
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded",function(){
+    removeUnusedDateUI();
+    setTimeout(removeUnusedDateUI,200);
+    setTimeout(removeUnusedDateUI,700);
+    setTimeout(removeUnusedDateUI,1500);
+  });
+
+  new MutationObserver(removeUnusedDateUI).observe(document.documentElement,{
+    childList:true,subtree:true
+  });
+})();
+</script>
+
+
+<style id="v169-hide-engine-column-note">
+/* Engine No. remains part of the data/mapping/search logic, but is intentionally
+   not displayed as a column in the Vehicle / HSRP records table. */
+</style>
+
+<style id="v160-export-notification">
+#v160ExportNotice{position:fixed;top:22px;left:50%;transform:translateX(-50%) translateY(-12px);z-index:99999;min-width:360px;max-width:min(620px,calc(100vw - 32px));background:rgba(255,255,255,.98);border:1px solid #b7d6ef;border-radius:14px;box-shadow:0 12px 34px rgba(16,54,88,.22);padding:14px 16px;display:flex;gap:10px;align-items:center;opacity:0;pointer-events:none;transition:opacity .22s ease,transform .22s ease}
+#v160ExportNotice.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+#v160ExportNotice .v160ExportText{flex:1;min-width:0}.v160ExportTitle{font-weight:800;color:#12395f}.v160ExportFile{font-size:13px;color:#55708b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+#v160ExportNotice button{padding:8px 11px;border-radius:9px;border:1px solid #b7d6ef;background:#fff;color:#174d78;font-weight:750;cursor:pointer;white-space:nowrap}
+#v160ExportNotice button.primary{background:#1677c8;color:#fff;border-color:#1677c8}.v160ExportClose{font-size:18px;padding:4px 7px!important}
+</style>
+<style id="fix30-export-ui">
+/* FIX30: stable export button row */
+#recordsSection .export-actions,
+.export-actions{display:contents !important;}
+#recordsSection .export-actions button,
+.export-actions button{min-height:48px !important;}
+@media (max-width:900px){
+  #recordsSection .export-actions,
+  .export-actions{justify-content:flex-start !important;}
+}
+</style>
+
+
+<style id="fix30-export-notification-ui">
+#v-export-notification button{
+  min-height:40px !important;
+  padding:0 14px !important;
+  border-radius:9px !important;
+  font-weight:650 !important;
+  white-space:nowrap !important;
+}
+#v-export-notification #vExportViewBtn{
+  background:#1677c8 !important;
+  color:#fff !important;
+  border:1px solid #1677c8 !important;
+}
+#v-export-notification #vExportFolderBtn{
+  background:#eef6ff !important;
+  color:#173e68 !important;
+  border:1px solid #b9d5ef !important;
+}
+#v-export-notification #vExportCloseBtn{
+  min-width:40px !important;
+  padding:0 10px !important;
+  background:#fff !important;
+  color:#173e68 !important;
+  border:1px solid #b9d5ef !important;
+}
+</style>
+
+
+<style id="fix31-export-ui">
+/* FIX31: keep export actions in a clean dedicated row */
+#v1913ExportTopRow{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  gap:12px !important;
+  flex-wrap:wrap !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  padding:0 0 16px !important;
+  margin:0 !important;
+}
+#v1913ExportTopRow > button{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  flex:0 0 auto !important;
+  width:auto !important;
+  min-width:0 !important;
+  min-height:48px !important;
+  height:48px !important;
+  padding:0 20px !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  white-space:nowrap !important;
+  line-height:1.2 !important;
+}
+#v1913ExportTopRow #reports{order:1}
+#v1913ExportTopRow #selectedExportBtn1912{order:2}
+#v1913ExportTopRow #v185SubDealerExport{order:3}
+
+/* Remove the old nested filter-actions presentation from export buttons after
+   the buttons are moved into the dedicated row. */
+#records .filter-actions:has(#reports) > div:has(#reports){
+  display:none !important;
+}
+
+/* Single export notification: below the top toolbar, right aligned, no overlap. */
+#v160ExportNotice{
+  top:118px !important;
+  left:auto !important;
+  right:24px !important;
+  transform:translateY(-12px) !important;
+  min-width:360px !important;
+  max-width:min(620px,calc(100vw - 48px)) !important;
+}
+#v160ExportNotice.show{
+  transform:translateY(0) !important;
+}
+@media(max-width:760px){
+  #v1913ExportTopRow{
+    justify-content:flex-start !important;
+  }
+  #v1913ExportTopRow > button{
+    min-height:44px !important;
+    height:44px !important;
+    padding:0 14px !important;
+  }
+  #v160ExportNotice{
+    top:90px !important;
+    right:16px !important;
+    min-width:0 !important;
+    width:calc(100vw - 32px) !important;
+    max-width:calc(100vw - 32px) !important;
+  }
+}
+</style>
+
+
+<style id="fix32-export-layout">
+/* FIX32 — Export toolbar: keep all three actions inside the records card. */
+#v1913ExportTopRow{
+  width:100% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:stretch !important;
+  gap:10px !important;
+  flex-wrap:nowrap !important;
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+  padding:0 2px 14px !important;
+  margin:0 !important;
+}
+#v1913ExportTopRow > button{
+  flex:1 1 0 !important;
+  width:0 !important;
+  min-width:0 !important;
+  max-width:none !important;
+  height:44px !important;
+  min-height:44px !important;
+  padding:0 12px !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  font-size:14px !important;
+  line-height:1.2 !important;
+}
+#v1913ExportTopRow #reports,
+#v1913ExportTopRow #selectedExportBtn1912,
+#v1913ExportTopRow #v185SubDealerExport{
+  flex:1 1 0 !important;
+  width:0 !important;
+  min-width:0 !important;
+}
+
+/* Export notification: text on top, actions below, close button in the corner.
+   This prevents View File / Show in Folder from sitting awkwardly beside text. */
+#v160ExportNotice{
+  top:112px !important;
+  right:24px !important;
+  left:auto !important;
+  transform:translateY(-12px) !important;
+  width:min(500px,calc(100vw - 48px)) !important;
+  min-width:0 !important;
+  max-width:500px !important;
+  padding:16px 16px 14px !important;
+  display:flex !important;
+  flex-wrap:wrap !important;
+  align-items:center !important;
+  gap:10px !important;
+  position:fixed !important;
+  box-sizing:border-box !important;
+}
+#v160ExportNotice.show{transform:translateY(0) !important}
+#v160ExportNotice .v160ExportText{
+  flex:1 1 100% !important;
+  min-width:0 !important;
+  padding-right:34px !important;
+  box-sizing:border-box !important;
+}
+#v160ExportNotice .v160ExportTitle{
+  font-size:16px !important;
+  line-height:1.25 !important;
+}
+#v160ExportNotice .v160ExportFile{
+  margin-top:5px !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+#v160ExportNotice #v160OpenExport,
+#v160ExportNotice #v160ShowExport{
+  flex:0 0 auto !important;
+  min-width:112px !important;
+  height:40px !important;
+  min-height:40px !important;
+  padding:0 14px !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+}
+#v160ExportNotice #v160CloseExport{
+  position:absolute !important;
+  top:10px !important;
+  right:10px !important;
+  width:38px !important;
+  min-width:38px !important;
+  height:38px !important;
+  min-height:38px !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+@media(max-width:760px){
+  #v1913ExportTopRow{
+    flex-wrap:wrap !important;
+  }
+  #v1913ExportTopRow > button{
+    flex:1 1 calc(50% - 5px) !important;
+    width:auto !important;
+  }
+  #v160ExportNotice{
+    top:86px !important;
+    right:16px !important;
+    width:calc(100vw - 32px) !important;
+    max-width:calc(100vw - 32px) !important;
+  }
+}
+@media(max-width:480px){
+  #v1913ExportTopRow > button{
+    flex:1 1 100% !important;
+  }
+  #v160ExportNotice #v160OpenExport,
+  #v160ExportNotice #v160ShowExport{
+    flex:1 1 calc(50% - 5px) !important;
+    min-width:0 !important;
+  }
+}
+</style>
+
+
+<style id="fix33-export-notification">
+#v160ExportNotice{
+  position:fixed !important;
+  top:50% !important;
+  left:50% !important;
+  right:auto !important;
+  transform:translate(-50%,-46%) scale(.98) !important;
+  width:min(430px,calc(100vw - 40px)) !important;
+  min-width:0 !important;
+  max-width:calc(100vw - 40px) !important;
+  padding:20px 22px 18px !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:12px !important;
+  border:1px solid rgba(255,255,255,.72) !important;
+  border-radius:18px !important;
+  background:rgba(238,248,255,.78) !important;
+  backdrop-filter:blur(18px) saturate(130%) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(130%) !important;
+  box-shadow:0 18px 45px rgba(19,55,88,.20) !important;
+  z-index:100000 !important;
+  overflow:hidden !important;
+  text-align:center !important;
+}
+#v160ExportNotice.show{
+  transform:translate(-50%,-50%) scale(1) !important;
+}
+#v160ExportNotice .v160ExportText{
+  width:100% !important;
+  min-width:0 !important;
+  padding:0 26px !important;
+  box-sizing:border-box !important;
+}
+#v160ExportNotice .v160ExportTitle{
+  font-size:18px !important;
+  font-weight:800 !important;
+  line-height:1.25 !important;
+  margin:0 !important;
+}
+#v160ExportNotice .v160ExportFile{
+  margin-top:7px !important;
+  font-size:14px !important;
+  line-height:1.4 !important;
+  color:#52718e !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+#v160ExportNotice #v160OpenExport{
+  width:150px !important;
+  min-width:150px !important;
+  height:42px !important;
+  min-height:42px !important;
+  padding:0 18px !important;
+  margin:0 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border-radius:10px !important;
+  font-size:14px !important;
+  font-weight:750 !important;
+}
+#v160ExportNotice #v160CloseExport{
+  position:absolute !important;
+  top:10px !important;
+  right:10px !important;
+  width:34px !important;
+  min-width:34px !important;
+  height:34px !important;
+  min-height:34px !important;
+  padding:0 !important;
+  margin:0 !important;
+  border-radius:9px !important;
+  background:rgba(255,255,255,.72) !important;
+  border:1px solid rgba(156,190,218,.55) !important;
+  color:#1b4a72 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:20px !important;
+}
+#v1913ExportTopRow{
+  width:calc(100% - 4px) !important;
+  margin:0 2px 14px !important;
+  padding:0 !important;
+  gap:10px !important;
+  overflow:hidden !important;
+  box-sizing:border-box !important;
+}
+#v1913ExportTopRow > button{
+  flex:1 1 0 !important;
+  width:0 !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  height:44px !important;
+  min-height:44px !important;
+  padding:0 10px !important;
+  margin:0 !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+}
+@media(max-width:760px){
+  #v1913ExportTopRow{flex-wrap:wrap !important;}
+  #v1913ExportTopRow > button{flex:1 1 calc(50% - 5px) !important;width:auto !important;}
+}
+@media(max-width:480px){
+  #v1913ExportNotice{width:calc(100vw - 28px) !important;max-width:calc(100vw - 28px) !important;}
+  #v1913ExportTopRow > button{flex:1 1 100% !important;width:auto !important;}
+}
+</style>
+
+
+<style id="fix34-export-toast">
+/* FIX34: compact top-center export toast; does not cover the main workspace. */
+#v160ExportNotice{
+  position:fixed !important;
+  top:18px !important;
+  left:50% !important;
+  right:auto !important;
+  bottom:auto !important;
+  width:360px !important;
+  max-width:calc(100vw - 32px) !important;
+  min-width:0 !important;
+  padding:12px 14px 12px !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+  border:1px solid rgba(255,255,255,.78) !important;
+  border-radius:14px !important;
+  background:rgba(235,247,255,.84) !important;
+  backdrop-filter:blur(14px) saturate(125%) !important;
+  -webkit-backdrop-filter:blur(14px) saturate(125%) !important;
+  box-shadow:0 10px 28px rgba(19,55,88,.18) !important;
+  z-index:100000 !important;
+  overflow:hidden !important;
+  text-align:center !important;
+}
+#v160ExportNotice.show{
+  transform:translate(-50%,0) scale(1) !important;
+  opacity:1 !important;
+}
+#v160ExportNotice .v160ExportText{
+  width:100% !important;
+  min-width:0 !important;
+  padding:0 28px !important;
+  box-sizing:border-box !important;
+}
+#v160ExportNotice .v160ExportTitle{
+  font-size:15px !important;
+  font-weight:800 !important;
+  line-height:1.2 !important;
+  margin:0 !important;
+}
+#v160ExportNotice .v160ExportFile{
+  margin-top:3px !important;
+  font-size:12px !important;
+  line-height:1.3 !important;
+  color:#55738e !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+}
+#v160ExportNotice #v160OpenExport{
+  flex:0 0 auto !important;
+  width:150px !important;
+  min-width:150px !important;
+  height:36px !important;
+  min-height:36px !important;
+  padding:0 14px !important;
+  margin:0 !important;
+  border-radius:9px !important;
+  font-size:13px !important;
+  box-sizing:border-box !important;
+}
+#v160ExportNotice #v160ShowExport{
+  display:none !important;
+}
+#v160ExportNotice #v160CloseExport{
+  position:absolute !important;
+  top:8px !important;
+  right:8px !important;
+  width:30px !important;
+  min-width:30px !important;
+  height:30px !important;
+  min-height:30px !important;
+  padding:0 !important;
+  margin:0 !important;
+  border-radius:8px !important;
+  box-sizing:border-box !important;
+  font-size:18px !important;
+}
+@media(max-width:760px){
+  #v160ExportNotice{
+    top:12px !important;
+    width:calc(100vw - 28px) !important;
+    max-width:360px !important;
+  }
+}
+</style>
+
+
+<style id="fix35-salesbill-delete-ui">
+#deleteSalesBillDataBtn{
+  margin-left:8px !important;
+}
+#deleteSalesBillDataBtn,
+button[onclick*="deleteAll"]{
+  white-space:nowrap !important;
+}
+@media(max-width:760px){
+  #deleteSalesBillDataBtn{margin-left:0 !important;margin-top:8px !important;}
+}
+</style>
+
+
+<style id="fix36-salesbill-delete-ui">
+#deleteSalesBillDataBtn{
+  margin-left:8px !important;
+  white-space:nowrap !important;
+}
+@media(max-width:900px){
+  .danger-actions{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:8px !important;
+    align-items:center !important;
+  }
+  #deleteSalesBillDataBtn{margin-left:0 !important;}
+}
+</style>
+
 </head><body>
 <div class="app">
   <aside class="sidebar"><div class="side-brand"><img src="chirag-solanki-logo.svg" alt="Auto Management"><div class="side-app-name">Auto Management</div><p>Managed by Chirag Solanki</p></div>
-    <nav class="nav"><div class="nav-label">Workspace</div><a class="active" href="#dashboard"><i>⌂</i><span>Dashboard</span></a><a href="#import"><i>⇧</i><span>Daily Import</span></a><a href="#records"><i>▤</i><span>Vehicle Records</span></a><a href="#rc-work" id="rcWorkNav" onclick="openRCWork(event)"><i>▣</i><span>RC Work</span></a><a href="#settings" id="settingsNav"><i>⚙</i><span>Settings</span></a></nav>
-    <div class="side-footer"><strong>Auto Management v1.3.1</strong><span>Developed by Chirag Solanki</span><span>Contact us: <a href="tel:9998117008">9998117008</a></span></div>
+    <nav class="nav"><div class="nav-label">Menu</div><a class="active" href="#dashboard"><i>⌂</i><span>Dashboard</span></a><a href="#import"><i>⇧</i><span>Daily Import</span></a><a href="#records"><i>▤</i><span>Vehicle Records</span></a><a href="#rc-work" id="rcWorkNav" onclick="openRCWork(event)"><i>▣</i><span>RC Work</span></a><a href="#settings" id="settingsNav"><i>⚙</i><span>Settings</span></a></nav>
+    <div class="side-footer"><span>Developed by Chirag Solanki</span><span>Contact us: <a href="tel:9998117008">9998117008</a></span></div>
   </aside>
-  <main><header class="topbar"><div class="crumb">AUTO MANAGEMENT <b>Operations overview</b></div><div class="top-meta"><span class="secure">● Local data active</span><span>Version 1.3.1</span></div></header>
+  <main><header class="topbar"><div class="crumb">AUTO MANAGEMENT <b>Operations overview</b></div><div class="top-meta"><span class="secure">● Local data active</span><span>Version 1.9.15</span></div></header>
     <div class="content" id="dashboard">
       <section class="intro"><div><h1 id="greeting">Good morning, Chirag</h1><p>Import, review, and manage HSRP vehicle records from one place.</p></div><div class="last-import">LAST DATABASE UPDATE<b id="lastUpdate">No imports yet</b></div></section>
-      <section class="stats" aria-label="Record summary"><div class="stat"><span class="stat-label">Total saved</span><b id="total">0</b></div><div class="stat"><span class="stat-label">Orders received</span><b id="or">0</b></div><div class="stat complete"><span class="stat-label">Complete</span><b id="co">0</b></div></section>
-      <section class="card" id="import"><div class="card-head"><div><h2>Daily Excel Import / Manual Import</h2><p>Upload both files, confirm the matched columns, then update the database.</p></div><span class="record-count">Step 1 of 3</span></div><div class="card-body"><div class="notice"><b>Chassis/VIN and Engine no. must match in both files.</b> Only rows with a registration number are imported. Existing matching records are updated instead of duplicated.</div>
+      <section class="stats" aria-label="Record summary">
+<div class="stat complete"><span class="stat-label">HSRP Ordered</span><b id="co">0</b></div>
+<div class="stat pending"><span class="stat-label">HSRP Order Pending</span><b id="op">0</b></div>
+<div class="stat pending"><span class="stat-label">RC Pending</span><b id="rp">0</b></div>
+</section>
+      <section class="card" id="import"><div class="card-head"><div><h2>Daily Excel Import / Manual Import</h2><p>Upload both files, confirm the matched columns, then update the database.</p></div><span class="record-count">Step 1 of 3</span></div><div class="card-body"><div class="notice"><b>Chassis/VIN and Engine no. must match in both files.</b> Only matching HSRP rows with a registration number are imported. Unmatched Sub-dealer / Customer chassis remain tracked as pending and are not shown in vehicle records.</div>
         <div class="uploads"><div class="upload"><span class="upload-title">HSRP number plate order file</span><span class="upload-help">Excel, CSV, or XLS file</span><div class="file-input"><input id="hf" type="file" accept=".xlsx,.xls,.csv" onchange="fileName('hf','hfName')"><div class="file-display" id="hfName">Choose HSRP order file</div></div></div><div class="upload"><span class="upload-title">Sub-dealer / customer file</span><span class="upload-help">Excel, CSV, or XLS file</span><div class="file-input"><input id="df" type="file" accept=".xlsx,.xls,.csv" onchange="fileName('df','dfName')"><div class="file-display" id="dfName">Choose sub-dealer file</div></div></div></div>
         <div class="manual-import-section">
   <div class="actions">
@@ -665,34 +1504,32 @@
 </div>
 <div id="autoImportPanel" class="auto-import-panel">
   <div class="auto-import-head">
-    <div><b>Automatic Import</b><span>Separate sources — same existing import process.</span></div>
+    <div>
+      <b>HSRP Auto Import</b>
+      <span>Finds and imports HSRP Excel files that have not been imported before.</span>
+    </div>
   </div>
   <div class="auto-import-sources">
     <div class="auto-import-source">
       <div class="auto-source-title">Sub-dealer / Customer file</div>
       <div class="auto-source-help">AutoShop Sharing folder → salesbilldata</div>
-      <div class="auto-source-path" id="autoShopAutoSource">Folder set in Settings</div>
+      <div class="auto-source-path" id="autoShopAutoSource">Ready to scan for unimported salesbilldata file(s)</div>
     </div>
     <div class="auto-import-source">
-      <div class="auto-source-title">HSRP number plate order file</div>
-      <div class="auto-source-help">HSRP folder → all files whose filename date falls within the selected range</div>
-      <div class="auto-date-row" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <label for="hsrpAutoFrom">From</label>
-        <input id="hsrpAutoFrom" type="date">
-        <span>to</span>
-        <label for="hsrpAutoTo">To</label>
-        <input id="hsrpAutoTo" type="date">
-      </div>
+      <div class="auto-source-title">HSRP number plate order files</div>
+      <div class="auto-source-help">The saved HSRP folder is scanned automatically. Previously imported files are skipped.</div>
+      <div class="auto-source-path" id="hsrpAutoStatus">Ready to scan for unimported files</div>
     </div>
   </div>
   <div class="auto-import-action">
-    <button class="primary" type="button" onclick="autoImportAll()">Auto Import Both Files</button>
+    <button class="primary" type="button" onclick="autoImportAll()">Auto Import</button>
+    <button class="secondary" type="button" onclick="v160ResetImportHistory()">Reset Import History</button>
   </div>
   <p id="autoImportInfo" class="import-status"></p>
 </div>
 </div></section>
       <div id="mappingToggle" class="mapping-toggle hidden"><button type="button" id="showMapBtn" onclick="toggleMapping()">Show column mapping</button></div>
-      <section id="mapbox" class="card hidden"><div class="card-head"><div><h2>Confirm column mapping</h2><p>Review automatic matches before importing.</p></div><span class="record-count">Step 2 of 3</span></div><div class="card-body"><div class="maps"><div class="map"><div class="map-title">HSRP order Excel</div><div class="field-grid"><div><label>Chassis / VIN *</label><select id="hc"></select></div><div><label>Registration no.</label><select id="hr"></select></div><div><label>Registration date *</label><select id="hdate"></select></div><div><label>Customer / owner</label><select id="hname"></select></div><div><label>Mobile</label><select id="hmob"></select></div><div><label>Engine no.</label><select id="heng"></select></div><div><label>Bill / DO no.</label><select id="hbill"></select></div><div><label>Model</label><select id="hmodel"></select></div></div></div><div class="map"><div class="map-title">Sub-dealer / customer Excel</div><div class="field-grid"><div><label>Chassis no. *</label><select id="dc"></select></div><div><label>Sub-dealer / agent *</label><select id="dagent"></select></div><div><label>Customer name</label><select id="dclient"></select></div><div><label>Mobile no.</label><select id="dmob"></select></div><div><label>Engine no.</label><select id="deng"></select></div><div><label>Bill no.</label><select id="dbill"></select></div><div><label>Model</label><select id="dmodel"></select></div></div></div></div></div></section>
+      <section id="mapbox" class="card hidden"><div class="card-head"><div><h2>Confirm column mapping</h2><p>Review automatic matches before importing.</p></div><span class="record-count">Step 2 of 3</span></div><div class="card-body"><div class="maps"><div class="map"><div class="map-title">HSRP order Excel <small style="font-weight:500;color:var(--muted)">— chassis / registration / date only</small></div><div class="field-grid"><div><label>Chassis / VIN *</label><select id="hc"></select></div><div><label>Registration no.</label><select id="hr"></select></div><div><label>Registration date *</label><select id="hdate"></select></div><div><label>Customer / owner</label><select id="hname"></select></div><div><label>Mobile</label><select id="hmob"></select></div><div><label>Engine no.</label><select id="heng"></select></div><div><label>Bill / DO no.</label><select id="hbill"></select></div><div><label>Model</label><select id="hmodel"></select></div></div></div><div class="map"><div class="map-title">Sub-dealer / customer Excel</div><div class="field-grid"><div><label>Chassis no. *</label><select id="dc"></select></div><div><label>Sub-dealer / agent *</label><select id="dagent"></select></div><div><label>Customer name</label><select id="dclient"></select></div><div><label>Mobile no.</label><select id="dmob"></select></div><div><label>Engine no.</label><select id="deng"></select></div><div><label>Bill no.</label><select id="dbill"></select></div><div><label>Model</label><select id="dmodel"></select></div></div></div></div></div></section>
       <section class="card" id="records"><div class="card-head"><div><h2>Vehicle / HSRP records</h2><p>Search the live local database and export exactly the filtered result.</p></div><span class="record-count" id="visibleCount">0 records shown</span></div><div class="card-body"><div class="filters">
 <div class="filter-field multi-reg-1913" id="multiRegField1913">
   <label>Multiple Registration Search</label>
@@ -706,8 +1543,13 @@
   </div>
   <div id="multiRegNotFound1913" class="multi-reg-notfound-1913" hidden></div>
 </div>
-<div class="filter-field"><label>Search records</label><input id="q" oninput="render()" placeholder="Registration, customer, mobile, chassis, engine..." type="text"></div><div class="filter-field"><label>Sub-dealer</label><select id="dealer" onchange="render()"><option value="">All sub-dealers</option></select></div><div class="filter-actions"><label>&nbsp;</label><div class="filter-actions"><button class="secondary" id="reports" onclick="exportReport()">Export filtered report</button><button onclick="clearFilters()">Clear filters</button><button type="button" id="selectedExportBtn1912" disabled>Export selected</button></div></div></div></div><div class="table-wrap"><table><thead><tr><th><input class="check" aria-label="Select all" type="checkbox" onclick="allCheck(this)"></th><th>Registration no.</th><th>Customer</th><th>Mobile</th><th>Chassis no.</th><th>Engine no.</th><th>Bill / DO no.</th><th>Model</th><th>Sub-dealer</th><th>Registration date</th><th>HSRP order</th></tr></thead><tbody id="out"></tbody></table></div></section>
-      <section class="card danger-zone"><div class="card-head"><div><h2>Data management</h2><p>Deletion is permanent on this computer. Export a backup first.</p></div></div><div class="danger-body"><p>Selected and filtered deletions are useful for corrections. “Delete all” requires typing a confirmation phrase.</p><div class="danger-actions"><button class="danger" onclick="deleteSelected()">Delete selected</button><button class="danger" onclick="deleteFiltered()">Delete filtered</button><button class="danger" onclick="deleteAll()">Delete all saved data</button></div></div></section>
+<div class="filter-field"><label>Search records</label><input id="q" oninput="render()" placeholder="Registration, customer, mobile, chassis, engine..." type="text"></div><div class="filter-field"><label>Sub-dealer</label><select id="dealer" onchange="render()"><option value="">All sub-dealers</option></select></div><div class="filter-actions"><label>&nbsp;</label><div class="filter-actions"><button class="secondary" id="reports" onclick="exportReport()">Export filtered report</button><button onclick="clearFilters()">Clear filters</button><button type="button" id="selectedExportBtn1912" disabled>Export selected</button></div></div></div></div><div class="table-wrap"><table><thead><tr><th><input class="check" aria-label="Select all" type="checkbox" onclick="allCheck(this)"></th><th>Registration no.</th><th>Customer</th><th>Mobile</th><th>Chassis no.</th><th>Bill / DO no.</th><th>Model</th><th>Sub-dealer</th><th>Registration date</th><th>HSRP order</th></tr></thead><tbody id="out"></tbody></table></div></section>
+      <section class="card danger-zone"><div class="card-head"><div><h2>Data management</h2><p>Deletion is permanent on this computer. Export a backup first.</p></div></div><div class="danger-body"><p>Selected and filtered deletions are useful for corrections. “Delete all” requires typing a confirmation phrase.</p><div class="danger-actions"><button class="danger" onclick="deleteSelected()">Delete selected</button><button class="danger" onclick="deleteFiltered()">Delete filtered</button><button class="danger" onclick="deleteAll()">Delete all saved data</button>
+
+<button type="button" class="danger" id="deleteSalesBillDataBtn"
+        onclick="deleteSalesBillDataOnly()">
+  Delete Salesbill Data
+</button></div></div></section>
     </div>
   
 <section class="card" id="rc-work">
@@ -740,7 +1582,20 @@
   </div>
 </section>
 <section class="card" id="settings">
-  <div class="card-head"><div><h2>Settings</h2><p>Configure folders used by Auto Import.</p></div><span class="record-count">Version 1.9.13</span></div>
+<div id="aboutSection" class="settings-card" style="margin-top:18px;">
+  <div class="settings-card-title">About</div>
+  <p class="settings-help">Auto Management version and update information.</p>
+  <div class="setting-row">
+    <div>
+      <b>Version</b>
+      <small id="aboutCurrentVersion">1.9.15</small>
+    </div>
+    <button id="checkForUpdateButton" type="button">Check for Update</button>
+  </div>
+  <div id="checkForUpdateStatus" class="settings-help" style="margin-top:8px;"></div>
+</div>
+
+  <div class="card-head"><div><h2>Settings</h2><p>Configure folders used by Auto Import.</p></div></div>
   <div class="card-body">
     <div class="notice"><b>Auto Import folders</b> Select the fixed folders used by AutoShop and HSRP. You can change them anytime.</div>
     <div class="settings-grid">
@@ -751,6 +1606,13 @@
       <div class="setting-row">
         <div><b>HSRP Excel folder</b><small id="hsrpFolderName">Not set</small></div>
         <button type="button" class="secondary" onclick="chooseHsrpFolder()">Select Folder</button>
+      </div>
+      <div class="setting-row">
+        <div><b>Export folder</b><small id="exportFolderName">Default: Downloads</small></div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button type="button" class="secondary" onclick="chooseExportFolder()">Select Folder</button>
+          <button type="button" class="secondary" onclick="clearExportFolder()">Use Downloads</button>
+        </div>
       </div>
     </div>
     <p id="settingsInfo" class="import-status"></p>
@@ -801,10 +1663,60 @@
 </main>
 </div><div id="toast" role="status"></div>
 <script>
-const KEY="HSRP_SubDealer_DB_v13";let H=[],D=[],db=JSON.parse(localStorage.getItem(KEY)||"[]");const $=x=>document.getElementById(x),clean=x=>String(x??"").trim(),norm=x=>clean(x).toUpperCase().replace(/[^A-Z0-9]/g,"");
+const KEY="HSRP_SubDealer_DB_v13";
+const PENDING_MASTER_KEY="HSRP_PENDING_MASTER_CHASSIS_V1";
+function getMasterChassis(){
+  try{return JSON.parse(localStorage.getItem(PENDING_MASTER_KEY)||"[]")}catch(e){return []}
+}
+function saveMasterChassis(a){
+  try{localStorage.setItem(PENDING_MASTER_KEY,JSON.stringify([...new Set(a.filter(Boolean))]))}catch(e){console.warn("Pending master state could not be saved",e)}
+}
+function syncPendingFromDealerData(){
+  if(!D||!D.length)return getMasterChassis();
+  const headers=Object.keys(D[0]||{});
+  const normalized=headers.map(h=>[h,String(h).trim().toLowerCase().replace(/[^a-z0-9]/g,"")]);
+  const chHeader=(normalized.find(x=>x[1]==="chasisno")||normalized.find(x=>x[1]==="chassisno")||normalized.find(x=>x[1].includes("chasisno"))||normalized.find(x=>x[1].includes("chassisno"))||[])[0];
+  if(!chHeader)return getMasterChassis();
+  const master=new Set();
+  D.forEach(r=>{const k=v160NormChassis(r[chHeader]);if(k)master.add(k)});
+  saveMasterChassis([...master]);
+  return [...master];
+}
+function pendingCount(){
+  const master=(D&&D.length)?syncPendingFromDealerData():getMasterChassis();
+  const dbKeys=new Set(db.map(x=>x.key).filter(Boolean));
+  let n=0;for(const k of master)if(!dbKeys.has(k))n++;
+  return n;
+}
+let H=[],D=[],db=JSON.parse(localStorage.getItem(KEY)||"[]");const $=x=>document.getElementById(x),clean=x=>String(x??"").trim(),norm=x=>clean(x).toUpperCase().replace(/[^A-Z0-9]/g,"");
 function esc(x){return clean(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}function toast(message){const el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove("show"),3600)}function fileName(input,label){const f=$(input).files[0];$(label).textContent=f?f.name:"Choose file"}
 function guess(a,w){return a.find(h=>w.some(x=>norm(h).includes(norm(x))))||""}function opts(id,a,w,preferred="",keepBlank=false){$(id).innerHTML='<option value="">— Select column —</option>'+a.map(x=>`<option>${esc(x)}</option>`).join("");let exact=preferred?a.find(h=>norm(h)===norm(preferred)):"",g=keepBlank?"":exact||guess(a,w);if(g)$(id).value=g}
-function read(f){return new Promise((res,rej)=>{let r=new FileReader();r.onload=e=>{try{let w=XLSX.read(e.target.result,{type:"array",cellDates:true});res(XLSX.utils.sheet_to_json(w.Sheets[w.SheetNames[0]],{defval:""}))}catch(x){rej(x)}};r.onerror=rej;r.readAsArrayBuffer(f)})}function dateVal(v){
+function read(f){return new Promise((res,rej)=>{
+  let r=new FileReader();
+  r.onload=e=>{
+    try{
+      const buf=e.target.result;
+      const bytes=new Uint8Array(buf);
+      // Some HSRP exports are plain tab-delimited text files with an .xls
+      // extension. SheetJS treats these as one long column when read as a
+      // binary Excel workbook. Detect that format and parse it as TSV.
+      let probe="";
+      try{probe=new TextDecoder("utf-8",{fatal:false}).decode(bytes.slice(0,65536));}catch(_){}
+      const isBinaryExcel=(bytes[0]===0xD0&&bytes[1]===0xCF&&bytes[2]===0x11&&bytes[3]===0xE0)||
+                          (bytes[0]===0x50&&bytes[1]===0x4B);
+      const firstLine=probe.split(/\r?\n/)[0]||"";
+      if(!isBinaryExcel && (firstLine.includes("\t") || (probe.includes("\t") && firstLine.length>20))){
+        let w=XLSX.read(probe,{type:"string",FS:"\t",RS:"\r\n",cellDates:true});
+        let rows=XLSX.utils.sheet_to_json(w.Sheets[w.SheetNames[0]],{defval:""});
+        if(rows.length && Object.keys(rows[0]).length>1){res(rows);return}
+      }
+      let w=XLSX.read(buf,{type:"array",cellDates:true});
+      res(XLSX.utils.sheet_to_json(w.Sheets[w.SheetNames[0]],{defval:""}))
+    }catch(x){rej(x)}
+  };
+  r.onerror=rej;
+  r.readAsArrayBuffer(f)
+})}function dateVal(v){
   if(v instanceof Date && !isNaN(v)){
     return v.getFullYear()+"-"+String(v.getMonth()+1).padStart(2,"0")+"-"+String(v.getDate()).padStart(2,"0");
   }
@@ -823,10 +1735,94 @@ function read(f){return new Promise((res,rej)=>{let r=new FileReader();r.onload=
 async function loadFiles(){let hf=$("hf").files[0],df=$("df").files[0];if(!hf||!df)return toast("Choose both Excel files before loading columns.");try{[H,D]=await Promise.all([read(hf),read(df)]);if(!H.length||!D.length)return toast("One of the selected Excel sheets has no data.");let h=Object.keys(H[0]),d=Object.keys(D[0]);opts("hc",h,["vin","chassis"],"VIN number");opts("hr",h,["registration","reg"],"Registration Number");opts("hdate",h,["registrationdate","regdate","registration date","date of registration","reg date"],"Registration Date");opts("hname",h,["customer","owner","name"],"",true);opts("hmob",h,["mobile","phone"],"Customer mobile");opts("heng",h,["engine"],"Engine Number");opts("hbill",h,["bill","do no","invoice"],"",true);opts("hmodel",h,["model"],"Model");opts("dc",d,["chassis","vin"],"chasis_no");opts("dagent",d,["agent","subdealer","dealer"],"agent");opts("dclient",d,["client","customer","name"],"client");opts("dmob",d,["mobile","phone"],"mobile");opts("deng",d,["engine"],"engine_no");opts("dbill",d,["bill","do no","invoice"],"bill_no");opts("dmodel",d,["model"],"model");$("mapbox").classList.remove("hidden");
     applySharedImportMapping();$("info").textContent=`Ready to review: ${H.length} HSRP rows and ${D.length} sub-dealer rows loaded.`;$("mapbox").scrollIntoView({behavior:"smooth",block:"start"});toast("Columns matched automatically. Review and import when ready.")}catch(e){toast("Excel could not be read. Please use a valid XLS, XLSX, or CSV file.")}}
 function toggleMapping(){const box=$("mapbox"),btn=$("showMapBtn");box.classList.toggle("hidden");btn.textContent=box.classList.contains("hidden")?"Show column mapping":"Hide column mapping";if(!box.classList.contains("hidden"))box.scrollIntoView({behavior:"smooth",block:"start"})}
-function importUpdate(){if(!H.length||!D.length)return toast("Load both files and confirm column mapping first.");let hc=$("hc").value,dc=$("dc").value,da=$("dagent").value,c={hr:$("hr").value,hd:$("hdate").value,hn:$("hname").value,hm:$("hmob").value,he:$("heng").value,hb:$("hbill").value,hmod:$("hmodel").value,dc:$("dclient").value,dm:$("dmob").value,de:$("deng").value,db:$("dbill").value,dmod:$("dmodel").value};if(!hc||!dc||!da||!c.hr)return toast("Chassis, Registration no., and Agent columns are required.");let dealerRows=new Map(),before=new Set(db.map(x=>x.key)),now=stamp(),skippedNoReg=0,skippedNoMatch=0,imported=0;D.forEach(r=>{let chassis=norm(r[dc]);if(chassis)dealerRows.set(chassis,r)});H.forEach(r=>{let chassis=norm(r[hc]),registration=clean(r[c.hr]);if(!chassis||!registration){skippedNoReg++;return}let dealerRow=dealerRows.get(chassis);if(!dealerRow){skippedNoMatch++;return}let i=db.findIndex(x=>x.key===chassis),x=i>=0?db[i]:{key:chassis,chassis:clean(r[hc])};x.dealer=clean(dealerRow[da]);if(c.dc)x.customer=clean(dealerRow[c.dc])||x.customer||"";if(c.dm)x.mobile=clean(dealerRow[c.dm])||x.mobile||"";if(c.de)x.engine=clean(dealerRow[c.de])||x.engine||"";if(c.db)x.bill=clean(dealerRow[c.db])||x.bill||"";if(c.dmod)x.model=clean(dealerRow[c.dmod])||x.model||"";x.reg=registration;if(c.hd){let mappedRegDate=dateVal(r[c.hd]);if(mappedRegDate)x.regDate=mappedRegDate}if(c.hn&&clean(r[c.hn]))x.customer=clean(r[c.hn]);if(c.hm&&clean(r[c.hm]))x.mobile=clean(r[c.hm]);if(clean(r[c.he]))x.engine=clean(r[c.he]);if(c.hb&&clean(r[c.hb]))x.bill=clean(r[c.hb]);if(c.hmod&&clean(r[c.hmod]))x.model=clean(r[c.hmod]);x.orderReceived=true;x.lastImport=now;x._hsrpRaw=r;x._dealerRaw=dealerRow;x._mappingSourceVersion="1.9.13-chassis-only";i>=0?db[i]=x:db.push(x);imported++});if(!imported){$("info").textContent=`No records imported. ${skippedNoMatch} rows had no matching chassis; ${skippedNoReg} rows had no registration number.`;return toast("No matching registered chassis records were found.")}localStorage.setItem(KEY,JSON.stringify(db));let added=db.filter(x=>!before.has(x.key)).length,updated=imported-added;render();$("mapbox").classList.add("hidden");$("mappingToggle").classList.remove("hidden");$("showMapBtn").textContent="Show column mapping";$("info").textContent=`Import complete: ${imported} matching registered chassis records imported (${added} new, ${updated} updated). Skipped: ${skippedNoMatch} no chassis match, ${skippedNoReg} no registration number.`;toast(`Import complete — ${imported} matching registered chassis record${imported===1?"":"s"} saved.`)}
-function arr(){let q=$("q").value.toLowerCase(),f=$("dealer").value,registrationDate=$("regDate")?$("regDate").value:"";return db.filter(x=>(!q||Object.values(x).some(v=>String(v).toLowerCase().includes(q)))&&(!f||(f==="__blank__"?!clean(x.dealer):x.dealer===f))&&(!registrationDate||dateVal(x.regDate)===dateVal(registrationDate)))}function render(){db.forEach(x=>{if(x.regDate)x.regDate=dateVal(x.regDate);x.status=!x.reg?"Registration Pending":!x.orderReceived?"HSRP Order Pending":"Complete"});let a=arr();$("out").innerHTML=a.map(x=>`<tr><td><input class="check rowcheck" data-key="${esc(x.key)}" type="checkbox"></td><td>${esc(x.reg)}</td><td>${esc(x.customer)}</td><td>${esc(x.mobile)}</td><td>${esc(x.chassis)}</td><td>${esc(x.engine)}</td><td>${esc(x.bill)}</td><td>${esc(x.model)}</td><td>${esc(x.dealer)}</td><td>${esc(x.regDate)}</td><td class="${x.orderReceived?"order-yes":"order-no"}">${x.orderReceived?"Received":"Pending"}</td></tr>`).join("")||'<tr><td class="table-empty" colspan="11">No records match the current search or filters.</td></tr>';$("total").textContent=db.length;$("or").textContent=db.filter(x=>x.orderReceived).length;$("co").textContent=db.filter(x=>x.reg&&x.orderReceived).length;$("visibleCount").textContent=`${a.length} record${a.length===1?"":"s"} shown`;let ds=[...new Set(db.map(x=>x.dealer).filter(Boolean))].sort(),old=$("dealer").value;$("dealer").innerHTML='<option value="">All sub-dealers</option><option value="__blank__">Blank sub-dealer</option>'+ds.map(x=>`<option>${esc(x)}</option>`).join("");$("dealer").value=old==="__blank__"||ds.includes(old)?old:"";let dates=db.map(x=>x.lastImport).filter(Boolean);$("lastUpdate").textContent=dates.length?dates[dates.length-1]:"No imports yet";localStorage.setItem(KEY,JSON.stringify(db))}
-function clearFilters(){$("q").value="";$("dealer").value="";if($("regDate"))$("regDate").value="";render()}function allCheck(e){document.querySelectorAll(".rowcheck").forEach(x=>x.checked=e.checked)}function deleteSelected(){let k=[...document.querySelectorAll(".rowcheck:checked")].map(x=>x.dataset.key);if(!k.length)return toast("Select at least one record to delete.");if(confirm(`Delete ${k.length} selected record(s)? This cannot be undone.`)){db=db.filter(x=>!k.includes(x.key));localStorage.setItem(KEY,JSON.stringify(db));render();toast("Selected records deleted.")}}function deleteFiltered(){let a=arr();if(!a.length)return toast("No records match the active filters.");if(confirm(`Delete all ${a.length} currently filtered record(s)? This cannot be undone.`)){let k=new Set(a.map(x=>x.key));db=db.filter(x=>!k.has(x.key));localStorage.setItem(KEY,JSON.stringify(db));render();toast("Filtered records deleted.")}}function deleteAll(){if(!db.length)return toast("There is no saved data to delete.");if(prompt('To permanently delete ALL saved data, type DELETE ALL:')==="DELETE ALL"){db=[];localStorage.setItem(KEY,"[]");render();toast("All saved data has been deleted.")}else toast("Delete all was cancelled.")}
-function getVisibleRows(){return arr()}function exportReport(){const visible=getVisibleRows();if(!visible.length)return toast("No filtered records are available to export.");let rows=visible.map((x,i)=>({"Sr. no.":i+1,"Vehicle Registration Number":x.reg||"","Owner":x.customer||"","Chasis Number":x.chassis||"","Model":x.model||"","Mobile No.":x.mobile||x.mobileNo||x.customerMobile||x.phone||"","DO NO":x.bill||"","AGENT":x.dealer||""})),ws=XLSX.utils.json_to_sheet(rows);ws["!cols"]=[{wch:8},{wch:24},{wch:30},{wch:24},{wch:15},{wch:18},{wch:18},{wch:18}];let wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"HSRP Result");XLSX.writeFile(wb,"HSRP_SubDealer_Filtered_Export_v1.3.1.xlsx");toast(`Export started for ${visible.length} record${visible.length===1?"":"s"}.`)}function updateGreeting(){let hour=new Date().getHours(),message=hour<12?"Good morning, Chirag":hour<18?"Good afternoon, Chirag":"Good night, Chirag";$("greeting").textContent=message}updateGreeting();setInterval(updateGreeting,60000);render();
+function importUpdate(){if(!H.length||!D.length){toast("Load both files and confirm column mapping first.");return false}let hc=$("hc").value,dc=$("dc").value,da=$("dagent").value,c={hr:$("hr").value,hd:$("hdate").value,hm:$("hmob").value,he:$("heng").value,dc:$("dclient").value,dm:$("dmob").value,de:$("deng").value,db:$("dbill").value,dmod:$("dmodel").value};if(!hc||!dc||!da||!c.hr){toast("Chassis, Registration no., and Agent columns are required.");return false}let dealerRows=new Map(),before=new Set(db.map(x=>x.key)),now=stamp(),skippedNoReg=0,skippedNoMatch=0,imported=0;syncPendingFromDealerData();D.forEach(r=>{let chassis=v160NormChassis(r[dc]);if(chassis)dealerRows.set(chassis,r)});H.forEach(r=>{let chassis=v160NormChassis(r[hc]),registration=clean(r[c.hr]);if(!chassis||!registration){skippedNoReg++;return}let dealerRow=dealerRows.get(chassis);if(!dealerRow){skippedNoMatch++;return}let i=db.findIndex(x=>x.key===chassis),x=i>=0?db[i]:{key:chassis,chassis:clean(r[hc])};x.dealer=clean(dealerRow[da]);if(c.dc)x.customer=clean(dealerRow[c.dc])||x.customer||"";if(c.dm)x.mobile=clean(dealerRow[c.dm])||x.mobile||"";if(c.de)x.engine=clean(dealerRow[c.de])||x.engine||"";if(c.db)x.bill=clean(dealerRow[c.db])||x.bill||"";if(c.dmod)x.model=clean(dealerRow[c.dmod])||x.model||"";x.reg=registration;if(c.hd){let mappedRegDate=dateVal(r[c.hd]);if(mappedRegDate)x.regDate=mappedRegDate}if(c.hm&&clean(r[c.hm])&&!x.mobile)x.mobile=clean(r[c.hm]);if(c.he&&clean(r[c.he])&&!x.engine)x.engine=clean(r[c.he]);x.orderReceived=true;x.lastImport=now;x._hsrpRaw=r;x._dealerRaw=dealerRow;x._mappingSourceVersion="1.9.15-hsrp-chassis-registration-only";i>=0?db[i]=x:db.push(x);imported++});if(!imported){$("info").textContent=`No records imported. ${skippedNoMatch} rows had no matching chassis; ${skippedNoReg} rows had no registration number.`;toast("No matching registered chassis records were found.");return false}localStorage.setItem(KEY,JSON.stringify(db));let added=db.filter(x=>!before.has(x.key)).length,updated=imported-added;render();$("mapbox").classList.add("hidden");$("mappingToggle").classList.remove("hidden");$("showMapBtn").textContent="Show column mapping";$("info").textContent=`Import complete: ${imported} matching registered chassis records imported (${added} new, ${updated} updated). Skipped: ${skippedNoMatch} no chassis match, ${skippedNoReg} no registration number.`;toast(`Import complete — ${imported} matching registered chassis record${imported===1?"":"s"} saved.`);return true}
+function arr(){let q=$("q").value.toLowerCase(),f=$("dealer").value,registrationDate=$("regDate")?$("regDate").value:"";return db.filter(x=>(!q||Object.values(x).some(v=>String(v).toLowerCase().includes(q)))&&(!f||(f==="__blank__"?!clean(x.dealer):x.dealer===f))&&(!registrationDate||dateVal(x.regDate)===dateVal(registrationDate)))}function render(){db.forEach(x=>{if(x.regDate)x.regDate=dateVal(x.regDate);x.status=!x.reg?"Registration Pending":!x.orderReceived?"HSRP Order Pending":"Complete"});let a=arr();$("out").innerHTML=a.map(x=>`<tr><td><input class="check rowcheck" data-key="${esc(x.key)}" type="checkbox"></td><td>${esc(x.reg)}</td><td>${esc(x.customer)}</td><td>${esc(x.mobile)}</td><td>${esc(x.chassis)}</td><td>${esc(x.bill)}</td><td>${esc(x.model)}</td><td>${esc(x.dealer)}</td><td>${esc(x.regDate)}</td><td class="${x.orderReceived?"order-yes":"order-no"}">${x.orderReceived?"Received":"Pending"}</td></tr>`).join("")||'<tr><td class="table-empty" colspan="10">No records match the current search or filters.</td></tr>';$("co").textContent=db.filter(x=>x.reg&&x.orderReceived).length;$("op").textContent=pendingCount();$("rp").textContent=pendingCount();$("visibleCount").textContent=`${a.length} record${a.length===1?"":"s"} shown`;let ds=[...new Set(db.map(x=>x.dealer).filter(Boolean))].sort(),old=$("dealer").value;$("dealer").innerHTML='<option value="">All sub-dealers</option><option value="__blank__">Blank sub-dealer</option>'+ds.map(x=>`<option>${esc(x)}</option>`).join("");$("dealer").value=old==="__blank__"||ds.includes(old)?old:"";let dates=db.map(x=>x.lastImport).filter(Boolean);$("lastUpdate").textContent=dates.length?dates[dates.length-1]:"No imports yet";localStorage.setItem(KEY,JSON.stringify(db))}
+function clearFilters(){$("q").value="";$("dealer").value="";if($("regDate"))$("regDate").value="";render()}function allCheck(e){document.querySelectorAll(".rowcheck").forEach(x=>x.checked=e.checked)}function deleteSelected(){let k=[...document.querySelectorAll(".rowcheck:checked")].map(x=>x.dataset.key);if(!k.length)return toast("Select at least one record to delete.");if(confirm(`Delete ${k.length} selected record(s)? This cannot be undone.`)){db=db.filter(x=>!k.includes(x.key));localStorage.setItem(KEY,JSON.stringify(db));render();toast("Selected records deleted.")}}function deleteFiltered(){let a=arr();if(!a.length)return toast("No records match the active filters.");if(confirm(`Delete all ${a.length} currently filtered record(s)? This cannot be undone.`)){let k=new Set(a.map(x=>x.key));db=db.filter(x=>!k.has(x.key));localStorage.setItem(KEY,JSON.stringify(db));render();toast("Filtered records deleted.")}}function deleteAll(){if(!db.length)return toast("There is no saved data to delete.");const modal=$("deleteAllModal"),input=$("deleteAllConfirmInput");if(!modal||!input)return toast("Delete confirmation is unavailable. Please restart the app.");input.value="";modal.style.display="flex";setTimeout(()=>input.focus(),50)}function closeDeleteAllModal(){const modal=$("deleteAllModal");if(modal)modal.style.display="none"}function confirmDeleteAll(){const input=$("deleteAllConfirmInput");if(!input||input.value.trim()!=="DELETE ALL"){toast("Type DELETE ALL exactly to confirm.");if(input)input.focus();return}db=[];localStorage.setItem(KEY,"[]");closeDeleteAllModal();render();toast("All saved data has been deleted.")}
+let v160LastExportPath="";
+let v160LastExportBlobUrl="";
+let v160ExportNoticeTimer=null;
+
+function v160EnsureExportNotice(){
+  let n=document.getElementById("v160ExportNotice"); if(n)return n;
+  n=document.createElement("div"); n.id="v160ExportNotice";
+  n.innerHTML='<div class="v160ExportText"><div class="v160ExportTitle">✓ File exported</div><div class="v160ExportFile" id="v160ExportFile"></div></div><button class="primary" id="v160OpenExport">View File</button><button class="v160ExportClose" id="v160CloseExport" aria-label="Close">×</button>';
+  document.body.appendChild(n);
+  document.getElementById("v160OpenExport").onclick=async()=>{
+    try{
+      if(v160LastExportPath&&window.autoManagementElectron){
+        await window.autoManagementElectron.openExportFile(v160LastExportPath);
+      }else if(v160LastExportBlobUrl){
+        window.open(v160LastExportBlobUrl,"_blank","noopener,noreferrer");
+      }else{
+        toast("The exported file is saved, but it cannot be opened from this view.");
+      }
+    }catch(e){console.error(e);toast("Could not open the exported file.");}
+  };
+  document.getElementById("v160CloseExport").onclick=()=>n.classList.remove("show");
+  return n;
+}
+function v160ShowExportNotification(filename,folder,pathValue,blobUrl){
+  v160LastExportPath=pathValue||"";
+  if(v160LastExportBlobUrl&&v160LastExportBlobUrl!==blobUrl){
+    try{URL.revokeObjectURL(v160LastExportBlobUrl)}catch(e){}
+  }
+  v160LastExportBlobUrl=blobUrl||"";
+  const n=v160EnsureExportNotice(), f=document.getElementById("v160ExportFile");
+  if(f)f.textContent=filename+" • "+(folder||"Downloads");
+  const open=document.getElementById("v160OpenExport");
+  if(open)open.style.display=(v160LastExportPath||v160LastExportBlobUrl)?"inline-flex":"none";
+  n.classList.add("show"); clearTimeout(v160ExportNoticeTimer);
+  v160ExportNoticeTimer=setTimeout(()=>n.classList.remove("show"),15000);
+}
+
+function vExportNotify(result){
+  try{
+    if(typeof v160ShowExportNotification==="function"){
+      v160ShowExportNotification(
+        (result&&result.filename)||"Exported file",
+        (result&&result.folder)||"Downloads",
+        (result&&result.path)||"",
+        (result&&result.blobUrl)||""
+      );
+    }
+  }catch(e){console.error("Export notification failed:",e);}
+}
+async function vExportSaveWorkbook(wb,filename){
+  if(!wb || typeof XLSX==="undefined")throw new Error("Excel export is unavailable.");
+  if(window.autoManagementElectron && window.autoManagementElectron.isElectron){
+    const folderPath=localStorage.getItem("v160ExportFolderPath")||"";
+    const folderName=localStorage.getItem("v160ExportFolderName")||"Downloads";
+    const data=XLSX.write(wb,{bookType:"xlsx",type:"base64"});
+    const result=await window.autoManagementElectron.saveExportFile({folderPath,filename,data});
+    if(!result.ok)throw new Error(result.message||"Unable to save export.");
+    v160ShowExportNotification(filename,folderPath?folderName:"Downloads",result.path);
+    return {folder:folderPath?folderName:"Downloads",filename,path:result.path};
+  }
+  const handle=await v140GetHandle("exportFolder");
+  if(handle){
+    try{
+      let permission="granted";
+      if(typeof handle.queryPermission==="function")permission=await handle.queryPermission({mode:"readwrite"});
+      if(permission!=="granted"&&typeof handle.requestPermission==="function")permission=await handle.requestPermission({mode:"readwrite"});
+      if(permission==="granted"){
+        const data=XLSX.write(wb,{bookType:"xlsx",type:"array"});
+        const fileHandle=await handle.getFileHandle(filename,{create:true});
+        const writable=await fileHandle.createWritable(); await writable.write(data); await writable.close();
+        const blobUrl=URL.createObjectURL(new Blob([data],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}));
+        v160ShowExportNotification(filename,handle.name,"",blobUrl);
+        return {folder:handle.name,filename,blobUrl};
+      }
+    }catch(err){console.warn("Selected export folder unavailable; falling back to Downloads.",err);}
+  }
+  const data=XLSX.write(wb,{bookType:"xlsx",type:"array"});
+  const blob=new Blob([data],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+  const blobUrl=URL.createObjectURL(blob);
+  const a=document.createElement("a"); a.href=blobUrl; a.download=filename; a.style.display="none";
+  document.body.appendChild(a); a.click(); a.remove();
+  v160ShowExportNotification(filename,"Downloads","",blobUrl);
+  return {folder:"Downloads",filename,blobUrl};
+}
+function getVisibleRows(){return arr()}async function exportReport(){const visible=getVisibleRows();if(!visible.length)return toast("No filtered records are available to export.");let rows=visible.map((x,i)=>({"Sr. no.":i+1,"Vehicle Registration Number":x.reg||"","Owner":x.customer||"","Chasis Number":x.chassis||"","Model":x.model||"","Mobile No.":x.mobile||x.mobileNo||x.customerMobile||x.phone||"","DO NO":x.bill||"","AGENT":x.dealer||""})),ws=XLSX.utils.json_to_sheet(rows);ws["!cols"]=[{wch:8},{wch:24},{wch:30},{wch:24},{wch:15},{wch:18},{wch:18},{wch:18}];let wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"HSRP Result");await vExportSaveWorkbook(wb,"HSRP_SubDealer_Filtered_Export_v1.3.1.xlsx");toast(`Exported ${visible.length} record${visible.length===1?"":"s"}.`)}function updateGreeting(){let hour=new Date().getHours(),message=hour<12?"Good morning, Chirag":hour<18?"Good afternoon, Chirag":"Good night, Chirag";$("greeting").textContent=message}updateGreeting();setInterval(updateGreeting,60000);render();
 
 const RC_KEY="AUTO_MANAGEMENT_RC_WORK_DB_V1";
 let rcDb=JSON.parse(localStorage.getItem(RC_KEY)||"[]");
@@ -972,68 +1968,322 @@ async function v140PickFolder(key,labelId){
 }
 function chooseAutoShopFolder(){return v140PickFolder("autoshop","autoshopFolderName")}
 function chooseHsrpFolder(){return v140PickFolder("hsrp","hsrpFolderName")}
-async function v140RestoreFolderNames(){
-  try{
-    const a=await v140GetHandle("autoshop"),h=await v140GetHandle("hsrp");
-    if(a&&$("autoshopFolderName"))$("autoshopFolderName").textContent="Selected: "+a.name;
-    if(h&&$("hsrpFolderName"))$("hsrpFolderName").textContent="Selected: "+h.name;
-  }catch(e){};const a=$('autoShopFolderName')?.textContent||'Not set';if($('autoShopAutoSource'))$('autoShopAutoSource').textContent=a;}
+async function chooseExportFolder(){
+  if(window.autoManagementElectron&&window.autoManagementElectron.isElectron){
+    const chosen=await window.autoManagementElectron.chooseExportFolder();
+    if(chosen&&!chosen.canceled){localStorage.setItem("v160ExportFolderPath",chosen.path);localStorage.setItem("v160ExportFolderName",chosen.name);$("exportFolderName").textContent="Selected: "+chosen.name;toast("Export folder saved.");}
+    return;
+  }
+  if(!window.showDirectoryPicker)return toast("Folder selection is not available in this runtime.");
+  try{const h=await window.showDirectoryPicker({mode:"readwrite"});await v140SetHandle("exportFolder",h);$("exportFolderName").textContent="Selected: "+h.name;toast("Export folder saved.");}catch(e){if(e&&e.name!=="AbortError")toast("Export folder selection failed.");}
+}
+async function clearExportFolder(){
+  if(window.autoManagementElectron&&window.autoManagementElectron.isElectron){
+    localStorage.removeItem("v160ExportFolderPath");localStorage.removeItem("v160ExportFolderName");$("exportFolderName").textContent="Default: Downloads";toast("Export folder reset to Downloads.");return;
+  }
+  try{const db=await v140OpenDB();await new Promise((res,rej)=>{const tx=db.transaction(V140_STORE,"readwrite");tx.objectStore(V140_STORE).delete("exportFolder");tx.oncomplete=res;tx.onerror=()=>rej(tx.error);});$("exportFolderName").textContent="Default: Downloads";toast("Export folder reset to Downloads.");}catch(e){toast("Could not reset the export folder.");}
+}
+async function v140RestoreExportFolderName(){
+  const el=$("exportFolderName"); if(!el)return;
+  if(window.autoManagementElectron&&window.autoManagementElectron.isElectron){const n=localStorage.getItem("v160ExportFolderName");el.textContent=n?"Selected: "+n:"Default: Downloads";return;}
+  try{const handle=await v140GetHandle("exportFolder");el.textContent=handle?"Selected: "+handle.name:"Default: Downloads";}catch(e){}
+}
+document.addEventListener("DOMContentLoaded",function(){setTimeout(v140RestoreExportFolderName,100);});
+
 async function v140GetFiles(handle){
   if(!handle)return [];
-  const out=[];
-  for await(const [name,entry] of handle.entries()){
-    if(entry.kind==="file" && /\.(xlsx|xls|csv)$/i.test(name))out.push(await entry.getFile());
+  try{
+    // Stored FileSystemDirectoryHandle objects can lose read permission after
+    // an app restart/update. Re-check and request permission before scanning.
+    if(typeof handle.queryPermission==="function"){
+      let p=await handle.queryPermission({mode:"read"});
+      if(p!=="granted" && typeof handle.requestPermission==="function"){
+        p=await handle.requestPermission({mode:"read"});
+      }
+      if(p!=="granted"){
+        const err=new Error("Folder permission is not granted.");
+        err.code="FOLDER_PERMISSION";
+        throw err;
+      }
+    }
+
+    const out=[];
+    for await(const [name,entry] of handle.entries()){
+      if(entry.kind==="file" && /\.(xlsx|xls|csv)$/i.test(name)){
+        try{
+          out.push(await entry.getFile());
+        }catch(e){
+          console.warn("Could not read file:",name,e);
+        }
+      }
+    }
+    return out;
+  }catch(e){
+    console.error("Folder scan failed:",e);
+    throw e;
   }
-  return out;
 }
 function v140DateFromName(name){
   const m=name.match(/(^|[^0-9])(\d{1,2})[-_.](\d{1,2})[-_.](\d{4})([^0-9]|$)/);
   if(!m)return "";
   return `${m[4]}-${String(m[3]).padStart(2,"0")}-${String(m[2]).padStart(2,"0")}`;
 }
+const V160_IMPORTED_FILES_KEY="hsrpAutoImportedFiles_v160";
+
+function v160GetImportedFiles(){
+  try{return JSON.parse(localStorage.getItem(V160_IMPORTED_FILES_KEY)||"{}")}catch(e){return {}}
+}
+function v160SaveImportedFiles(reg){
+  localStorage.setItem(V160_IMPORTED_FILES_KEY,JSON.stringify(reg));
+}
+async function v160FileFingerprint(file){
+  try{
+    const buf=await file.arrayBuffer();
+    if(window.crypto?.subtle){
+      const digest=await crypto.subtle.digest("SHA-256",buf);
+      return [...new Uint8Array(digest)].map(b=>b.toString(16).padStart(2,"0")).join("");
+    }
+  }catch(e){}
+  return `${file.name}|${file.size}|${file.lastModified}`;
+}
+async function v160UpdateAutoStatus(text){
+  const el=$("hsrpAutoStatus");
+  if(el)el.textContent=text;
+}
+async function v160UpdateAutoShopStatus(text){
+  const el=$("autoShopAutoSource");
+  if(el)el.textContent=text;
+}
+
+function v160NormChassis(v){
+  return String(v??"").trim().toUpperCase().replace(/[^A-Z0-9]/g,"");
+}
+function v160ChassisColumns(headers){
+  const a=headers.filter(h=>{const n=v160NormChassis(h);return n.includes("CHASSIS")||n.includes("CHASIS")||n.includes("VIN");});
+  return a.length?a:headers.slice(0,0);
+}
+function v160BuildChassisIndex(rows,headers){
+  const cols=v160ChassisColumns(headers), map=new Map();
+  for(const row of rows){
+    for(const col of cols){
+      const k=v160NormChassis(row[col]);
+      if(k && !map.has(k)) map.set(k,row);
+    }
+  }
+  return {cols,map};
+}
+
+function v160GuessAutoMapping(hv,dv){
+  // Auto Import must use fresh guesses for EVERY HSRP file.
+  // Do not let an old manual mapping override the detected columns.
+  const hCh=guess(hv,["chassis","vin","chasis","chassis no","chassis number"]);
+  const hReg=guess(hv,["registration","registration no","registration number","reg no","reg"]);
+  const hDate=guess(hv,["registration date","registrationdate","reg date","regdate","date of registration"]);
+  const hMob=guess(hv,["mobile","phone","contact"]);
+  const hEng=guess(hv,["engine","engine no","engine number"]);
+
+  const dCh=guess(dv,["chassis","chasis","vin","chassis no","chassis number"]);
+  const dAgent=guess(dv,["agent","sub dealer","sub-dealer","dealer"]);
+  const dClient=guess(dv,["client","customer","customer name","owner","name"]);
+  const dMob=guess(dv,["mobile","phone","contact"]);
+  const dEng=guess(dv,["engine","engine no","engine number"]);
+  const dBill=guess(dv,["bill","bill no","bill no.","do no","do no.","invoice","invoice no"]);
+  const dModel=guess(dv,["model","model name"]);
+
+  $("hc").value=hCh||"";
+  $("hr").value=hReg||"";
+  $("hdate").value=hDate||"";
+  $("hmob").value=hMob||"";
+  $("heng").value=hEng||"";
+
+  $("dc").value=dCh||"";
+  $("dagent").value=dAgent||"";
+  $("dclient").value=dClient||"";
+  $("dmob").value=dMob||"";
+  $("deng").value=dEng||"";
+  $("dbill").value=dBill||"";
+  $("dmodel").value=dModel||"";
+
+  return {hCh,hReg,hDate,dCh,dAgent,dClient,dMob,dEng,dBill,dModel};
+}
+
+function v160ResetImportHistory(){
+  const ok=confirm("Reset Auto Import History?\n\nPreviously imported HSRP files will become eligible for import again.\nYour existing database records will NOT be deleted.");
+  if(!ok)return;
+  try{
+    localStorage.removeItem(V160_IMPORTED_FILES_KEY);
+    v160UpdateAutoStatus("Import history reset — all HSRP files are eligible for re-import.");
+    const inf=$("autoImportInfo");
+    if(inf)inf.textContent="Auto Import history reset. Existing data was not deleted.";
+    toast("Auto Import history reset.");
+  }catch(e){console.error(e);toast("Could not reset Auto Import history.");}
+}
+
 async function autoImportAll(){
-  const from=$("hsrpAutoFrom")?.value;
-  const to=$("hsrpAutoTo")?.value;
-  if(!from||!to)return toast("Select both HSRP From and To dates first.");
-  if(from>to)return toast("HSRP From date cannot be after To date.");
   try{
     const [ah,hh]=await Promise.all([v140GetHandle("autoshop"),v140GetHandle("hsrp")]);
     if(!ah||!hh)return toast("Set both AutoShop and HSRP folders in Settings first.");
+
     const [dfiles,hfiles]=await Promise.all([v140GetFiles(ah),v140GetFiles(hh)]);
-    const dfile=dfiles.find(f=>/^salesbilldata(?:\.[^.]+)?$/i.test(f.name)||/salesbilldata/i.test(f.name));
-    const matches=hfiles.filter(f=>{
-      const d=v140DateFromName(f.name);
-      return d>=from&&d<=to;
-    }).sort((a,b)=>v140DateFromName(a.name).localeCompare(v140DateFromName(b.name))||b.lastModified-a.lastModified);
-    if(!dfile)return toast("salesbilldata file not found in the selected AutoShop folder.");
-    if(!matches.length)return toast("No HSRP file found in the selected date range.");
+    const salesFiles=dfiles.filter(f=>/salesbilldata/i.test(f.name));
+    const dfile=salesFiles[0];
+    if(!dfile){
+      await v160UpdateAutoShopStatus("Found 0 salesbilldata file(s) in the saved AutoShop folder.");
+      return toast("salesbilldata file not found in the selected AutoShop folder.");
+    }
 
-    // Read every HSRP Excel whose filename date is inside the selected range.
-    // Keep one shared column structure and combine all rows before using the
-    // existing manual-import processing path.
-    const hParts=await Promise.all(matches.map(f=>read(f)));
-    const nonEmpty=hParts.filter(x=>Array.isArray(x)&&x.length);
-    if(!nonEmpty.length)return toast("All matching HSRP Excel files are empty.");
-    [D]=await Promise.all([read(dfile)]);
+    await v160UpdateAutoShopStatus(`Found ${salesFiles.length} salesbilldata file(s). Ready.`);
+    D=await read(dfile);
+    syncPendingFromDealerData();
     if(!D.length)return toast("Auto Import found an empty salesbilldata Excel file.");
+    const dv=Object.keys(D[0]);
 
-    const headers=[];
-    const seen=new Set();
-    nonEmpty.forEach(rows=>Object.keys(rows[0]||{}).forEach(k=>{if(!seen.has(k)){seen.add(k);headers.push(k)}}));
-    H=[];
-    nonEmpty.forEach(rows=>rows.forEach(row=>{
-      const o={}; headers.forEach(k=>o[k]=row[k]??""); H.push(o);
-    }));
+    // Auto Import uses the actual known fields of these two exports.
+    const exactHeader=(headers,names)=>{
+      for(const wanted of names){
+        const wn=String(wanted).trim().toLowerCase().replace(/[^a-z0-9]/g,"");
+        const hit=headers.find(h=>String(h).trim().toLowerCase().replace(/[^a-z0-9]/g,"")===wn);
+        if(hit)return hit;
+      }
+      for(const wanted of names){
+        const wn=String(wanted).trim().toLowerCase().replace(/[^a-z0-9]/g,"");
+        const hit=headers.find(h=>String(h).trim().toLowerCase().replace(/[^a-z0-9]/g,"").includes(wn));
+        if(hit)return hit;
+      }
+      return "";
+    };
 
-    const hv=headers,dv=Object.keys(D[0]);
-    opts("hc",hv,["vin","chassis"],"VIN number");opts("hr",hv,["registration","reg"],"Registration Number");opts("hdate",hv,["registrationdate","regdate","registration date","date of registration","reg date"],"Registration Date");opts("hname",hv,["customer","owner","name"],"",true);opts("hmob",hv,["mobile","phone"],"Customer mobile");opts("heng",hv,["engine"],"Engine Number");opts("hbill",hv,["bill","do no","invoice"],"",true);opts("hmodel",hv,["model"],"Model");
-    opts("dc",dv,["chassis","vin"],"chasis_no");opts("dagent",dv,["agent","subdealer","dealer"],"agent");opts("dclient",dv,["client","customer","name"],"client");opts("dmob",dv,["mobile","phone"],"mobile");opts("deng",dv,["engine"],"engine_no");opts("dbill",dv,["bill","do no","invoice"],"bill_no");opts("dmodel",dv,["model"],"model");applySharedImportMapping();
-    $("mapbox").classList.remove("hidden");
-    importUpdate();
-    const inf=$("autoImportInfo");if(inf)inf.textContent=`Auto Import used ${matches.length} HSRP file(s) from ${from} to ${to} and AutoShop file: ${dfile.name}`;
-  }catch(e){console.error(e);toast("Auto Import failed. Check the selected folders, date range and files.")}
+    const dCh=exactHeader(dv,["chasis_no","chassis_no","chassis number","vin number"]);
+    const dAgent=exactHeader(dv,["agent"]);
+    const dClient=exactHeader(dv,["client"]);
+    const dMob=exactHeader(dv,["mobile"]);
+    const dBill=exactHeader(dv,["bill_no","bill no"]);
+    const dModel=exactHeader(dv,["model"]);
+    if(!dCh)return toast("salesbilldata chassis column (chasis_no) could not be found.");
+
+    const dealerIndex=new Map();
+    for(const row of D){
+      const k=v160NormChassis(row[dCh]);
+      if(k&&!dealerIndex.has(k))dealerIndex.set(k,row);
+    }
+
+    const registry=v160GetImportedFiles();
+    const candidates=[];
+    for(const file of hfiles){
+      const fp=await v160FileFingerprint(file);
+      if(!registry[fp])candidates.push({file,fp});
+    }
+
+    if(!candidates.length){
+      await v160UpdateAutoStatus(`No new HSRP files found — ${hfiles.length} file(s) already imported.`);
+      const inf=$("autoImportInfo");if(inf)inf.textContent=`Scanned ${hfiles.length} HSRP file(s). Nothing new to import.`;
+      return toast("No unimported HSRP files found.");
+    }
+
+    await v160UpdateAutoStatus(`Found ${candidates.length} unimported HSRP file(s). Importing...`);
+
+    let filesImported=0,rowsImported=0,noMatchFiles=0,invalidFiles=0;
+    const successful=[];
+
+    for(let n=0;n<candidates.length;n++){
+      const item=candidates[n];
+      try{
+        H=await read(item.file);
+        if(!H.length){invalidFiles++;continue;}
+        const hv=Object.keys(H[0]);
+
+        // HSRP export has explicit fields. Avoid generic "registration"
+        // guessing because that can select Registration Date.
+        const hCh=exactHeader(hv,["VIN number","VIN Number","chassis number","chassis no","chasis number"]);
+        const hReg=exactHeader(hv,["Registration Number","Registration No","Vehicle Registration Number"]);
+        const hDate=exactHeader(hv,["Registration Date","RegistrationDate","Reg Date"]);
+        if(!hCh||!hReg){invalidFiles++;continue;}
+
+        let importedThisFile=0;
+        const now=stamp();
+
+        for(const r of H){
+          const registration=clean(r[hReg]);
+          const chassisRaw=r[hCh];
+          const key=v160NormChassis(chassisRaw);
+          if(!key||!registration)continue;
+
+          const dealerRow=dealerIndex.get(key);
+          if(!dealerRow)continue;
+
+          const i=db.findIndex(x=>x.key===key);
+          const x=i>=0?db[i]:{key,chassis:clean(chassisRaw)};
+          x.chassis=clean(chassisRaw)||x.chassis||"";
+          x.reg=registration;
+
+          // Customer/model/bill/agent come only from salesbilldata.
+          if(dAgent)x.dealer=clean(dealerRow[dAgent]);
+          if(dClient)x.customer=clean(dealerRow[dClient])||x.customer||"";
+          if(dMob)x.mobile=clean(dealerRow[dMob])||x.mobile||"";
+          if(dBill)x.bill=clean(dealerRow[dBill])||x.bill||"";
+          if(dModel)x.model=clean(dealerRow[dModel])||x.model||"";
+
+          if(hDate){
+            const mapped=dateVal(r[hDate]);
+            if(mapped)x.regDate=mapped;
+          }
+
+          x.orderReceived=true;
+          x.lastImport=now;
+          x._hsrpRaw=r;
+          x._dealerRaw=dealerRow;
+          x._mappingSourceVersion="1.9.15-auto-explicit-hsrp-vin-salesbilldata-chasis";
+          if(i>=0)db[i]=x;else db.push(x);
+          importedThisFile++;
+        }
+
+        if(importedThisFile){
+          successful.push(item);
+          filesImported++;
+          rowsImported+=importedThisFile;
+        }else{
+          noMatchFiles++;
+        }
+
+        if((n+1)%5===0||n===candidates.length-1){
+          await v160UpdateAutoStatus(`Processing ${n+1}/${candidates.length} HSRP files — ${rowsImported} records imported...`);
+          await new Promise(r=>setTimeout(r,0));
+        }
+      }catch(err){
+        console.error("Auto Import file failed:",item.file.name,err);
+        invalidFiles++;
+      }
+    }
+
+    if(filesImported){
+      syncPendingFromDealerData();
+      successful.forEach(x=>{
+        registry[x.fp]={name:x.file.name,size:x.file.size,lastModified:x.file.lastModified,importedAt:new Date().toISOString()};
+      });
+      v160SaveImportedFiles(registry);
+      localStorage.setItem(KEY,JSON.stringify(db));
+      render();
+    }
+
+    const summary=`Scanned ${candidates.length} new HSRP file(s): ${filesImported} file(s) imported, ${rowsImported} record(s) added/updated. ${noMatchFiles} file(s) had no matching chassis; ${invalidFiles} file(s) could not be read/mapped.`;
+    await v160UpdateAutoShopStatus(`Found ${salesFiles.length} salesbilldata file(s). AutoShop data source ready.`);
+    await v160UpdateAutoStatus(summary);
+    const inf=$("autoImportInfo");if(inf)inf.textContent=summary;
+
+    if(filesImported)toast(`Auto Import complete — ${rowsImported} record${rowsImported===1?"":"s"} imported.`);
+    else toast("Auto Import found the files but no HSRP VIN matched salesbilldata chasis_no.");
+  }catch(e){
+    console.error("Auto Import failed:",e);
+    if(e&&e.code==="FOLDER_PERMISSION"){
+      toast("Folder permission expired. Open Settings and select the AutoShop and HSRP folders again.");
+    }else if(e&&e.name==="NotAllowedError"){
+      toast("Folder access was denied. Re-select the AutoShop and HSRP folders in Settings.");
+    }else{
+      toast("Auto Import failed. Check the saved folders and Excel files.");
+    }
+  }
 }
-document.addEventListener("DOMContentLoaded",v140RestoreFolderNames);
+document.addEventListener("DOMContentLoaded",function(){v140RestoreFolderNames();setTimeout(async()=>{try{const ah=await v140GetHandle("autoshop");if(ah){const fs=await v140GetFiles(ah);const sf=fs.filter(f=>/salesbilldata/i.test(f.name));await v160UpdateAutoShopStatus(`Found ${sf.length} salesbilldata file(s) in saved AutoShop folder.`)}}catch(e){}},300)});
 </script>
 <script id="shared-import-mapping-logic">
 const IMPORT_MAPPING_KEY="importMapping_v157";
@@ -1406,7 +2656,7 @@ window.saveIsolatedImportMapping=save;
     return false;
   }
   function addButton(){
-    if(document.getElementById("mappingSubmitRefreshBtn"))return;
+    if(document.getElementById("mappingSubmitRefreshBtn") || document.getElementById("dashboardMappingSubmit168"))return;
     const candidates=[...document.querySelectorAll("button")];
     const ref=candidates.find(b=>/show column mapping/i.test(b.textContent||""));
     if(!ref)return;
@@ -1433,105 +2683,6 @@ window.saveIsolatedImportMapping=save;
     setTimeout(addButton,1200);
   });
   window.addEventListener("mapping-submit",fire);
-})();
-</script><script id="v168-dashboard-mapping-submit">
-(function(){
-  const MAP_KEY="importMapping_v157";
-  const MAP64="importMapping_v164";
-  const HIDS=["hc","hr","hdate","hname","hmob","heng","hbill","hmodel"];
-  const DIDS=["dc","dagent","dclient","dmob","deng","dbill","dmodel"];
-  const KEY="HSRP_SubDealer_DB_v13";
-  const cleanv=x=>String(x??"").trim();
-  const normv=x=>cleanv(x).toUpperCase().replace(/[^A-Z0-9]/g,"");
-  function readMap(){
-    const o={}; HIDS.forEach(id=>{const e=document.getElementById(id);if(e)o[id]=e.value||""});
-    const d={}; DIDS.forEach(id=>{const e=document.getElementById(id);if(e)d[id]=e.value||""});
-    return {hsrp:o,dealer:d};
-  }
-  function persist(m){
-    localStorage.setItem(MAP_KEY,JSON.stringify({hsrp:{
-      mapHc:m.hsrp.hc,mapHr:m.hsrp.hr,mapHdate:m.hsrp.hdate,mapHname:m.hsrp.hname,
-      mapHmob:m.hsrp.hmob,mapHeng:m.hsrp.heng,mapHbill:m.hsrp.hbill,mapHmodel:m.hsrp.hmodel
-    },dealer:{
-      mapDc:m.dealer.dc,mapDagent:m.dealer.dagent,mapDclient:m.dealer.dclient,mapDmob:m.dealer.dmob,
-      mapDeng:m.dealer.deng,mapDbill:m.dealer.dbill,mapDmodel:m.dealer.dmodel
-    }}));
-    // Keep the persistent settings key compatible with existing import code.
-    const old={};
-    try{Object.assign(old,JSON.parse(localStorage.getItem(MAP64)||"{}"))}catch(e){}
-    old.hsrp={mapHc:m.hsrp.hc,mapHr:m.hsrp.hr,mapHdate:m.hsrp.hdate,mapHname:m.hsrp.hname,mapHmob:m.hsrp.hmob,mapHeng:m.hsrp.heng,mapHbill:m.hsrp.hbill,mapHmodel:m.hsrp.hmodel};
-    old.dealer={mapDc:m.dealer.dc,mapDagent:m.dealer.dagent,mapDclient:m.dealer.dclient,mapDmob:m.dealer.dmob,mapDeng:m.dealer.deng,mapDbill:m.dealer.dbill,mapDmodel:m.dealer.dmodel};
-    localStorage.setItem(MAP64,JSON.stringify(old));
-  }
-  function remap(){
-    const m=readMap();
-    let db=[];
-    try{db=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){}
-    if(!db.length){if(typeof toast==="function")toast("No imported records available.");return 0}
-    let changed=0;
-    db.forEach(x=>{
-      let hr=x._hsrpRaw, dr=x._dealerRaw;
-      // If this record predates raw-row storage, use the currently loaded files.
-      if(!hr && Array.isArray(window.H)){
-        const hx=window.H.find(r=>normv(r[m.hsrp.hc])===normv(x.chassis)||normv(r[m.hsrp.heng])===normv(x.engine));
-        if(hx)hr=hx;
-      }
-      if(!dr && Array.isArray(window.D) && hr){
-        const ch=normv(hr[m.hsrp.hc]), en=normv(hr[m.hsrp.heng]);
-        dr=window.D.find(r=>normv(r[m.dealer.dc])===ch&&normv(r[m.dealer.deng])===en);
-      }
-      if(!hr)return;
-      const before=JSON.stringify([x.chassis,x.reg,x.regDate,x.customer,x.mobile,x.engine,x.bill,x.model,x.dealer]);
-      if(m.hsrp.hc && hr[m.hsrp.hc]!=null)x.chassis=cleanv(hr[m.hsrp.hc]);
-      if(m.hsrp.hr && hr[m.hsrp.hr]!=null)x.reg=cleanv(hr[m.hsrp.hr]);
-      if(m.hsrp.hdate && hr[m.hsrp.hdate]!=null){
-        const dv=typeof dateVal==="function"?dateVal(hr[m.hsrp.hdate]):cleanv(hr[m.hsrp.hdate]);
-        if(dv)x.regDate=dv;
-      }
-      if(m.hsrp.hname && cleanv(hr[m.hsrp.hname]))x.customer=cleanv(hr[m.hsrp.hname]);
-      if(m.hsrp.hmob && cleanv(hr[m.hsrp.hmob]))x.mobile=cleanv(hr[m.hsrp.hmob]);
-      if(m.hsrp.heng && cleanv(hr[m.hsrp.heng]))x.engine=cleanv(hr[m.hsrp.heng]);
-      if(m.hsrp.hbill && cleanv(hr[m.hsrp.hbill]))x.bill=cleanv(hr[m.hsrp.hbill]);
-      if(m.hsrp.hmodel && cleanv(hr[m.hsrp.hmodel]))x.model=cleanv(hr[m.hsrp.hmodel]);
-      if(dr){
-        if(m.dealer.dagent && cleanv(dr[m.dealer.dagent]))x.dealer=cleanv(dr[m.dealer.dagent]);
-        if(m.dealer.dclient && cleanv(dr[m.dealer.dclient]))x.customer=cleanv(dr[m.dealer.dclient]);
-        if(m.dealer.dmob && cleanv(dr[m.dealer.dmob]))x.mobile=cleanv(dr[m.dealer.dmob]);
-        if(m.dealer.deng && cleanv(dr[m.dealer.deng]))x.engine=cleanv(dr[m.dealer.deng]);
-        if(m.dealer.dbill && cleanv(dr[m.dealer.dbill]))x.bill=cleanv(dr[m.dealer.dbill]);
-        if(m.dealer.dmodel && cleanv(dr[m.dealer.dmodel]))x.model=cleanv(dr[m.dealer.dmodel]);
-      }
-      x._mappingAppliedAt=new Date().toISOString();
-      if(before!==JSON.stringify([x.chassis,x.reg,x.regDate,x.customer,x.mobile,x.engine,x.bill,x.model,x.dealer]))changed++;
-    });
-    localStorage.setItem(KEY,JSON.stringify(db));
-    if(typeof render==="function")render();
-    if(typeof toast==="function")toast(changed+" record"+(changed===1?"":"s")+" updated from new mapping.");
-    return changed;
-  }
-  function addButton(){
-    if(document.getElementById("dashboardMappingSubmit168"))return;
-    const box=document.getElementById("mapbox");
-    if(!box)return;
-    const body=box.querySelector(".card-body");
-    if(!body)return;
-    const b=document.createElement("button");
-    b.id="dashboardMappingSubmit168"; b.type="button";
-    b.className="primary";
-    b.textContent="Submit Mapping & Refresh Data";
-    b.style.cssText="margin-top:16px;padding:10px 18px;border-radius:8px;font-weight:700;";
-    b.onclick=function(){
-      const m=readMap();
-      if(!m.hsrp.hc||!m.hsrp.hr||!m.hsrp.hdate||!m.hsrp.heng||!m.dealer.dc||!m.dealer.dagent||!m.dealer.deng){
-        if(typeof toast==="function")toast("Please select required HSRP and Sub-dealer columns first."); return;
-      }
-      persist(m); const n=remap();
-      b.textContent="Mapping Applied ✓";
-      setTimeout(()=>b.textContent="Submit Mapping & Refresh Data",1500);
-    };
-    body.appendChild(b);
-  }
-  document.addEventListener("DOMContentLoaded",()=>{addButton();setTimeout(addButton,300);setTimeout(addButton,1000)});
 })();
 </script><script id="v169-model-mapping-fix">
 (function(){
@@ -2341,7 +3492,7 @@ window.addEventListener("hashchange",()=>setTimeout(addFilter,250));
     b.disabled=(n===0);
     b.textContent=n ? ('Export selected ('+n+')') : 'Export selected';
   }
-  function exportSelected(){
+  async function exportSelected(){
     var checked=getSelected();
     if(!checked.length){
       if(typeof toast==='function')toast('Select at least one record to export.');
@@ -2375,7 +3526,7 @@ window.addEventListener("hashchange",()=>setTimeout(addFilter,250));
       var ws=XLSX.utils.json_to_sheet(rows);
       var wb=XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb,ws,"Selected Records");
-      XLSX.writeFile(wb,"HSRP_Selected_Records.xlsx");
+      await vExportSaveWorkbook(wb,"HSRP_Selected_Records.xlsx");
       if(typeof toast==='function')toast('Exported '+records.length+' selected record'+(records.length===1?'':'s')+'.');
     }catch(err){
       console.error(err);
@@ -2572,7 +3723,7 @@ window.addEventListener("hashchange",()=>setTimeout(addFilter,250));
 /* v1.9.13 — Sub-Dealer grouped single-Excel export helper.
    Existing import/search/export logic is preserved. */
 (function () {
-  window.exportSubDealerGroupedExcel = function (records, XLSX) {
+  window.exportSubDealerGroupedExcel = async function (records, XLSX) {
     if (!Array.isArray(records) || !records.length || !XLSX) return;
 
     const groups = new Map();
@@ -2617,7 +3768,7 @@ window.addEventListener("hashchange",()=>setTimeout(addFilter,250));
       firstSheet = false;
     });
 
-    XLSX.writeFile(wb, "Sub-Dealer-Wise-Grouped-Report.xlsx");
+    await vExportSaveWorkbook(wb, "Sub-Dealer-Wise-Grouped-Report.xlsx");
   };
 })();
 </script>
@@ -2669,7 +3820,7 @@ window.addEventListener("hashchange",()=>setTimeout(addFilter,250));
     group.appendChild(btn);
   }
 
-  window.exportSubDealerWise = function(){
+  window.exportSubDealerWise = async function(){
     const rows = (typeof getVisibleRows === "function") ? getVisibleRows() : [];
     if(!rows.length){
       if(typeof toast === "function") toast("No filtered records are available to export.");
@@ -2771,7 +3922,7 @@ window.addEventListener("hashchange",()=>setTimeout(addFilter,250));
 
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sub-Dealer Wise");
-    XLSX.writeFile(wb, "HSRP_SubDealer_Wise_Grouped_Export.xlsx");
+    await vExportSaveWorkbook(wb, "HSRP_SubDealer_Wise_Grouped_Export.xlsx");
 
     if(typeof toast === "function")
       toast(`Export started — ${groups.size} Sub-Dealer groups, ${rows.length} records.`);
@@ -2831,6 +3982,170 @@ window.addEventListener("hashchange",()=>setTimeout(addFilter,250));
     });
   });
 })();
+</script>
+
+
+<script>
+(() => {
+  const button = document.getElementById("checkForUpdateButton_removed");
+  const status = document.getElementById("checkForUpdateStatus");
+  if (!button || !status) return;
+  button.addEventListener("click", () => {
+    status.textContent = "Update checking is available in the Windows Setup build.";
+  });
+})();
+</script>
+
+
+
+
+<script>
+(() => {
+  const button = document.getElementById("checkForUpdateButton");
+  const status = document.getElementById("checkForUpdateStatus");
+  const version = document.getElementById("aboutCurrentVersion");
+  if (!button || !status) return;
+
+  button.addEventListener("click", async () => {
+    status.textContent = "Checking for updates...";
+    try {
+      if (window.autoManagementCheckForUpdate) {
+        const result = await window.autoManagementCheckForUpdate();
+        if (result && result.ok) {
+          if (result.hasUpdate) {
+            status.textContent = `Update available: v${result.latestVersion}`;
+          } else {
+            status.textContent = `You are using the latest version (v${result.currentVersion}).`;
+          }
+        } else {
+          status.textContent = (result && result.message) || "Unable to check for updates right now.";
+        }
+      } else {
+        status.textContent = "Update check is ready for the Windows Setup build.";
+      }
+    } catch (e) {
+      status.textContent = "Unable to check for updates right now.";
+    }
+  });
+
+  if (version) version.textContent = "1.9.15";
+})();
+</script>
+
+
+<style id="v21-delete-all-modal-style">
+#deleteAllModal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(8,30,55,.55);z-index:99999;padding:20px}
+#deleteAllModal .delete-modal-card{width:min(460px,calc(100vw - 40px));background:#fff;border:1px solid #b7d4ec;border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.28);padding:26px}
+#deleteAllModal h3{margin:0 0 8px;color:#123a61;font-size:22px}
+#deleteAllModal p{margin:0 0 16px;color:#4f6b86;line-height:1.5}
+#deleteAllModal input{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #b7d4ec;border-radius:10px;font-size:16px;margin-bottom:16px}
+#deleteAllModal .delete-modal-actions{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-top:2px}
+#deleteAllModal .delete-modal-actions button{display:inline-flex!important;visibility:visible!important;opacity:1!important;position:relative!important;width:auto!important;height:42px!important;min-width:96px!important;padding:10px 16px!important;margin:0!important;overflow:visible!important;border-radius:10px!important;border:1px solid #b7d4ec!important;background:#fff!important;color:#123a61!important;font-family:inherit!important;font-size:15px!important;font-weight:700!important;line-height:20px!important;text-align:center!important;align-items:center!important;justify-content:center!important;cursor:pointer!important;box-sizing:border-box!important}
+#deleteAllModal .delete-modal-actions button.delete-confirm{background:#b42318!important;color:#fff!important;border-color:#b42318!important}
+#deleteAllModal .delete-modal-actions button:hover{filter:brightness(.97)}
+</style>
+<div id="deleteAllModal" role="dialog" aria-modal="true" aria-labelledby="deleteAllModalTitle">
+  <div class="delete-modal-card" role="document">
+    <h3 id="deleteAllModalTitle">Delete all saved data?</h3>
+    <p>This permanently deletes all saved vehicle records from this computer. Type <b>DELETE ALL</b> to confirm.</p>
+    <input id="deleteAllConfirmInput" type="text" autocomplete="off" placeholder="Type DELETE ALL">
+    <div class="delete-modal-actions">
+      <button id="deleteAllCancelBtn" type="button" onclick="closeDeleteAllModal()">Cancel</button>
+      <button id="deleteAllConfirmBtn" type="button" class="delete-confirm" onclick="confirmDeleteAll()">Delete all</button>
+    </div>
+  </div>
+</div>
+<script>
+document.addEventListener("keydown",function(e){
+  const modal=document.getElementById("deleteAllModal");
+  if(!modal||modal.style.display!=="flex")return;
+  if(e.key==="Escape"){e.preventDefault();closeDeleteAllModal();}
+  if(e.key==="Enter"&&document.activeElement&&document.activeElement.id==="deleteAllConfirmInput"){
+    e.preventDefault();
+    const btn=document.getElementById("deleteAllConfirmBtn");
+    if(btn&&typeof btn.onclick==="function")btn.onclick();
+  }
+});
+</script>
+
+
+<script id="fix35-salesbill-delete">
+function deleteSalesBillDataOnly(){
+  const modal=$("deleteAllModal"), input=$("deleteAllConfirmInput");
+  if(!modal||!input){
+    toast("Delete confirmation is unavailable. Please restart the app.");
+    return;
+  }
+  const title=$("deleteAllModalTitle");
+  const text=modal.querySelector(".delete-modal-card p");
+  const confirmBtn=$("deleteAllConfirmBtn");
+  const cancelBtn=$("deleteAllCancelBtn");
+  if(title)title.textContent="Delete Salesbill Data?";
+  if(text)text.innerHTML='This will delete only <b>Sub-dealer / Customer (salesbilldata)</b> data from the software. HSRP vehicle records will remain. Type <b>DELETE SALESBILL</b> to confirm.';
+  input.value="";
+  input.placeholder="Type DELETE SALESBILL";
+  if(confirmBtn){
+    confirmBtn.textContent="Delete Salesbill Data";
+    confirmBtn.onclick=confirmDeleteSalesBillData;
+  }
+  if(cancelBtn)cancelBtn.onclick=closeDeleteAllModal;
+  modal.style.display="flex";
+  setTimeout(()=>input.focus(),50);
+}
+
+function confirmDeleteSalesBillData(){
+  const input=$("deleteAllConfirmInput");
+  if(!input||input.value.trim()!=="DELETE SALESBILL"){
+    toast("Type DELETE SALESBILL exactly to confirm.");
+    if(input)input.focus();
+    return;
+  }
+
+  try{
+    /* D is the current in-memory salesbilldata source. */
+    D=[];
+
+    /* Remove the derived pending-master list because it came from salesbilldata. */
+    try{localStorage.removeItem(PENDING_MASTER_KEY);}catch(e){}
+
+    /*
+      HSRP records stay intact. Only fields whose source is salesbilldata are
+      removed so the HSRP chassis/registration/order record remains usable.
+    */
+    db.forEach(x=>{
+      delete x.dealer;
+      delete x.customer;
+      delete x.mobile;
+      delete x.engine;
+      delete x.bill;
+      delete x.model;
+      delete x._dealerRaw;
+      delete x._mappingSourceVersion;
+    });
+    localStorage.setItem(KEY,JSON.stringify(db));
+
+    closeDeleteAllModal();
+
+    /* Restore the normal Delete All modal text/button for its next use. */
+    const title=$("deleteAllModalTitle");
+    const text=$("deleteAllModal").querySelector(".delete-modal-card p");
+    const confirmBtn=$("deleteAllConfirmBtn");
+    const input2=$("deleteAllConfirmInput");
+    if(title)title.textContent="Delete all saved data?";
+    if(text)text.innerHTML='This permanently deletes all saved vehicle records from this computer. Type <b>DELETE ALL</b> to confirm.';
+    if(confirmBtn){
+      confirmBtn.textContent="Delete all";
+      confirmBtn.onclick=confirmDeleteAll;
+    }
+    if(input2)input2.placeholder="Type DELETE ALL";
+
+    render();
+    toast("Salesbill / Sub-dealer data deleted. HSRP records remain.");
+  }catch(e){
+    console.error("Delete Salesbill Data failed:",e);
+    toast("Salesbill data could not be deleted.");
+  }
+}
 </script>
 
 </body></html>

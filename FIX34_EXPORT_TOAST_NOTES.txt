@@ -1,0 +1,7 @@
+v1.9.16 FIX34 based on FIX33.
+Export notification is now compact, top-center, translucent/glass styled.
+View File remains inside the same notification card below the exported filename.
+Notification no longer occupies the center of the workspace and is less likely to block controls/records.
+Show Folder is hidden in this compact notification as requested; the View File action remains visible.
+15-second duration preserved from prior version.
+No import, pending, database, dashboard, or export data logic changed.

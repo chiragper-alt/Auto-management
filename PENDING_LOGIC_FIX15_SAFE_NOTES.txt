@@ -1,0 +1,7 @@
+v1.9.16 pending logic test build based on FIX13.
+HSRP import policy unchanged: HSRP rows need a Registration Number and a chassis match to salesbilldata.
+salesbilldata is treated as the master chassis list. Chassis not yet present in the registered HSRP database are tracked separately as pending and remain hidden from the normal vehicle table/export.
+Dashboard HSRP Order Pending and RC Pending intentionally show the same pending count for now. A future RC-status source can split them without changing the master/pending architecture.
+Master chassis list is persisted separately so delete/restart tests do not lose pending-state calculation.
+When a pending chassis is successfully imported from HSRP, it automatically leaves the pending count and becomes a normal visible record.
+FIX11 remains untouched.
