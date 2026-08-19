@@ -35,7 +35,7 @@ jobs:
           if ("${{ github.event_name }}" -eq "push") {
             $tag = "${{ github.ref_name }}"
           } else {
-            $tag = "v1.9.16"
+            $tag = "v1.9.17"
           }
 
           gh release upload $tag `
