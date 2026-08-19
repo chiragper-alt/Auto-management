@@ -41,4 +41,5 @@ jobs:
           gh release upload $tag `
             dist/*.exe `
             dist/*.blockmap `
+            dist/latest.yml
             --clobber
