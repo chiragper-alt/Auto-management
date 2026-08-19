@@ -1,0 +1,16 @@
+v1.9.16 HSRP Fitment — clean feature addition
+===============================================
+Base: stable v1.9.16 source (FIX36).
+
+Added safely without replacing the existing import/database/export logic:
+- Dedicated HSRP Fitment navigation/page, separate from RC Work.
+- Fitment records are captured automatically during normal HSRP import; no separate HSRP upload is required.
+- Only HSRP rows with a Registration Number are considered.
+- Fitment page shows HSRP rows that were not matched to salesbilldata.
+- Fitment Dealer, Owner, and Registration Date are captured from the HSRP source.
+- Filters: Registration Date From, Registration Date To, Owner Name, Fitment Dealer.
+- Apply and Clear controls.
+- Fitment Dealer-wise grouping with Owner, Registration Date, Registration Number, and Chassis Number.
+- Separate persisted fitment data store so it does not alter the existing vehicle DB schema.
+- Existing Vehicle Records, RC Work, Auto Import, pending logic, export logic, delete logic, and Settings are preserved.
+- Version labels updated to 1.9.16.

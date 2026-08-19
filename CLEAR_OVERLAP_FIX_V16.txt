@@ -1,0 +1,4 @@
+Auto Management v1.9.16 V16
+Fix: Multiple Registration Search Clear button overlap with Search records field.
+Controls now have bounded widths and responsive layout; search field is fluid.
+No business/data logic changed.

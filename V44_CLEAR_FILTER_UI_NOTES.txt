@@ -1,0 +1,1 @@
+V44: Clear Filters changed to compact 38px circular X control. Existing clearFilters logic unchanged.

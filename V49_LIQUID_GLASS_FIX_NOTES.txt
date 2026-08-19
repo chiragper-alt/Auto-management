@@ -1,0 +1,3 @@
+V49: HARD visual override for clear-water Liquid Glass cards and Clear Filters circular X.
+Applied after all legacy styles. Clear Filters is forced by MutationObserver + inline sizing.
+No functional logic changed.

@@ -1,0 +1,1 @@
+V38 actual Liquid Glass theme appended after all legacy CSS so it cannot be overridden. Concept 1 bike/road logo preserved. Notification card is clear Liquid Glass. Functionality unchanged.

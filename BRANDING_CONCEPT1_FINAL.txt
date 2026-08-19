@@ -1,0 +1,10 @@
+Auto Management v1.9.16 — Final Branding
+Concept 1: Road Motion
+- Round frosted-glass icon
+- Motorcycle silhouette + road-motion mark
+- No gradient
+- No photo/raster artwork
+- No HSRP text on icon
+- No excessive shine/glow
+- Same design used for app icon, favicon and sidebar logo
+- Branding locked unless explicitly changed by the user.

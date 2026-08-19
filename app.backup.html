@@ -2138,7 +2138,7 @@ input[placeholder*="DD/MM/YYYY"],input[placeholder*="dd/mm/yyyy"]{display:none!i
     <nav class="nav"><div class="nav-label">Menu</div><a class="active" href="#dashboard"><i>⌂</i><span>Dashboard</span></a><a href="#import"><i>⇧</i><span>Daily Import</span></a><a href="#records"><i>▤</i><span>Vehicle Records</span></a><a href="#fitment" id="fitmentNav" onclick="openFitment(event)"><i>◇</i><span>Fitment Dealer</span></a><a href="#rc-work" id="rcWorkNav" onclick="openRCWork(event)"><i>▣</i><span>RC Work</span></a><a href="#settings" id="settingsNav"><i>⚙</i><span>Settings</span></a></nav>
     <div class="side-footer"><span>Developed by Chirag Solanki</span><span>Contact us: <a href="tel:9998117008">9998117008</a></span></div>
   </aside>
-  <main><header class="topbar"><div class="crumb">AUTO MANAGEMENT <b>Operations overview</b></div><div class="top-meta"><span class="secure">● Local data active</span><span>Version 1.9.17</span></div></header>
+  <main><header class="topbar"><div class="crumb">AUTO MANAGEMENT <b>Operations overview</b></div><div class="top-meta"><span class="secure">● Local data active</span><span>Version 1.9.16</span></div></header>
     <div class="content" id="dashboard">
       <section class="intro"><div><h1 id="greeting">Good morning, Chirag</h1><p>Import, review, and manage HSRP vehicle records from one place.</p></div><div class="last-import">LAST DATABASE UPDATE<b id="lastUpdate">No imports yet</b></div></section>
       <section class="stats" aria-label="Record summary">
@@ -2260,7 +2260,7 @@ input[placeholder*="DD/MM/YYYY"],input[placeholder*="dd/mm/yyyy"]{display:none!i
   <div class="setting-row">
     <div>
       <b>Version</b>
-      <small id="aboutCurrentVersion">1.9.17</small>
+      <small id="aboutCurrentVersion">1.9.16</small>
     </div>
     <button id="checkForUpdateButton" type="button">Check for Update</button>
   </div>
@@ -2676,7 +2676,7 @@ async function exportFitmentData(){
     ws["!cols"]=[{wch:8},{wch:26},{wch:24},{wch:26},{wch:18}];
     const wb=XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb,ws,"Fitment Dealer");
-    await vExportSaveWorkbook(wb,"Fitment_Dealer_Export_v1.9.17.xlsx");
+    await vExportSaveWorkbook(wb,"Fitment_Dealer_Export_v1.9.16.xlsx");
     toast(`Exported ${rows.length} Fitment Dealer record${rows.length===1?"":"s"}.`);
   }catch(e){console.error("Fitment Dealer export failed",e);toast("Fitment Dealer export failed.");}
 }
@@ -4783,7 +4783,7 @@ window.saveIsolatedImportMapping=save;
     }
   });
 
-  if (version) version.textContent = "1.9.17";
+  if (version) version.textContent = "1.9.16";
 })();
 </script>
 

@@ -1,0 +1,7 @@
+V40 Branding Fix
+- Sidebar/logo uses standalone Concept 1 motorcycle + curved road SVG.
+- No circular badge in the logo.
+- No gradient, no alternate motorcycle, no HSRP text.
+- Uses the same vector motorcycle and road paths as the approved Concept 1 master artwork.
+- Added cache-busting query to the app logo reference so old cached logo assets are not reused.
+- Existing application logic and UI theme are unchanged.

@@ -1,0 +1,7 @@
+Auto Management v1.9.16 V52
+- Removed unused Registration Date column filter UI (DD/MM/YYYY) from Vehicle/HSRP records.
+- Kept stored Registration Date data and Fitment Dealer date-range filters untouched.
+- Fixed delete-button hover readability; labels remain visible.
+- Final clear-water Liquid Glass card styling applied at end of app.html.
+- Clear controls remain circular single-X.
+- Visual/UI only; business logic unchanged.

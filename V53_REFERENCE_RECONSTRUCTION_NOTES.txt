@@ -1,0 +1,6 @@
+V53: Reference-based visual reconstruction. Functionality/data logic preserved.
+- Replaced missing branding SVG reference with packaged new-bike-road.svg.
+- Added HSRP Imported dashboard stat.
+- Final transparent Liquid Glass visual layer.
+- Search and Clear controls circular; legacy DD/MM/YYYY filter UI hidden.
+- Delete hover readability fixed.

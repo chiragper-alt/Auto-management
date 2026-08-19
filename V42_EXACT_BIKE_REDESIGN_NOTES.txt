@@ -1,0 +1,8 @@
+Auto Management v1.9.16 — V42 Exact Bike Logo Redesign
+- Replaced sidebar/logo artwork with a newly redrawn, vector-only motorcycle + curved road SVG.
+- No photo/raster artwork in the logo.
+- No round badge in the sidebar logo.
+- No gradient, no HSRP text, no old motorcycle asset.
+- Fixed the malformed logo src/cache reference in app.html.
+- Favicon now points to the same standalone bike-road SVG.
+- Existing application logic and UI theme left unchanged.

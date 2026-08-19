@@ -1,0 +1,3 @@
+Auto Management v1.9.17
+Base: v1.9.16 CLEAR LIQUID BACKGROUND V58
+Release candidate prepared for GitHub/auto-update release.

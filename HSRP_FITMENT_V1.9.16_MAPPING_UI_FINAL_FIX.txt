@@ -1,0 +1,12 @@
+v1.9.16 FINAL MAPPING UI FIX
+
+The Import Mapping controls are internal import workflow controls and must not appear on the normal Settings/UI page.
+
+Permanent UI guard added:
+- Hides importMappingSettings.
+- Hides mappingToggle / Show column mapping.
+- Hides Submit Mapping & Refresh Data injected button.
+- Removes/hides any mapping buttons even if a legacy script tries to recreate them.
+- MutationObserver + route-change guard keeps the controls hidden after navigation and future UI refreshes.
+
+No import/data mapping logic was changed.
