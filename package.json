@@ -54,7 +54,8 @@
         "provider": "github",
         "owner": "chiragper-alt",
         "repo": "Auto-management",
-        "releaseType": "release"
+        "releaseType": "draft",
+        "publishAutoUpdate": true
       }
     ]
   }
