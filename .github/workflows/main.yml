@@ -14,32 +14,88 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
-      - run: npm install
+      - name: Install dependencies
+        run: npm install
 
       - name: Build Windows Setup
         shell: pwsh
         run: |
           npx electron-builder --win nsis --publish never
 
-      - name: Upload to GitHub Release
+      - name: Create or Update GitHub Release
         shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if ("workflow_dispatch" -eq "push") {
-            $tag = "main"
+          if ("${{ github.event_name }}" -eq "push") {
+            $tag = "${{ github.ref_name }}"
           } else {
             $tag = "v1.9.18"
           }
 
-          gh release upload $tag `
-            dist/*.exe `
-            dist/*.blockmap `
-            dist/latest.yml `
-            --clobber
+          Write-Host "Release tag: $tag"
+
+          gh release view $tag 2>$null
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "Release not found. Creating release: $tag"
+
+            gh release create $tag `
+              --title $tag `
+              --notes "Auto Management Windows Release $tag" `
+              --latest
+
+            if ($LASTEXITCODE -ne 0) {
+              throw "Failed to create GitHub Release $tag"
+            }
+          }
+          else {
+            Write-Host "Release already exists: $tag"
+          }
+
+      - name: Upload Installer to GitHub Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if ("${{ github.event_name }}" -eq "push") {
+            $tag = "${{ github.ref_name }}"
+          } else {
+            $tag = "v1.9.18"
+          }
+
+          $assets = @()
+
+          Get-ChildItem -Path "dist" -File | ForEach-Object {
+            if (
+              $_.Name -like "*.exe" -or
+              $_.Name -like "*.blockmap" -or
+              $_.Name -eq "latest.yml"
+            ) {
+              $assets += $_.FullName
+            }
+          }
+
+          if ($assets.Count -eq 0) {
+            throw "No release assets found in dist/"
+          }
+
+          Write-Host "Uploading release assets:"
+          $assets | ForEach-Object { Write-Host $_ }
+
+          gh release upload $tag @assets --clobber
+
+          if ($LASTEXITCODE -ne 0) {
+            throw "Failed to upload release assets"
+          }
+
+          Write-Host "Release upload completed successfully."
