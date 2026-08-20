@@ -32,8 +32,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if ("${{ github.event_name }}" -eq "push") {
-            $tag = "${{ github.ref_name }}"
+          if ("workflow_dispatch" -eq "push") {
+            $tag = "main"
           } else {
             $tag = "v1.9.18"
           }
