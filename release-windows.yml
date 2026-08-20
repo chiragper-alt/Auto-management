@@ -4,9 +4,13 @@ on:
   push:
     tags:
       - "v*.*.*"
+  workflow_dispatch:
 
 permissions:
   contents: write
+
+env:
+  RELEASE_TAG: ${{ github.ref_name }}
 
 jobs:
   release:
@@ -24,15 +28,63 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build and publish Windows Setup
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run release
+      - name: Validate UI
+        run: npm run validate:ui
 
-      - name: Publish GitHub Release
+      - name: Build Windows Setup
+        run: npm run dist
+
+      - name: Create GitHub Release if missing
         shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG_NAME: ${{ github.ref_name }}
         run: |
-          gh release edit $env:TAG_NAME --draft=false --prerelease=false --title $env:TAG_NAME
+          $ErrorActionPreference = 'Stop'
+          gh release view $env:TAG_NAME --repo $env:GITHUB_REPOSITORY *> $null
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "Release $env:TAG_NAME not found. Creating it..."
+            gh release create $env:TAG_NAME `
+              --repo $env:GITHUB_REPOSITORY `
+              --title $env:TAG_NAME `
+              --notes "Auto Management Windows release $env:TAG_NAME" `
+              --verify-tag
+          } else {
+            Write-Host "Release $env:TAG_NAME already exists. Reusing it."
+          }
+
+      - name: Upload Windows installer and auto-update metadata
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ github.ref_name }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $assets = Get-ChildItem -Path dist -File | Where-Object {
+            $_.Extension -in '.exe', '.blockmap', '.yml'
+          }
+          if (-not $assets) {
+            throw "No release assets found in dist/."
+          }
+          foreach ($asset in $assets) {
+            Write-Host "Uploading $($asset.FullName)"
+            gh release upload $env:TAG_NAME $asset.FullName `
+              --repo $env:GITHUB_REPOSITORY `
+              --clobber
+            if ($LASTEXITCODE -ne 0) {
+              throw "Failed to upload $($asset.Name)"
+            }
+          }
+
+      - name: Mark GitHub Release as latest
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ github.ref_name }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          gh release edit $env:TAG_NAME `
+            --repo $env:GITHUB_REPOSITORY `
+            --draft=false `
+            --prerelease=false `
+            --latest
