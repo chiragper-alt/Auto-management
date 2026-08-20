@@ -1,4 +1,3 @@
-Confirmed stable base: v1.9.13 stable
-Target packaging version: v1.9.16
-App UI/feature source: app.html copied unchanged from base.
-Added only Electron packaging + GitHub auto-update infrastructure.
+Base: v1.9.17 V78 confirmed working version
+Release target: v1.9.18
+UI package revision: V79 inline-logo + CSS-head normalization

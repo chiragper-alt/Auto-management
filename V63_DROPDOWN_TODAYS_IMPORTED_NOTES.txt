@@ -1,0 +1,10 @@
+Auto Management v1.9.17 - V63
+
+Changes:
+1. Modern liquid-glass dropdown styling with custom chevron, improved padding, hover and focus states.
+2. Dashboard statistic changed from "HSRP Imported" to "Today's Imported".
+3. Today's Imported counts HSRP records whose lastImport timestamp falls on the current local date. This works for manual and auto-imported records and preserves existing data.
+4. Existing UI, branding, sidebar, background, cards and functionality preserved.
+
+Base: v1.9.17 V62 Final Polish
+Version: 1.9.17 (development build; no release version bump)

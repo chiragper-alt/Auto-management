@@ -2291,13 +2291,1495 @@ input[placeholder*="DD/MM/YYYY"],input[placeholder*="dd/mm/yyyy"]{display:none!i
 }
 @media(max-width:560px){#records .filters{grid-template-columns:1fr!important;gap:10px!important}}
 </style>
+<style id="v178-export-buttons">
+#v178ExportGroup{display:inline-flex!important;align-items:center;gap:7px;margin-left:8px;vertical-align:middle}
+#v178ExportGroup button{height:34px!important;min-height:34px!important;padding:6px 11px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important;white-space:nowrap}
+#v178ExportGroup #v177SelectedExport{margin-left:0!important}
+</style>
+
+<style id="v179-position">
+#v179ActionGroup{display:inline-flex!important;align-items:center;gap:7px;margin-left:8px;vertical-align:middle}
+#v179ActionGroup button{margin:0!important;height:34px!important;min-height:34px!important;padding:6px 11px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important}
+</style>
+
+<style id="v182-export-position">
+#v182ExportGroup{display:inline-flex!important;align-items:center;gap:7px;margin-left:8px;vertical-align:middle}
+#v182ExportGroup button{margin:0!important;height:34px!important;min-height:34px!important;padding:6px 11px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important;white-space:nowrap}
+</style>
+
+<style id="v184-selected-export-single-line">
+#v184ExportGroup{display:inline-flex!important;align-items:center!important;gap:8px!important;vertical-align:middle!important}
+#v184ExportGroup button{display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;word-break:keep-all!important;overflow-wrap:normal!important;width:auto!important;min-width:max-content!important;height:34px!important;min-height:34px!important;padding:6px 12px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important;margin:0!important}
+</style>
+
+<style id="v193-hsrp-date-range-small">
+#autoImportPanel .auto-import-source:has(#hsrpAutoFrom){
+  position:relative;
+}
+#autoImportPanel .auto-import-source:has(#hsrpAutoFrom) .auto-source-help{
+  font-size:11px;
+  line-height:1.3;
+  margin-bottom:6px;
+}
+#autoImportPanel .auto-date-row{
+  display:flex!important;
+  align-items:center!important;
+  gap:5px!important;
+  flex-wrap:nowrap!important;
+  margin-top:4px!important;
+}
+#autoImportPanel .auto-date-row label{
+  font-size:11px!important;
+  font-weight:600!important;
+  margin:0!important;
+}
+#autoImportPanel .auto-date-row input[type="date"]{
+  width:125px!important;
+  height:30px!important;
+  min-height:30px!important;
+  padding:3px 6px!important;
+  font-size:12px!important;
+  border-radius:6px!important;
+  box-sizing:border-box!important;
+}
+#autoImportPanel .auto-date-row span{
+  font-size:11px!important;
+  margin:0 2px!important;
+}
+</style>
+
+<style id="v194-selected-export-clear-filters">
+/* Selected export + Clear Filters: compact, same-size, single horizontal row */
+#v194ActionGroup{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  vertical-align:middle!important;
+  white-space:nowrap!important;
+}
+#v194ActionGroup button{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  width:auto!important;
+  min-width:0!important;
+  height:34px!important;
+  min-height:34px!important;
+  padding:6px 12px!important;
+  margin:0!important;
+  font-size:13px!important;
+  line-height:20px!important;
+  border-radius:7px!important;
+  white-space:nowrap!important;
+  word-break:keep-all!important;
+  overflow-wrap:normal!important;
+}
+</style>
+
+<style id="v1912-selected-export">
+#selectedExportBtn1912{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:auto!important;
+  min-width:112px!important;
+  height:34px!important;
+  padding:6px 12px!important;
+  margin-left:8px!important;
+  font-size:13px!important;
+  line-height:20px!important;
+  border-radius:7px!important;
+  box-sizing:border-box!important;
+  white-space:nowrap!important;
+}
+#selectedExportBtn1912:disabled{opacity:.5!important;cursor:not-allowed!important}
+</style>
+
+<style id="v185-subdealer-wise-export">
+#v185SubDealerExport{
+  margin:0!important;
+  height:34px!important;
+  min-height:34px!important;
+  padding:6px 12px!important;
+  font-size:13px!important;
+  line-height:20px!important;
+  border-radius:7px!important;
+  box-sizing:border-box!important;
+  white-space:nowrap!important;
+}
+</style>
+
+<style id="v65-update-liquid-glass">
+#v65UpdateModal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(18,57,91,.20);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:100000}
+#v65UpdateModal.show{display:flex}
+#v65UpdateModal .v65-update-card{width:min(430px,calc(100vw - 40px));padding:26px;border-radius:24px;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.72);box-shadow:0 24px 70px rgba(29,78,120,.22),inset 0 1px 0 rgba(255,255,255,.72);backdrop-filter:blur(24px) saturate(145%);-webkit-backdrop-filter:blur(24px) saturate(145%);color:#173b5e}
+#v65UpdateModal .v65-update-icon{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.72);margin-bottom:14px}
+#v65UpdateModal .v65-update-icon svg{width:30px;height:30px;stroke:#2f73b8}
+#v65UpdateModal h3{margin:0;font-size:21px;font-weight:800}
+#v65UpdateModal p{margin:8px 0 0;color:#52718c;line-height:1.45}
+#v65UpdateModal .v65-update-meta{margin:18px 0;padding:12px 14px;border-radius:15px;background:rgba(255,255,255,.34);border:1px solid rgba(255,255,255,.55);font-size:14px}
+#v65UpdateModal .v65-update-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+#v65UpdateModal button{height:40px;padding:0 17px;border-radius:14px;border:1px solid rgba(255,255,255,.75);font:inherit;font-weight:700;cursor:pointer;box-shadow:0 5px 16px rgba(30,86,130,.10)}
+#v65UpdateModal .v65-later{background:rgba(255,255,255,.38);color:#31536e}
+#v65UpdateModal .v65-primary{background:rgba(56,126,197,.86);color:#fff;border-color:rgba(255,255,255,.45)}
+#v65UpdateModal .v65-progress{height:7px;border-radius:99px;background:rgba(255,255,255,.38);overflow:hidden;margin-top:16px;display:none}
+#v65UpdateModal .v65-progress span{display:block;height:100%;width:0;background:#4b91d0;border-radius:99px;transition:width .25s}
+</style>
+
+<style id="v21-delete-all-modal-style">
+#deleteAllModal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(8,30,55,.55);z-index:99999;padding:20px}
+#deleteAllModal .delete-modal-card{width:min(460px,calc(100vw - 40px));background:#fff;border:1px solid #b7d4ec;border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.28);padding:26px}
+#deleteAllModal h3{margin:0 0 8px;color:#123a61;font-size:22px}
+#deleteAllModal p{margin:0 0 16px;color:#4f6b86;line-height:1.5}
+#deleteAllModal input{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #b7d4ec;border-radius:10px;font-size:16px;margin-bottom:16px}
+#deleteAllModal .delete-modal-actions{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-top:2px}
+#deleteAllModal .delete-modal-actions button{display:inline-flex!important;visibility:visible!important;opacity:1!important;position:relative!important;width:auto!important;height:42px!important;min-width:96px!important;padding:10px 16px!important;margin:0!important;overflow:visible!important;border-radius:10px!important;border:1px solid #b7d4ec!important;background:#fff!important;color:#123a61!important;font-family:inherit!important;font-size:15px!important;font-weight:700!important;line-height:20px!important;text-align:center!important;align-items:center!important;justify-content:center!important;cursor:pointer!important;box-sizing:border-box!important}
+#deleteAllModal .delete-modal-actions button.delete-confirm{background:#b42318!important;color:#fff!important;border-color:#b42318!important}
+#deleteAllModal .delete-modal-actions button:hover{filter:brightness(.97)}
+</style>
+
+<style id="v1916-permanent-hide-mapping-ui">
+/* v1.9.16 FINAL: Import Mapping is an internal import workflow only.
+   Never expose mapping controls on the normal UI/Settings page. */
+#importMappingSettings,
+#mappingToggle,
+#mappingSubmitRefreshBtn,
+#dashboardMappingSubmit168 {
+  display:none !important;
+}
+</style>
+
+<style id="v44-clear-filter-round-x">
+/* V44: Clear Filters compact circular X control */
+#v44ClearFiltersRoundX{
+  width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;
+  padding:0!important;margin:0!important;box-sizing:border-box!important;
+  border-radius:50%!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  font-size:0!important;line-height:0!important;white-space:nowrap!important;
+}
+#v44ClearFiltersRoundX::before{
+  content:"×";font-size:27px!important;line-height:1!important;font-weight:400!important;
+  display:block!important;transform:translateY(-1px);
+}
+</style>
+
+<style id="v49-liquid-glass-hard-override">
+/* V49 HARD VISUAL OVERRIDE — intentionally placed last. */
+html body .card,
+html body .stat,
+html body .card-head,
+html body .card-body,
+html body .notice,
+html body .upload,
+html body .map,
+html body .auto-import-source,
+html body .fitment-group,
+html body .table-wrap{
+  background-image:none!important;
+}
+html body .card{
+  background-color:rgba(255,255,255,.10)!important;
+  background:rgba(255,255,255,.10)!important;
+  border:1px solid rgba(255,255,255,.48)!important;
+  box-shadow:0 18px 48px rgba(24,69,106,.10), inset 0 1px rgba(255,255,255,.72)!important;
+  backdrop-filter:blur(30px) saturate(145%)!important;
+  -webkit-backdrop-filter:blur(30px) saturate(145%)!important;
+}
+html body .card-head{background:rgba(255,255,255,.045)!important;backdrop-filter:blur(22px)!important;-webkit-backdrop-filter:blur(22px)!important}
+html body .card-body{background:transparent!important}
+html body .notice{background:rgba(255,255,255,.075)!important;border-color:rgba(255,255,255,.42)!important;backdrop-filter:blur(22px) saturate(145%)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important}
+html body .upload,html body .map,html body .auto-import-source,html body .fitment-group{background:rgba(255,255,255,.065)!important;border-color:rgba(255,255,255,.42)!important;backdrop-filter:blur(22px) saturate(145%)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important}
+html body .table-wrap{background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.42)!important;backdrop-filter:blur(22px) saturate(145%)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important}
+html body .table-wrap th{background:rgba(225,242,251,.22)!important}
+html body .table-wrap td{background:rgba(255,255,255,.025)!important}
+
+/* Clear Filters — hard target, independent of all legacy button CSS. */
+html body #v49ClearFiltersRoundX{
+  width:38px!important;height:38px!important;min-width:38px!important;max-width:38px!important;
+  min-height:38px!important;max-height:38px!important;padding:0!important;margin:0!important;
+  box-sizing:border-box!important;border-radius:50%!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  overflow:hidden!important;font-size:0!important;line-height:0!important;color:transparent!important;
+  background:rgba(255,255,255,.24)!important;border:1px solid rgba(255,255,255,.72)!important;
+  box-shadow:0 6px 16px rgba(28,78,117,.12),inset 0 1px rgba(255,255,255,.84)!important;
+  flex:0 0 38px!important;
+}
+html body #v49ClearFiltersRoundX::before{
+  content:"×"!important;display:block!important;color:#245675!important;
+  font-family:Arial,sans-serif!important;font-size:28px!important;font-weight:400!important;
+  line-height:34px!important;width:34px!important;height:34px!important;text-align:center!important;
+}
+html body #v49ClearFiltersRoundX:hover{background:rgba(255,255,255,.40)!important;transform:translateY(-1px)!important}
+</style>
+
+<style id="v55-logo-visibility-final">
+/* V55: ensure the packaged motorcycle SVG is used and remains clearly visible. */
+html body .side-brand img{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:128px!important;
+  height:88px!important;
+  max-width:100%!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  margin:0 auto 7px!important;
+  filter:drop-shadow(0 4px 7px rgba(20,62,96,.12))!important;
+}
+@media(max-width:1100px){
+  html body .side-brand img{width:58px!important;height:46px!important;margin:0 auto!important}
+}
+@media(max-width:720px){
+  html body .side-brand{width:58px!important;min-width:58px!important}
+  html body .side-brand img{width:58px!important;height:46px!important;max-width:none!important}
+}
+</style>
+
+<style id="v56-branding-card-visible-final">
+/* V56: make the sidebar branding unmistakably a glass card. */
+html body .side-brand{
+  position:relative!important; display:flex!important; flex-direction:column!important; align-items:center!important; justify-content:center!important;
+  box-sizing:border-box!important; width:100%!important; min-height:150px!important; margin:0 0 12px!important; padding:14px 12px 16px!important;
+  border:1px solid rgba(255,255,255,.82)!important; border-radius:22px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(224,242,252,.16))!important;
+  box-shadow:0 12px 30px rgba(36,91,132,.12), inset 0 1px 0 rgba(255,255,255,.92), inset 0 0 0 1px rgba(255,255,255,.18)!important;
+  backdrop-filter:blur(28px) saturate(155%)!important; -webkit-backdrop-filter:blur(28px) saturate(155%)!important;
+  overflow:hidden!important;
+}
+html body .side-brand::before{content:""!important;position:absolute!important;inset:0!important;border-radius:inherit!important;background:linear-gradient(120deg,rgba(255,255,255,.22),transparent 42%,rgba(255,255,255,.08))!important;pointer-events:none!important}
+html body .side-brand img{position:relative!important;z-index:1!important;display:block!important;width:108px!important;height:76px!important;max-width:100%!important;object-fit:contain!important;object-position:center!important;margin:0 auto 7px!important;opacity:1!important;visibility:visible!important;filter:drop-shadow(0 4px 7px rgba(20,62,96,.14))!important}
+html body .side-brand .side-app-name,html body .side-brand .side-brand-divider,html body .side-brand p{position:relative!important;z-index:1!important}
+html body .side-brand .side-app-name{display:block!important;text-align:center!important;margin:3px 0 0!important;color:#143a63!important;font-size:20px!important;font-weight:850!important;line-height:1.12!important}
+html body .side-brand .side-brand-divider{display:block!important;width:72%!important;height:1px!important;margin:8px auto 6px!important;background:rgba(255,255,255,.58)!important}
+html body .side-brand p{display:block!important;text-align:center!important;margin:0!important;color:#5f7892!important;font-size:11px!important;font-weight:650!important;line-height:1.4!important}
+@media(max-width:1100px){
+ html body .side-brand{min-height:132px!important;padding:10px 8px 12px!important}
+ html body .side-brand img{width:82px!important;height:60px!important}
+ html body .side-brand .side-app-name{font-size:16px!important}
+}
+@media(max-width:720px){
+ html body .sidebar{align-items:stretch!important}
+ html body .side-brand{width:100%!important;min-height:118px!important;margin-bottom:8px!important}
+ html body .side-brand img{width:82px!important;height:58px!important}
+ html body .side-brand .side-app-name{font-size:17px!important}
+}
+</style>
+
+<style id="v60-pearl-glass-sidebar">
+/* V60 — Professional Pearl/Clear Glass Sidebar */
+html body .sidebar{
+  background:linear-gradient(180deg,rgba(238,247,253,.78),rgba(208,229,243,.62)) !important;
+  color:#173b5a !important;
+  border-right:1px solid rgba(255,255,255,.82) !important;
+  box-shadow:8px 0 30px rgba(54,91,119,.10),inset -1px 0 rgba(255,255,255,.38) !important;
+  backdrop-filter:blur(24px) saturate(135%) !important;
+  -webkit-backdrop-filter:blur(24px) saturate(135%) !important;
+}
+html body .sidebar .side-brand{
+  background:rgba(255,255,255,.30) !important;
+  border:1px solid rgba(255,255,255,.70) !important;
+  border-radius:20px !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.82),0 8px 22px rgba(52,92,120,.06) !important;
+}
+html body .sidebar .side-app-name{color:#123b5c !important;text-shadow:none !important;}
+html body .sidebar .side-brand p{color:#55728a !important;}
+html body .sidebar .nav-label{
+  color:#49677f !important;
+  background:rgba(255,255,255,.28) !important;
+  border-color:rgba(255,255,255,.70) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.80),0 3px 10px rgba(55,94,120,.05) !important;
+}
+html body .sidebar .nav a{color:#214663 !important;border-color:transparent !important;}
+html body .sidebar .nav a:hover{
+  color:#153c59 !important;
+  background:rgba(255,255,255,.42) !important;
+  border-color:rgba(255,255,255,.70) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.80),0 5px 14px rgba(46,88,117,.08) !important;
+}
+html body .sidebar .nav a.active{
+  background:linear-gradient(100deg,rgba(47,132,236,.94),rgba(105,113,245,.84)) !important;
+  color:#fff !important;
+  border-color:rgba(255,255,255,.70) !important;
+  box-shadow:0 9px 24px rgba(55,113,205,.22),inset 0 1px rgba(255,255,255,.48) !important;
+}
+html body .sidebar .side-footer{
+  background:rgba(255,255,255,.28) !important;
+  border-color:rgba(255,255,255,.70) !important;
+  color:#5a7489 !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.80) !important;
+}
+html body .sidebar .side-footer strong{color:#173f5e !important;}
+html body .sidebar .side-footer a{color:#2b76bc !important;}
+@media(max-width:1100px){html body .sidebar{background:linear-gradient(180deg,rgba(232,245,253,.84),rgba(207,228,243,.70)) !important;}}
+@media(max-width:720px){html body .sidebar{background:linear-gradient(180deg,rgba(232,245,253,.88),rgba(207,228,243,.74)) !important;}}
+@media(prefers-reduced-transparency:reduce){html body .sidebar{background:#e4f0f7 !important;}}
+</style>
+
+<style id="v62-sidebar-final-polish">
+/* V62 — Final Sky Blue Sidebar Polish. Based on V61; sidebar only. */
+html body .sidebar{
+  background:linear-gradient(155deg,rgba(185,224,252,.88),rgba(137,193,232,.72) 58%,rgba(119,181,226,.68)) !important;
+  border:1px solid rgba(255,255,255,.88) !important;
+  box-shadow:0 18px 42px rgba(43,105,158,.20),inset 0 1px 0 rgba(255,255,255,.96),inset -1px 0 rgba(85,151,199,.12) !important;
+  backdrop-filter:blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter:blur(20px) saturate(150%) !important;
+}
+html body .sidebar .side-brand{
+  background:rgba(239,249,255,.42) !important;
+  border-color:rgba(255,255,255,.84) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 8px 22px rgba(46,112,166,.10) !important;
+}
+html body .sidebar .side-app-name{color:#123f63 !important;}
+html body .sidebar .side-brand p{color:#3e6682 !important;}
+html body .sidebar .nav-label{
+  color:#1d5275 !important;
+  background:rgba(240,250,255,.40) !important;
+  border-color:rgba(255,255,255,.82) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.86) !important;
+}
+html body .sidebar .nav a{color:#143f60 !important;}
+html body .sidebar .nav a:hover{
+  background:rgba(255,255,255,.42) !important;
+  border-color:rgba(255,255,255,.82) !important;
+  color:#123b5b !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 6px 16px rgba(48,116,171,.10) !important;
+}
+html body .sidebar .nav a.active{
+  background:linear-gradient(100deg,#2d8cf0,#706df2) !important;
+  color:#fff !important;
+  border-color:rgba(255,255,255,.72) !important;
+  box-shadow:0 10px 26px rgba(47,116,216,.25),inset 0 1px 0 rgba(255,255,255,.55) !important;
+}
+html body .sidebar .side-footer{
+  background:rgba(239,249,255,.34) !important;
+  border-color:rgba(255,255,255,.78) !important;
+  color:#4b7089 !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.82) !important;
+}
+html body .sidebar .side-footer strong{color:#184b6d !important;}
+html body .sidebar .side-footer a{color:#2173b1 !important;}
+@media(max-width:1100px){html body .sidebar{background:linear-gradient(155deg,rgba(188,226,253,.91),rgba(137,193,232,.78)) !important;}}
+@media(max-width:720px){html body .sidebar{background:linear-gradient(155deg,rgba(192,230,255,.93),rgba(145,199,238,.82)) !important;}}
+@media(prefers-reduced-transparency:reduce){html body .sidebar{background:#b9dcf4 !important;}}
+</style>
+
+<style id="v72-sidebar-scroll-final">
+/* V72 final sidebar scroll contract: thin/invisible scrollbar, independent desktop scroll. */
+@media(min-width:721px){
+  .app{min-height:100vh!important;align-items:stretch!important}
+  .sidebar{height:100vh!important;max-height:100vh!important;overflow-y:auto!important;overflow-x:hidden!important;min-height:0!important;scrollbar-width:thin!important;scrollbar-color:rgba(38,119,190,.10) transparent!important}
+  .sidebar::-webkit-scrollbar{width:2px!important;height:2px!important}
+  .sidebar::-webkit-scrollbar-track{background:transparent!important}
+  .sidebar::-webkit-scrollbar-thumb{background:rgba(38,119,190,.10)!important;border-radius:999px!important}
+  .sidebar::-webkit-scrollbar-thumb:hover{background:rgba(38,119,190,.18)!important}
+}
+@media(max-width:720px){.sidebar{overflow:visible!important}}
+</style>
+
+<style id="v16-clear-overlap-fix">
+/* v1.9.16 V16 — Prevent Multiple Registration Clear/Search controls from overlapping Search records. */
+.multi-reg-controls-1913{
+  grid-template-columns:minmax(0,1fr) auto!important;
+  min-width:0!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+.multi-reg-buttons-1913{
+  display:flex!important;
+  flex:0 0 auto!important;
+  width:auto!important;
+  min-width:max-content!important;
+  gap:6px!important;
+  align-items:center!important;
+  box-sizing:border-box!important;
+}
+.multi-reg-buttons-1913 button{
+  flex:0 0 auto!important;
+  width:auto!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+#multiRegSearchBtn1913{min-width:100px!important}
+#multiRegClearBtn1913{min-width:64px!important}
+#q{
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
+@media(max-width:1100px) and (min-width:721px){
+  .filters{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    gap:10px!important;
+  }
+  .multi-reg-1913{grid-column:1!important}
+  .multi-reg-controls-1913{grid-template-columns:minmax(0,1fr) auto!important}
+  .filter-actions{min-width:0!important}
+  .filter-actions .filter-actions{display:flex!important;gap:8px!important;flex-wrap:wrap!important}
+}
+@media(max-width:720px){
+  .filters{grid-template-columns:1fr!important}
+  .multi-reg-controls-1913{grid-template-columns:1fr!important}
+  .multi-reg-buttons-1913{justify-content:flex-start!important}
+}
+</style>
+
+<style id="v1916-well-organized-records-ui">
+/* v1.9.16 V17 — final visual normalization for records/search controls.
+   UI-only: no data, import, export or search logic changes. */
+#records .card-body{padding-top:16px!important}
+#records .filters{
+  display:grid!important;
+  grid-template-columns:minmax(250px,1.25fr) minmax(230px,1.2fr) minmax(180px,.85fr) minmax(300px,1.45fr)!important;
+  gap:12px!important;
+  align-items:end!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+#records .filter-field,
+#records .filter-actions{min-width:0!important;box-sizing:border-box!important}
+#records .filter-field>label,
+#records .filter-actions>label{display:block!important;height:16px!important;margin:0 0 6px!important;line-height:16px!important;font-size:11px!important;font-weight:750!important;color:var(--muted)!important}
+#records .multi-reg-controls-1913{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:8px!important;
+  align-items:center!important;
+}
+#records #multiRegSearch1913,
+#records #q,
+#records #dealer{
+  width:100%!important;
+  min-width:0!important;
+  height:40px!important;
+  min-height:40px!important;
+  max-height:40px!important;
+  box-sizing:border-box!important;
+  border-radius:9px!important;
+}
+#records #multiRegSearch1913{resize:none!important;padding:8px 10px!important;font-size:12px!important}
+#records #q{padding:9px 11px!important;font-size:12px!important}
+#records #dealer{padding:8px 10px!important;font-size:12px!important}
+#records .multi-reg-buttons-1913,
+#records .filter-actions>div.filter-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  min-width:0!important;
+}
+#records .multi-reg-buttons-1913 button,
+#records .filter-actions>div.filter-actions button{
+  width:auto!important;
+  min-width:0!important;
+  height:40px!important;
+  min-height:40px!important;
+  max-height:40px!important;
+  padding:0 14px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  border-radius:9px!important;
+  font-size:12px!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+}
+#records #reports{min-width:145px!important}
+#records #selectedExportBtn1912{min-width:125px!important}
+#records #multiRegSearchBtn1913{min-width:92px!important}
+#records #multiRegClearBtn1913{min-width:58px!important}
+#records .filter-actions{width:100%!important}
+#records .filter-actions>div.filter-actions{width:100%!important;justify-content:flex-start!important}
+#records .filter-actions>div.filter-actions button{flex:0 0 auto!important}
+#records .records-toolbar button,
+#records .records-head-actions button{height:40px!important;min-height:40px!important;padding:0 14px!important;font-size:12px!important}
+#records .export-actions button,
+#records #v1913ExportTopRow>button{height:40px!important;min-height:40px!important;padding:0 14px!important;font-size:12px!important}
+@media(max-width:1100px){
+  #records .filters{grid-template-columns:minmax(220px,1.2fr) minmax(210px,1.1fr) minmax(170px,.9fr) minmax(270px,1.4fr)!important;gap:10px!important}
+}
+@media(max-width:820px){
+  #records .filters{grid-template-columns:1fr 1fr!important;gap:10px!important}
+  #records .filter-actions{grid-column:1/-1!important}
+}
+@media(max-width:560px){
+  #records .filters{grid-template-columns:1fr!important;gap:10px!important}
+  #records .filter-actions{grid-column:auto!important}
+  #records .multi-reg-controls-1913{grid-template-columns:1fr!important}
+  #records .multi-reg-buttons-1913{justify-content:flex-start!important}
+  #records .filter-actions>div.filter-actions{flex-wrap:wrap!important}
+}
+</style>
+
+<style id="v18-multiple-search-layout-final">
+/* v1.9.16 V18 — Final search/filter sizing and alignment. */
+.filters{
+  grid-template-columns:minmax(330px,1.25fr) minmax(340px,1.35fr) minmax(210px,.85fr) auto!important;
+  gap:12px!important;
+  align-items:end!important;
+}
+.multi-reg-controls-1913{
+  grid-template-columns:minmax(0,1fr) 96px!important;
+  gap:8px!important;
+  align-items:center!important;
+}
+#multiRegSearch1913{
+  width:100%!important;
+  min-width:0!important;
+  height:42px!important;
+  min-height:42px!important;
+  max-height:42px!important;
+  padding:8px 10px!important;
+}
+.multi-reg-buttons-1913{
+  width:96px!important;
+  min-width:96px!important;
+  display:grid!important;
+  grid-template-columns:44px 44px!important;
+  gap:8px!important;
+  align-items:center!important;
+}
+.multi-reg-buttons-1913 button{
+  width:44px!important;
+  min-width:44px!important;
+  max-width:44px!important;
+  height:42px!important;
+  min-height:42px!important;
+  max-height:42px!important;
+  padding:0!important;
+  margin:0!important;
+  border-radius:8px!important;
+  font-size:0!important;
+  line-height:1!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+#multiRegSearchBtn1913::before{
+  content:none!important;
+  display:none!important;
+}
+#multiRegClearBtn1913::before{
+  content:"×";
+  font-size:22px;
+  line-height:1;
+  font-weight:600;
+}
+#q{
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:42px!important;
+  min-height:42px!important;
+  box-sizing:border-box!important;
+}
+#dealer{
+  width:100%!important;
+  min-width:0!important;
+  height:42px!important;
+  min-height:42px!important;
+  box-sizing:border-box!important;
+}
+@media(max-width:1100px) and (min-width:721px){
+  .filters{
+    grid-template-columns:minmax(290px,1.2fr) minmax(300px,1.25fr) minmax(190px,.85fr) auto!important;
+    gap:9px!important;
+  }
+}
+@media(max-width:720px){
+  .filters{grid-template-columns:1fr!important;gap:10px!important}
+  .multi-reg-controls-1913{grid-template-columns:minmax(0,1fr) 96px!important}
+}
+</style>
+
+<style id="v19-search-controls-final">
+/* v1.9.16 V19 — compact Material-style search controls + no overlap. */
+.filters{
+  grid-template-columns:minmax(310px,1.25fr) minmax(280px,1.35fr) minmax(190px,.9fr) auto!important;
+  gap:12px!important;
+  align-items:end!important;
+}
+.multi-reg-controls-1913{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 40px 40px!important;
+  gap:8px!important;
+  width:100%!important;
+  min-width:0!important;
+  align-items:center!important;
+}
+#multiRegSearch1913{
+  min-width:0!important;
+  width:100%!important;
+  height:40px!important;
+}
+.multi-reg-buttons-1913{display:contents!important}
+.multi-reg-buttons-1913 button,
+#multiRegSearchBtn1913,
+#multiRegClearBtn1913{
+  width:40px!important;
+  min-width:40px!important;
+  max-width:40px!important;
+  height:40px!important;
+  min-height:40px!important;
+  max-height:40px!important;
+  padding:0!important;
+  margin:0!important;
+  border-radius:10px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  line-height:1!important;
+  font-size:0!important;
+  box-sizing:border-box!important;
+}
+#multiRegSearchBtn1913{
+  background:#1677c7!important;
+  color:#fff!important;
+  box-shadow:0 3px 8px rgba(18,104,180,.22)!important;
+}
+#multiRegSearchBtn1913 svg{width:21px!important;height:21px!important;display:block!important}
+#multiRegClearBtn1913{
+  background:#edf4f9!important;
+  color:#205276!important;
+  border:1px solid #d1e0eb!important;
+}
+#multiRegClearBtn1913::before{
+  content:"×";
+  font-size:22px!important;
+  font-weight:500!important;
+  line-height:1!important;
+}
+#q{
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:40px!important;
+  min-height:40px!important;
+}
+#dealer{
+  width:100%!important;
+  height:40px!important;
+  min-height:40px!important;
+}
+@media(max-width:1100px) and (min-width:721px){
+  .filters{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important}
+  .multi-reg-1913{grid-column:auto!important}
+  .multi-reg-controls-1913{grid-template-columns:minmax(0,1fr) 40px 40px!important}
+  .filter-actions{min-width:0!important}
+}
+@media(max-width:720px){
+  .filters{grid-template-columns:1fr!important;gap:10px!important}
+  .multi-reg-controls-1913{grid-template-columns:minmax(0,1fr) 40px 40px!important}
+  .filter-actions{width:100%!important}
+}
+</style>
+
+<style id="v20-no-emoji-search-icon">
+/* v1.9.16 V20 — search button uses only Material-style SVG; no emoji. */
+#multiRegSearchBtn1913::before{content:none!important;display:none!important;}
+#multiRegSearchBtn1913::after{content:none!important;display:none!important;}
+#multiRegSearchBtn1913 svg{
+  width:20px!important;height:20px!important;
+  display:block!important;
+  flex:none!important;
+}
+</style>
+
+<style id="v20-search-round-clear-final">
+/* v1.9.16 V21 — compact round search + non-overlapping clear controls */
+.multi-reg-controls-1913{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 40px 40px!important;
+  gap:8px!important;
+  width:100%!important;
+  min-width:0!important;
+  align-items:center!important;
+  box-sizing:border-box!important;
+}
+.multi-reg-buttons-1913{
+  display:contents!important;
+}
+.multi-reg-buttons-1913 button{
+  width:40px!important;
+  min-width:40px!important;
+  max-width:40px!important;
+  height:40px!important;
+  min-height:40px!important;
+  max-height:40px!important;
+  padding:0!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:none!important;
+  overflow:hidden!important;
+}
+#multiRegSearchBtn1913{
+  border-radius:50%!important;
+  position:relative!important;
+  font-size:0!important;
+}
+#multiRegSearchBtn1913::before{
+  content:""!important;
+  width:15px!important;
+  height:15px!important;
+  border:2px solid currentColor!important;
+  border-radius:50%!important;
+  display:block!important;
+  box-sizing:border-box!important;
+  position:relative!important;
+}
+#multiRegSearchBtn1913::after{
+  content:""!important;
+  position:absolute!important;
+  width:7px!important;
+  height:2px!important;
+  background:currentColor!important;
+  border-radius:2px!important;
+  transform:rotate(45deg)!important;
+  margin:12px 0 0 12px!important;
+}
+#multiRegClearBtn1913{
+  border-radius:50%!important;
+  font-size:0!important;
+  position:relative!important;
+}
+#multiRegClearBtn1913::before,
+#multiRegClearBtn1913::after{
+  content:""!important;
+  position:absolute!important;
+  width:15px!important;
+  height:2px!important;
+  background:currentColor!important;
+  border-radius:2px!important;
+}
+#multiRegClearBtn1913::before{transform:rotate(45deg)!important}
+#multiRegClearBtn1913::after{transform:rotate(-45deg)!important}
+#multiRegSearch1913{
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+}
+@media(max-width:720px){
+  .multi-reg-controls-1913{
+    grid-template-columns:minmax(0,1fr) 40px 40px!important;
+  }
+}
+</style>
+
+<style id="v22-search-layout-final">
+/* v1.9.16 V22 — final mobile-safe search/filter layout. */
+#records .multi-reg-controls-1913{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 38px 38px!important;
+  gap:8px!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  align-items:center!important;
+  box-sizing:border-box!important;
+}
+#records .multi-reg-buttons-1913{display:contents!important}
+#records #multiRegSearch1913{
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  height:40px!important;
+  min-height:40px!important;
+  max-height:40px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+#records #multiRegSearchBtn1913,
+#records #multiRegClearBtn1913{
+  width:38px!important;
+  min-width:38px!important;
+  max-width:38px!important;
+  height:38px!important;
+  min-height:38px!important;
+  max-height:38px!important;
+  padding:0!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  flex:none!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  position:relative!important;
+  overflow:hidden!important;
+  border-radius:50%!important;
+  font-size:0!important;
+  line-height:0!important;
+}
+/* Search icon: SVG only. No pseudo-icon and no emoji/text. */
+#records #multiRegSearchBtn1913::before,
+#records #multiRegSearchBtn1913::after{content:none!important;display:none!important}
+#records #multiRegSearchBtn1913 svg{
+  width:18px!important;
+  height:18px!important;
+  display:block!important;
+  flex:none!important;
+}
+/* Clear icon: one clean material-style X. */
+#records #multiRegClearBtn1913::before,
+#records #multiRegClearBtn1913::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  width:14px!important;
+  height:2px!important;
+  background:currentColor!important;
+  border-radius:2px!important;
+  left:50%!important;
+  top:50%!important;
+  margin:0!important;
+}
+#records #multiRegClearBtn1913::before{transform:translate(-50%,-50%) rotate(45deg)!important}
+#records #multiRegClearBtn1913::after{transform:translate(-50%,-50%) rotate(-45deg)!important}
+#records #q,
+#records #dealer{
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
+@media(max-width:720px){
+  #records .filters{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:12px!important;
+    width:100%!important;
+    min-width:0!important;
+    overflow:hidden!important;
+  }
+  #records .filter-field,
+  #records .filter-actions{min-width:0!important;width:100%!important;max-width:100%!important}
+  #records .multi-reg-controls-1913{
+    grid-template-columns:minmax(0,1fr) 38px 38px!important;
+    width:100%!important;
+  }
+  #records .multi-reg-buttons-1913{display:contents!important}
+  #records .filter-actions>div.filter-actions{
+    width:100%!important;
+    min-width:0!important;
+    display:flex!important;
+    flex-wrap:wrap!important;
+    gap:8px!important;
+  }
+}
+</style>
+
+<style id="v23-rounded-export-buttons">
+/* v1.9.16 V23 — consistent rounded corners for every user-facing Export button. */
+#v1913ExportTopRow #reports,
+#v1913ExportTopRow #selectedExportBtn1912,
+#v1913ExportTopRow #v185SubDealerExport,
+#fitmentExportBtn,
+button[id*="Export"],
+button[id*="export"]{
+  border-radius:12px !important;
+}
+
+/* Keep the dedicated export toolbar buttons balanced and professional. */
+#v1913ExportTopRow > button{
+  border-radius:12px !important;
+}
+</style>
+
+<style id="v24-export-toolbar-clean">
+/* v1.9.16 V24 — compact export toolbar with visible separation from card edges. */
+#v1913ExportTopRow{
+  width:100%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:12px!important;
+  flex-wrap:wrap!important;
+  overflow:visible!important;
+  padding:6px 0 16px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+}
+#v1913ExportTopRow > button{
+  flex:0 0 auto!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:42px!important;
+  min-height:42px!important;
+  padding:0 18px!important;
+  margin:0!important;
+  border-radius:12px!important;
+  box-sizing:border-box!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  font-size:13px!important;
+  line-height:1!important;
+}
+#v1913ExportTopRow #reports{width:190px!important}
+#v1913ExportTopRow #selectedExportBtn1912{width:160px!important}
+#v1913ExportTopRow #v185SubDealerExport{width:190px!important}
+/* Keep the toolbar visually separated from the card outline. */
+#records .card-body{overflow:visible!important}
+@media(max-width:760px){
+  #v1913ExportTopRow{gap:10px!important;padding:6px 0 14px!important}
+  #v1913ExportTopRow > button{height:40px!important;min-height:40px!important;padding:0 14px!important}
+  #v1913ExportTopRow #reports{width:180px!important}
+  #v1913ExportTopRow #selectedExportBtn1912{width:150px!important}
+  #v1913ExportTopRow #v185SubDealerExport{width:180px!important}
+}
+@media(max-width:480px){
+  #v1913ExportTopRow{justify-content:flex-start!important}
+  #v1913ExportTopRow > button{width:auto!important;min-width:0!important;max-width:100%!important}
+}
+/* Fitment Dealer export follows the same rounded, compact visual language. */
+#fitmentExportBtn{
+  height:40px!important;
+  min-height:40px!important;
+  padding:0 18px!important;
+  border-radius:12px!important;
+  box-sizing:border-box!important;
+}
+</style>
+
+<style id="v25-compact-content-width-buttons">
+/* v1.9.16 V25 — compact buttons: width follows label + small padding. */
+#v1913ExportTopRow > button,
+#v1913ExportTopRow #reports,
+#v1913ExportTopRow #selectedExportBtn1912,
+#v1913ExportTopRow #v185SubDealerExport,
+#fitmentExportBtn,
+#records #reports,
+#records #selectedExportBtn1912,
+#records #v185SubDealerExport,
+#records button[id*="Export"],
+#records button[id*="export"],
+#records button[onclick*="export"],
+#records button[onclick*="Export"],
+#records .filter-actions button#clearFilters,
+#records #clearFiltersBtn,
+#records button[onclick*="clearFilters"]{
+  width:max-content !important;
+  min-width:0 !important;
+  max-width:max-content !important;
+  flex:0 0 auto !important;
+  padding-left:14px !important;
+  padding-right:14px !important;
+  box-sizing:border-box !important;
+  white-space:nowrap !important;
+}
+#v1913ExportTopRow{justify-content:flex-start !important; gap:10px !important;}
+#records .filter-actions>div.filter-actions{gap:8px !important;}
+@media(max-width:760px){
+  #v1913ExportTopRow{justify-content:flex-start !important; gap:8px !important; flex-wrap:wrap !important;}
+  #v1913ExportTopRow > button,
+  #fitmentExportBtn{padding-left:12px !important;padding-right:12px !important;}
+}
+</style>
+
+<style id="v26-export-alignment-fix">
+/* V26 — Align export controls with the filter/action controls below. */
+#v1913ExportTopRow{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:10px !important;
+  width:100% !important;
+  margin:0 0 14px !important;
+  padding:0 !important;
+  box-sizing:border-box !important;
+}
+#v1913ExportTopRow > button,
+#v1913ExportTopRow #reports,
+#v1913ExportTopRow #selectedExportBtn1912,
+#v1913ExportTopRow #v185SubDealerExport{
+  flex:0 0 auto !important;
+  width:auto !important;
+  min-width:0 !important;
+  max-width:fit-content !important;
+  height:42px !important;
+  min-height:42px !important;
+  margin:0 !important;
+  padding:0 14px !important;
+  border-radius:12px !important;
+  box-sizing:border-box !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  white-space:nowrap !important;
+}
+/* Keep the export row visually aligned with the controls immediately below. */
+#records .filter-actions > div.filter-actions,
+#records .filter-actions > .filter-actions{
+  display:flex !important;
+  align-items:center !important;
+  gap:8px !important;
+}
+@media(max-width:760px){
+  #v1913ExportTopRow{
+    flex-wrap:wrap !important;
+    gap:8px !important;
+  }
+  #v1913ExportTopRow > button,
+  #v1913ExportTopRow #reports,
+  #v1913ExportTopRow #selectedExportBtn1912,
+  #v1913ExportTopRow #v185SubDealerExport{
+    height:40px !important;
+    min-height:40px !important;
+    padding:0 12px !important;
+  }
+}
+</style>
+
+<style id="v27-export-spacing-fix">
+/* V27: keep export buttons visually separated from the records-card outline. */
+#recordsSection #v1913ExportTopRow,
+#v1913ExportTopRow{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:10px !important;
+  flex-wrap:wrap !important;
+  width:100% !important;
+  box-sizing:border-box !important;
+  margin:14px 0 16px !important;
+  padding:0 12px !important;
+  overflow:visible !important;
+}
+#recordsSection #v1913ExportTopRow > button,
+#v1913ExportTopRow > button{
+  flex:0 0 auto !important;
+  width:auto !important;
+  min-width:max-content !important;
+  max-width:100% !important;
+  height:44px !important;
+  min-height:44px !important;
+  padding:0 16px !important;
+  margin:0 !important;
+  border-radius:12px !important;
+  box-sizing:border-box !important;
+}
+@media(max-width:760px){
+  #recordsSection #v1913ExportTopRow,
+  #v1913ExportTopRow{
+    justify-content:flex-start !important;
+    padding:0 10px !important;
+    gap:8px !important;
+  }
+  #recordsSection #v1913ExportTopRow > button,
+  #v1913ExportTopRow > button{
+    flex:0 0 auto !important;
+    width:auto !important;
+    max-width:calc(100% - 4px) !important;
+  }
+}
+</style>
+
+<style id="v28-export-heading-alignment">
+/* V28 — align Export toolbar with the Vehicle / HSRP records heading. */
+#records > #v1913ExportTopRow,
+#recordsSection #v1913ExportTopRow,
+#v1913ExportTopRow{
+  box-sizing:border-box !important;
+  width:100% !important;
+  margin:12px 0 16px !important;
+  padding:0 20px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:10px !important;
+  flex-wrap:wrap !important;
+  overflow:visible !important;
+}
+#records > #v1913ExportTopRow > button,
+#v1913ExportTopRow > button{
+  flex:0 0 auto !important;
+  width:max-content !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  height:42px !important;
+  min-height:42px !important;
+  margin:0 !important;
+  padding:0 14px !important;
+  border-radius:12px !important;
+  box-sizing:border-box !important;
+  white-space:nowrap !important;
+}
+@media(max-width:760px){
+  #records > #v1913ExportTopRow,
+  #recordsSection #v1913ExportTopRow,
+  #v1913ExportTopRow{
+    margin:10px 0 14px !important;
+    padding:0 15px !important;
+    gap:8px !important;
+  }
+  #records > #v1913ExportTopRow > button,
+  #v1913ExportTopRow > button{
+    height:40px !important;
+    min-height:40px !important;
+    padding:0 12px !important;
+  }
+}
+</style>
+
+<style id="v29-fitment-export-ui-final">
+/* V29 — Fitment Dealer action buttons: compact, uniform, label-sized. */
+#fitment .fitment-filters{
+  grid-template-columns:minmax(150px,1.2fr) minmax(150px,1.2fr) minmax(160px,1.25fr) auto auto auto !important;
+  column-gap:8px !important;
+  row-gap:8px !important;
+  align-items:end !important;
+}
+#fitment .fitment-actions{display:contents !important;}
+#fitment .fitment-actions button,
+#fitment #fitmentApplyBtn,
+#fitment #fitmentClearBtn,
+#fitment #fitmentExportBtn{
+  width:max-content !important;
+  min-width:0 !important;
+  max-width:max-content !important;
+  height:34px !important;
+  min-height:34px !important;
+  padding:6px 14px !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  border-radius:9px !important;
+  white-space:nowrap !important;
+  align-self:end !important;
+}
+#fitment #fitmentExportBtn{
+  padding-left:14px !important;
+  padding-right:14px !important;
+}
+@media(max-width:760px){
+  #fitment .fitment-filters{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  #fitment .fitment-actions button,
+  #fitment #fitmentApplyBtn,
+  #fitment #fitmentClearBtn,
+  #fitment #fitmentExportBtn{
+    width:max-content !important;
+    max-width:100% !important;
+    height:34px !important;
+    min-height:34px !important;
+    padding:6px 12px !important;
+  }
+}
+@media(max-width:430px){
+  #fitment .fitment-filters{
+    grid-template-columns:1fr 1fr !important;
+  }
+}
+</style>
+
+<style id="v46-clear-filters-final-round">
+/* V46 FINAL: force the actual Clear Filters control to a compact circular X. */
+#v44ClearFiltersRoundX,
+#v194ActionGroup button[aria-label="Clear filters"],
+#v179ActionGroup button[aria-label="Clear filters"]{
+  width:38px!important;
+  min-width:38px!important;
+  max-width:38px!important;
+  height:38px!important;
+  min-height:38px!important;
+  max-height:38px!important;
+  padding:0!important;
+  margin:0!important;
+  border-radius:50%!important;
+  box-sizing:border-box!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  font-size:0!important;
+  line-height:0!important;
+  overflow:hidden!important;
+  white-space:nowrap!important;
+  flex:0 0 38px!important;
+}
+#v44ClearFiltersRoundX::before,
+#v194ActionGroup button[aria-label="Clear filters"]::before,
+#v179ActionGroup button[aria-label="Clear filters"]::before{
+  content:"×"!important;
+  display:block!important;
+  font-size:27px!important;
+  line-height:1!important;
+  font-weight:400!important;
+  transform:translateY(-1px);
+}
+</style>
+
+<style id="v48-clear-water-glass-final">
+/* V48 — Final clear-water Liquid Glass + circular Clear Filters. Visual only. */
+:root{--v48-glass:rgba(255,255,255,.20);--v48-glass-head:rgba(255,255,255,.10)}
+.card,.stat{
+  background:rgba(255,255,255,.20)!important;
+  border:1px solid rgba(255,255,255,.62)!important;
+  box-shadow:0 14px 42px rgba(25,72,111,.12),inset 0 1px rgba(255,255,255,.72)!important;
+  backdrop-filter:blur(26px) saturate(150%)!important;
+  -webkit-backdrop-filter:blur(26px) saturate(150%)!important;
+}
+.card-head{background:rgba(255,255,255,.08)!important;border-bottom:1px solid rgba(255,255,255,.30)!important}
+.card-body{background:transparent!important}
+.notice{background:rgba(255,255,255,.16)!important;border-color:rgba(255,255,255,.46)!important;backdrop-filter:blur(18px) saturate(145%)!important;-webkit-backdrop-filter:blur(18px) saturate(145%)!important}
+.upload,.map,.auto-import-source,.fitment-group{background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.55)!important;backdrop-filter:blur(18px) saturate(145%)!important;-webkit-backdrop-filter:blur(18px) saturate(145%)!important}
+.table-wrap{background:rgba(255,255,255,.10)!important;border-color:rgba(255,255,255,.48)!important;backdrop-filter:blur(18px) saturate(140%)!important;-webkit-backdrop-filter:blur(18px) saturate(140%)!important}
+th{background:rgba(235,247,253,.38)!important}
+td{background:rgba(255,255,255,.08)!important}
+tbody tr:hover{background:rgba(255,255,255,.25)!important}
+/* Actual Clear Filters button: circular X, no text, independent of legacy button rules. */
+#records .filter-actions button[onclick*="clearFilters"],
+#vehicleRecords .filter-actions button[onclick*="clearFilters"],
+#v44ClearFiltersRoundX,
+#v194ActionGroup button[aria-label="Clear filters"],
+#v179ActionGroup button[aria-label="Clear filters"]{
+  width:38px!important;height:38px!important;min-width:38px!important;max-width:38px!important;
+  min-height:38px!important;max-height:38px!important;padding:0!important;
+  margin:0!important;border-radius:50%!important;
+  border:1px solid rgba(255,255,255,.78)!important;
+  background:rgba(255,255,255,.30)!important;color:transparent!important;
+  box-shadow:0 6px 16px rgba(32,88,133,.13),inset 0 1px rgba(255,255,255,.82)!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  overflow:hidden!important;line-height:0!important;font-size:0!important;
+}
+#records .filter-actions button[onclick*="clearFilters"]::before,
+#vehicleRecords .filter-actions button[onclick*="clearFilters"]::before,
+#v44ClearFiltersRoundX::before,
+#v194ActionGroup button[aria-label="Clear filters"]::before,
+#v179ActionGroup button[aria-label="Clear filters"]::before{
+  content:"×"!important;display:block!important;color:#255676!important;font-size:27px!important;font-weight:400!important;line-height:34px!important;font-family:Arial,sans-serif!important;
+}
+#records .filter-actions button[onclick*="clearFilters"]:hover,
+#vehicleRecords .filter-actions button[onclick*="clearFilters"]:hover,
+#v44ClearFiltersRoundX:hover,
+#v194ActionGroup button[aria-label="Clear filters"]:hover,
+#v179ActionGroup button[aria-label="Clear filters"]:hover{
+  transform:translateY(-1px)!important;background:rgba(255,255,255,.44)!important;box-shadow:0 8px 20px rgba(32,88,133,.18),inset 0 1px rgba(255,255,255,.9)!important;
+}
+</style>
+
+<style id="v54-fitment-clear-spacing-final">
+/* V54: HSRP Fitment Clear button spacing — keep equal breathing room from both sides. */
+html body #fitmentClearBtn{
+  width:calc(100% - 8px)!important;
+  margin-left:4px!important;
+  margin-right:4px!important;
+  box-sizing:border-box!important;
+}
+@media(max-width:720px){
+  html body #fitmentClearBtn{
+    width:calc(100% - 8px)!important;
+    margin-left:4px!important;
+    margin-right:4px!important;
+  }
+}
+</style>
+
+<style id="v57-card-only-liquid-glass-final">
+/* V58: Clear liquid-glass page background. No frosted/blurred background; cards remain unchanged. */
+html body{
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255,255,255,.52) 0, rgba(255,255,255,0) 34%),
+    radial-gradient(circle at 88% 18%, rgba(166,220,255,.28) 0, rgba(166,220,255,0) 36%),
+    linear-gradient(135deg, rgba(214,238,251,.78), rgba(235,246,253,.62)) !important;
+}
+html body::before{
+  display:block !important;
+  content:"" !important;
+  position:fixed !important;
+  inset:0 !important;
+  pointer-events:none !important;
+  background:linear-gradient(120deg, rgba(255,255,255,.16), rgba(255,255,255,0) 45%, rgba(132,202,238,.10)) !important;
+  z-index:0 !important;
+}
+html body .app{background:transparent !important;}
+html body main{background:transparent !important;}
+
+/* Clear, water-like glass cards with enough contrast from the page background. */
+html body .card,
+html body .stat,
+html body .settings-card,
+html body .fitment-group,
+html body .notice,
+html body .upload,
+html body .map,
+html body .auto-import-source,
+html body .table-wrap{
+  background:rgba(255,255,255,.34) !important;
+  border:1px solid rgba(255,255,255,.72) !important;
+  box-shadow:0 14px 34px rgba(48,92,125,.12), inset 0 1px 0 rgba(255,255,255,.88) !important;
+  backdrop-filter:blur(24px) saturate(145%) !important;
+  -webkit-backdrop-filter:blur(24px) saturate(145%) !important;
+}
+html body .card-head{background:rgba(255,255,255,.18) !important;border-bottom:1px solid rgba(255,255,255,.48) !important;}
+html body .card-body{background:transparent !important;}
+html body .table-wrap{background:rgba(255,255,255,.24) !important;}
+html body .table-wrap th{background:rgba(220,239,249,.38) !important;}
+html body .table-wrap td{background:rgba(255,255,255,.12) !important;}
+html body .notice{background:rgba(255,255,255,.24) !important;}
+</style>
+
+<style id="v59-sidebar-deep-blue-liquid-glass">
+/* V59: Deep translucent blue Liquid Glass sidebar — visual polish only. */
+html body .sidebar{
+  background:
+    linear-gradient(165deg, rgba(35,105,157,.62), rgba(10,61,105,.52) 58%, rgba(18,78,123,.48)) !important;
+  border:1px solid rgba(255,255,255,.62) !important;
+  box-shadow:0 16px 38px rgba(15,61,101,.18), inset 0 1px 0 rgba(255,255,255,.72) !important;
+  backdrop-filter:blur(26px) saturate(155%) !important;
+  -webkit-backdrop-filter:blur(26px) saturate(155%) !important;
+}
+html body .sidebar .side-brand{
+  background:rgba(255,255,255,.16) !important;
+  border-color:rgba(255,255,255,.42) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.68), 0 8px 20px rgba(14,60,99,.08) !important;
+}
+html body .sidebar .side-app-name{color:#f7fbff !important;text-shadow:0 1px 2px rgba(5,35,62,.22) !important;}
+html body .sidebar .side-brand p{color:rgba(231,244,255,.84) !important;}
+html body .sidebar .nav-label{
+  color:rgba(232,246,255,.90) !important;
+  background:rgba(255,255,255,.10) !important;
+  border-color:rgba(255,255,255,.34) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.22) !important;
+}
+html body .sidebar .nav a{color:rgba(239,249,255,.94) !important;}
+html body .sidebar .nav a:hover{
+  background:rgba(255,255,255,.14) !important;
+  border-color:rgba(255,255,255,.40) !important;
+  color:#fff !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.25), 0 5px 14px rgba(5,44,77,.10) !important;
+}
+html body .sidebar .nav a.active{
+  background:linear-gradient(100deg,rgba(45,132,236,.94),rgba(104,113,247,.82)) !important;
+  border-color:rgba(255,255,255,.62) !important;
+  box-shadow:0 9px 24px rgba(20,86,168,.26),inset 0 1px rgba(255,255,255,.42) !important;
+}
+html body .sidebar .side-footer{
+  background:rgba(255,255,255,.12) !important;
+  border-color:rgba(255,255,255,.32) !important;
+  color:rgba(226,243,255,.82) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.22) !important;
+}
+html body .sidebar .side-footer strong{color:#f5fbff !important;}
+html body .sidebar .side-footer a{color:#d8efff !important;}
+@media(max-width:1100px){
+  html body .sidebar{background:linear-gradient(165deg,rgba(35,105,157,.66),rgba(10,61,105,.56)) !important;}
+}
+@media(max-width:720px){
+  html body .sidebar{background:linear-gradient(165deg,rgba(35,105,157,.68),rgba(10,61,105,.58)) !important;}
+}
+@media(prefers-reduced-transparency:reduce){
+  html body .sidebar{background:#164f7d !important;}
+}
+</style>
+
+<style id="v61-clean-sky-blue-glass-sidebar">
+/* V61 — Clean Sky Blue Glass Sidebar: visual-only, based on V60. */
+html body .sidebar{
+  background:linear-gradient(160deg,rgba(205,235,255,.76),rgba(160,211,244,.58)) !important;
+  border:1px solid rgba(255,255,255,.84) !important;
+  box-shadow:0 18px 42px rgba(52,126,180,.16),inset 0 1px rgba(255,255,255,.94) !important;
+  backdrop-filter:blur(22px) saturate(145%) !important;
+  -webkit-backdrop-filter:blur(22px) saturate(145%) !important;
+}
+html body .sidebar .side-brand{
+  background:rgba(235,248,255,.34) !important;
+  border-color:rgba(255,255,255,.78) !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.9),0 8px 22px rgba(54,125,174,.10) !important;
+}
+html body .sidebar .side-app-name{color:#164d73 !important;text-shadow:none !important;}
+html body .sidebar .side-brand p{color:#4b718b !important;}
+html body .sidebar .nav-label{color:#245b7f !important;background:rgba(239,250,255,.34) !important;border-color:rgba(255,255,255,.78) !important;}
+html body .sidebar .nav a{color:#174d70 !important;}
+html body .sidebar .nav a:hover{background:rgba(255,255,255,.38) !important;border-color:rgba(255,255,255,.78) !important;box-shadow:inset 0 1px rgba(255,255,255,.9),0 6px 16px rgba(59,135,184,.08) !important;}
+html body .sidebar .nav a.active{background:linear-gradient(100deg,rgba(45,137,235,.94),rgba(106,113,242,.86)) !important;color:#fff !important;box-shadow:0 10px 26px rgba(57,124,220,.22),inset 0 1px rgba(255,255,255,.5) !important;}
+html body .sidebar .side-footer{background:rgba(239,250,255,.30) !important;border-color:rgba(255,255,255,.74) !important;color:#52748c !important;}
+html body .sidebar .side-footer strong{color:#184f72 !important;}
+html body .sidebar .side-footer a{color:#2878b8 !important;}
+@media(max-width:1100px){html body .sidebar{background:linear-gradient(180deg,rgba(208,237,255,.82),rgba(168,216,246,.64)) !important;}}
+@media(max-width:720px){html body .sidebar{background:linear-gradient(180deg,rgba(212,240,255,.86),rgba(176,220,248,.70)) !important;}}
+@media(prefers-reduced-transparency:reduce){html body .sidebar{background:#cfeafa !important;}}
+</style>
+
+<style id="v66-sidebar-hover-readable-final">
+/* V66 — Sidebar hover readability fix. Keep hover text/icons dark and readable. */
+html body .sidebar .nav a:hover,
+html body .sidebar .nav a:focus-visible{
+  background:rgba(177,220,249,.42) !important;
+  border-color:rgba(255,255,255,.84) !important;
+  color:#123f63 !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.90),0 6px 16px rgba(42,112,166,.10) !important;
+  transform:translateX(1px) !important;
+}
+html body .sidebar .nav a:hover span,
+html body .sidebar .nav a:hover i,
+html body .sidebar .nav a:focus-visible span,
+html body .sidebar .nav a:focus-visible i{
+  color:#123f63 !important;
+}
+html body .sidebar .nav a.active,
+html body .sidebar .nav a.active:hover,
+html body .sidebar .nav a.active:focus-visible{
+  background:linear-gradient(100deg,#2d8cf0,#706df2) !important;
+  color:#fff !important;
+  border-color:rgba(255,255,255,.74) !important;
+  box-shadow:0 10px 26px rgba(47,116,216,.25),inset 0 1px 0 rgba(255,255,255,.55) !important;
+  transform:none !important;
+}
+html body .sidebar .nav a.active span,
+html body .sidebar .nav a.active i,
+html body .sidebar .nav a.active:hover span,
+html body .sidebar .nav a.active:hover i{
+  color:#fff !important;
+}
+</style>
+
+<style id="v68-multiple-registration-match-search-records">
+/* V68 — Make Multiple Registration Search field visually match Search records. */
+#records #multiRegSearch1913{
+  height:40px!important;
+  min-height:40px!important;
+  max-height:40px!important;
+  box-sizing:border-box!important;
+  padding:10px 12px!important;
+  border:1px solid var(--line)!important;
+  border-radius:10px!important;
+  background:rgba(255,255,255,.72)!important;
+  color:var(--navy)!important;
+  font:600 12px Inter,Segoe UI,Arial,sans-serif!important;
+  line-height:20px!important;
+  resize:none!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55)!important;
+}
+#records #multiRegSearch1913::placeholder{
+  color:var(--muted)!important;
+  font-weight:500!important;
+}
+#records #multiRegSearch1913:focus{
+  outline:none!important;
+  border-color:rgba(55,132,205,.55)!important;
+  box-shadow:0 0 0 3px rgba(55,132,205,.10), inset 0 1px 0 rgba(255,255,255,.55)!important;
+}
+/* Keep the search/clear controls aligned to the same 40px control height. */
+#records .multi-reg-buttons-1913 button{
+  height:40px!important;
+  min-height:40px!important;
+  max-height:40px!important;
+}
+</style>
 </head><body>
 <div class="app">
   <aside class="sidebar"><div class="side-brand" aria-label="Auto Management branding card"><img class="side-brand-logo" src="data:image/png;base64,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" alt="Auto Management motorcycle logo"><div class="side-app-name">Auto Management</div><div class="side-brand-divider"></div><p>Managed by Chirag Solanki</p></div>
     <nav class="nav"><div class="nav-label">Menu</div><a class="active" href="#dashboard"><i>⌂</i><span>Dashboard</span></a><a href="#import"><i>⇧</i><span>Daily Import</span></a><a href="#records"><i>▤</i><span>Vehicle Records</span></a><a href="#fitment" id="fitmentNav" onclick="openFitment(event)"><i>◇</i><span>Fitment Dealer</span></a><a href="#rc-work" id="rcWorkNav" onclick="openRCWork(event)"><i>▣</i><span>RC Work</span></a><a href="#merge-excel" id="mergeExcelNav"><i>⇄</i><span>Merge Excel</span></a><a href="#settings" id="settingsNav"><i>⚙</i><span>Settings</span></a></nav>
     <div class="side-footer"><span>Developed by Chirag Solanki</span><span>Contact us: <a href="tel:9998117008">9998117008</a></span></div>
   </aside>
-  <main><header class="topbar"><div class="crumb">AUTO MANAGEMENT <b>Operations overview</b></div><div class="top-meta"><span class="secure">● Local data active</span><span>Version 1.9.17</span></div></header>
+  <main><header class="topbar"><div class="crumb">AUTO MANAGEMENT <b>Operations overview</b></div><div class="top-meta"><span class="secure">● Local data active</span><span>Version 1.9.18</span></div></header>
     <div class="content" id="dashboard">
       <section class="intro"><div><h1 id="greeting">Good morning, Chirag</h1><p>Import, review, and manage HSRP vehicle records from one place.</p></div><div class="last-import">LAST DATABASE UPDATE<b id="lastUpdate">No imports yet</b></div></section>
       <section class="stats" aria-label="Record summary">
@@ -4059,11 +5541,7 @@ window.saveIsolatedImportMapping=save;
   window.addEventListener("mapping-submit",()=>setTimeout(applyOriginalDateDisplay,30));
   window.addEventListener("importMappingChanged",()=>setTimeout(applyOriginalDateDisplay,30));
 })();
-</script><style id="v178-export-buttons">
-#v178ExportGroup{display:inline-flex!important;align-items:center;gap:7px;margin-left:8px;vertical-align:middle}
-#v178ExportGroup button{height:34px!important;min-height:34px!important;padding:6px 11px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important;white-space:nowrap}
-#v178ExportGroup #v177SelectedExport{margin-left:0!important}
-</style>
+</script>
 <script id="v178-export-buttons-js">
 (function(){
  function align(){
@@ -4091,10 +5569,7 @@ window.saveIsolatedImportMapping=save;
  document.addEventListener("DOMContentLoaded",()=>{align();setTimeout(align,300);setTimeout(align,800)});
  window.addEventListener("hashchange",()=>setTimeout(align,250));
 })();
-</script><style id="v179-position">
-#v179ActionGroup{display:inline-flex!important;align-items:center;gap:7px;margin-left:8px;vertical-align:middle}
-#v179ActionGroup button{margin:0!important;height:34px!important;min-height:34px!important;padding:6px 11px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important}
-</style>
+</script>
 <script id="v179-position-js">
 (function(){
  function move(){
@@ -4114,10 +5589,7 @@ window.saveIsolatedImportMapping=save;
  window.addEventListener("hashchange",()=>setTimeout(move,250));
 })();
 </script>
-<!-- V52: removed unused Registration Date column filter UI (DD/MM/YYYY). --><style id="v182-export-position">
-#v182ExportGroup{display:inline-flex!important;align-items:center;gap:7px;margin-left:8px;vertical-align:middle}
-#v182ExportGroup button{margin:0!important;height:34px!important;min-height:34px!important;padding:6px 11px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important;white-space:nowrap}
-</style>
+<!-- V52: removed unused Registration Date column filter UI (DD/MM/YYYY). -->
 <script id="v182-export-position-js">
 (function(){
  function arrange(){
@@ -4147,10 +5619,7 @@ window.saveIsolatedImportMapping=save;
  document.addEventListener("DOMContentLoaded",()=>{arrange();setTimeout(arrange,300);setTimeout(arrange,800)});
  window.addEventListener("hashchange",()=>setTimeout(arrange,250));
 })();
-</script><style id="v184-selected-export-single-line">
-#v184ExportGroup{display:inline-flex!important;align-items:center!important;gap:8px!important;vertical-align:middle!important}
-#v184ExportGroup button{display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;word-break:keep-all!important;overflow-wrap:normal!important;width:auto!important;min-width:max-content!important;height:34px!important;min-height:34px!important;padding:6px 12px!important;font-size:13px!important;line-height:20px!important;border-radius:7px!important;box-sizing:border-box!important;margin:0!important}
-</style>
+</script>
 <script id="v184-selected-export-single-line-js">
 (function(){
  function fix(){
@@ -4190,71 +5659,9 @@ window.saveIsolatedImportMapping=save;
 
 
 
-<style id="v193-hsrp-date-range-small">
-#autoImportPanel .auto-import-source:has(#hsrpAutoFrom){
-  position:relative;
-}
-#autoImportPanel .auto-import-source:has(#hsrpAutoFrom) .auto-source-help{
-  font-size:11px;
-  line-height:1.3;
-  margin-bottom:6px;
-}
-#autoImportPanel .auto-date-row{
-  display:flex!important;
-  align-items:center!important;
-  gap:5px!important;
-  flex-wrap:nowrap!important;
-  margin-top:4px!important;
-}
-#autoImportPanel .auto-date-row label{
-  font-size:11px!important;
-  font-weight:600!important;
-  margin:0!important;
-}
-#autoImportPanel .auto-date-row input[type="date"]{
-  width:125px!important;
-  height:30px!important;
-  min-height:30px!important;
-  padding:3px 6px!important;
-  font-size:12px!important;
-  border-radius:6px!important;
-  box-sizing:border-box!important;
-}
-#autoImportPanel .auto-date-row span{
-  font-size:11px!important;
-  margin:0 2px!important;
-}
-</style>
 
-<style id="v194-selected-export-clear-filters">
-/* Selected export + Clear Filters: compact, same-size, single horizontal row */
-#v194ActionGroup{
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:flex-start!important;
-  gap:8px!important;
-  vertical-align:middle!important;
-  white-space:nowrap!important;
-}
-#v194ActionGroup button{
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  box-sizing:border-box!important;
-  width:auto!important;
-  min-width:0!important;
-  height:34px!important;
-  min-height:34px!important;
-  padding:6px 12px!important;
-  margin:0!important;
-  font-size:13px!important;
-  line-height:20px!important;
-  border-radius:7px!important;
-  white-space:nowrap!important;
-  word-break:keep-all!important;
-  overflow-wrap:normal!important;
-}
-</style>
+
+
 <script id="v194-selected-export-clear-filters-js">
 (function(){
   function arrange(){
@@ -4420,24 +5827,7 @@ window.saveIsolatedImportMapping=save;
 </script>
 
 
-<style id="v1912-selected-export">
-#selectedExportBtn1912{
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  width:auto!important;
-  min-width:112px!important;
-  height:34px!important;
-  padding:6px 12px!important;
-  margin-left:8px!important;
-  font-size:13px!important;
-  line-height:20px!important;
-  border-radius:7px!important;
-  box-sizing:border-box!important;
-  white-space:nowrap!important;
-}
-#selectedExportBtn1912:disabled{opacity:.5!important;cursor:not-allowed!important}
-</style>
+
 <script id="v1912-selected-export">
 (function(){
   function getSelected(){
@@ -4732,19 +6122,7 @@ window.saveIsolatedImportMapping=save;
 </script>
 
 
-<style id="v185-subdealer-wise-export">
-#v185SubDealerExport{
-  margin:0!important;
-  height:34px!important;
-  min-height:34px!important;
-  padding:6px 12px!important;
-  font-size:13px!important;
-  line-height:20px!important;
-  border-radius:7px!important;
-  box-sizing:border-box!important;
-  white-space:nowrap!important;
-}
-</style>
+
 <script id="v185-subdealer-wise-export-js">
 (function(){
   const HEADERS = [
@@ -4957,22 +6335,7 @@ window.saveIsolatedImportMapping=save;
 
 
 
-<style id="v65-update-liquid-glass">
-#v65UpdateModal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(18,57,91,.20);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:100000}
-#v65UpdateModal.show{display:flex}
-#v65UpdateModal .v65-update-card{width:min(430px,calc(100vw - 40px));padding:26px;border-radius:24px;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.72);box-shadow:0 24px 70px rgba(29,78,120,.22),inset 0 1px 0 rgba(255,255,255,.72);backdrop-filter:blur(24px) saturate(145%);-webkit-backdrop-filter:blur(24px) saturate(145%);color:#173b5e}
-#v65UpdateModal .v65-update-icon{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.72);margin-bottom:14px}
-#v65UpdateModal .v65-update-icon svg{width:30px;height:30px;stroke:#2f73b8}
-#v65UpdateModal h3{margin:0;font-size:21px;font-weight:800}
-#v65UpdateModal p{margin:8px 0 0;color:#52718c;line-height:1.45}
-#v65UpdateModal .v65-update-meta{margin:18px 0;padding:12px 14px;border-radius:15px;background:rgba(255,255,255,.34);border:1px solid rgba(255,255,255,.55);font-size:14px}
-#v65UpdateModal .v65-update-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
-#v65UpdateModal button{height:40px;padding:0 17px;border-radius:14px;border:1px solid rgba(255,255,255,.75);font:inherit;font-weight:700;cursor:pointer;box-shadow:0 5px 16px rgba(30,86,130,.10)}
-#v65UpdateModal .v65-later{background:rgba(255,255,255,.38);color:#31536e}
-#v65UpdateModal .v65-primary{background:rgba(56,126,197,.86);color:#fff;border-color:rgba(255,255,255,.45)}
-#v65UpdateModal .v65-progress{height:7px;border-radius:99px;background:rgba(255,255,255,.38);overflow:hidden;margin-top:16px;display:none}
-#v65UpdateModal .v65-progress span{display:block;height:100%;width:0;background:#4b91d0;border-radius:99px;transition:width .25s}
-</style>
+
 <div id="v65UpdateModal" aria-hidden="true">
   <div class="v65-update-card" role="dialog" aria-modal="true" aria-labelledby="v65UpdateTitle">
     <div class="v65-update-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 18v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -5018,17 +6381,7 @@ window.saveIsolatedImportMapping=save;
 </script>
 
 
-<style id="v21-delete-all-modal-style">
-#deleteAllModal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(8,30,55,.55);z-index:99999;padding:20px}
-#deleteAllModal .delete-modal-card{width:min(460px,calc(100vw - 40px));background:#fff;border:1px solid #b7d4ec;border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.28);padding:26px}
-#deleteAllModal h3{margin:0 0 8px;color:#123a61;font-size:22px}
-#deleteAllModal p{margin:0 0 16px;color:#4f6b86;line-height:1.5}
-#deleteAllModal input{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #b7d4ec;border-radius:10px;font-size:16px;margin-bottom:16px}
-#deleteAllModal .delete-modal-actions{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-top:2px}
-#deleteAllModal .delete-modal-actions button{display:inline-flex!important;visibility:visible!important;opacity:1!important;position:relative!important;width:auto!important;height:42px!important;min-width:96px!important;padding:10px 16px!important;margin:0!important;overflow:visible!important;border-radius:10px!important;border:1px solid #b7d4ec!important;background:#fff!important;color:#123a61!important;font-family:inherit!important;font-size:15px!important;font-weight:700!important;line-height:20px!important;text-align:center!important;align-items:center!important;justify-content:center!important;cursor:pointer!important;box-sizing:border-box!important}
-#deleteAllModal .delete-modal-actions button.delete-confirm{background:#b42318!important;color:#fff!important;border-color:#b42318!important}
-#deleteAllModal .delete-modal-actions button:hover{filter:brightness(.97)}
-</style>
+
 <div id="deleteAllModal" role="dialog" aria-modal="true" aria-labelledby="deleteAllModalTitle">
   <div class="delete-modal-card" role="document">
     <h3 id="deleteAllModalTitle">Delete all saved data?</h3>
@@ -5134,16 +6487,7 @@ function confirmDeleteSalesBillData(){
 </script>
 
 
-<style id="v1916-permanent-hide-mapping-ui">
-/* v1.9.16 FINAL: Import Mapping is an internal import workflow only.
-   Never expose mapping controls on the normal UI/Settings page. */
-#importMappingSettings,
-#mappingToggle,
-#mappingSubmitRefreshBtn,
-#dashboardMappingSubmit168 {
-  display:none !important;
-}
-</style>
+
 <script id="v1916-permanent-hide-mapping-ui-js">
 (function(){
   function removeMappingUi(){
@@ -5193,19 +6537,7 @@ function confirmDeleteSalesBillData(){
 })();
 </script>
 
-<style id="v44-clear-filter-round-x">
-/* V44: Clear Filters compact circular X control */
-#v44ClearFiltersRoundX{
-  width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;
-  padding:0!important;margin:0!important;box-sizing:border-box!important;
-  border-radius:50%!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
-  font-size:0!important;line-height:0!important;white-space:nowrap!important;
-}
-#v44ClearFiltersRoundX::before{
-  content:"×";font-size:27px!important;line-height:1!important;font-weight:400!important;
-  display:block!important;transform:translateY(-1px);
-}
-</style>
+
 <script id="v44-clear-filter-round-x-js">
 (function(){
   function apply(){
@@ -5221,54 +6553,7 @@ function confirmDeleteSalesBillData(){
 </script>
 
 
-<style id="v49-liquid-glass-hard-override">
-/* V49 HARD VISUAL OVERRIDE — intentionally placed last. */
-html body .card,
-html body .stat,
-html body .card-head,
-html body .card-body,
-html body .notice,
-html body .upload,
-html body .map,
-html body .auto-import-source,
-html body .fitment-group,
-html body .table-wrap{
-  background-image:none!important;
-}
-html body .card{
-  background-color:rgba(255,255,255,.10)!important;
-  background:rgba(255,255,255,.10)!important;
-  border:1px solid rgba(255,255,255,.48)!important;
-  box-shadow:0 18px 48px rgba(24,69,106,.10), inset 0 1px rgba(255,255,255,.72)!important;
-  backdrop-filter:blur(30px) saturate(145%)!important;
-  -webkit-backdrop-filter:blur(30px) saturate(145%)!important;
-}
-html body .card-head{background:rgba(255,255,255,.045)!important;backdrop-filter:blur(22px)!important;-webkit-backdrop-filter:blur(22px)!important}
-html body .card-body{background:transparent!important}
-html body .notice{background:rgba(255,255,255,.075)!important;border-color:rgba(255,255,255,.42)!important;backdrop-filter:blur(22px) saturate(145%)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important}
-html body .upload,html body .map,html body .auto-import-source,html body .fitment-group{background:rgba(255,255,255,.065)!important;border-color:rgba(255,255,255,.42)!important;backdrop-filter:blur(22px) saturate(145%)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important}
-html body .table-wrap{background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.42)!important;backdrop-filter:blur(22px) saturate(145%)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important}
-html body .table-wrap th{background:rgba(225,242,251,.22)!important}
-html body .table-wrap td{background:rgba(255,255,255,.025)!important}
 
-/* Clear Filters — hard target, independent of all legacy button CSS. */
-html body #v49ClearFiltersRoundX{
-  width:38px!important;height:38px!important;min-width:38px!important;max-width:38px!important;
-  min-height:38px!important;max-height:38px!important;padding:0!important;margin:0!important;
-  box-sizing:border-box!important;border-radius:50%!important;
-  display:inline-flex!important;align-items:center!important;justify-content:center!important;
-  overflow:hidden!important;font-size:0!important;line-height:0!important;color:transparent!important;
-  background:rgba(255,255,255,.24)!important;border:1px solid rgba(255,255,255,.72)!important;
-  box-shadow:0 6px 16px rgba(28,78,117,.12),inset 0 1px rgba(255,255,255,.84)!important;
-  flex:0 0 38px!important;
-}
-html body #v49ClearFiltersRoundX::before{
-  content:"×"!important;display:block!important;color:#245675!important;
-  font-family:Arial,sans-serif!important;font-size:28px!important;font-weight:400!important;
-  line-height:34px!important;width:34px!important;height:34px!important;text-align:center!important;
-}
-html body #v49ClearFiltersRoundX:hover{background:rgba(255,255,255,.40)!important;transform:translateY(-1px)!important}
-</style>
 <script id="v49-hard-clear-filter-js">
 (function(){
   function apply(){
@@ -5292,159 +6577,15 @@ html body #v49ClearFiltersRoundX:hover{background:rgba(255,255,255,.40)!importan
 })();
 </script>
 
-<style id="v55-logo-visibility-final">
-/* V55: ensure the packaged motorcycle SVG is used and remains clearly visible. */
-html body .side-brand img{
-  display:block!important;
-  visibility:visible!important;
-  opacity:1!important;
-  width:128px!important;
-  height:88px!important;
-  max-width:100%!important;
-  max-height:none!important;
-  object-fit:contain!important;
-  object-position:center!important;
-  margin:0 auto 7px!important;
-  filter:drop-shadow(0 4px 7px rgba(20,62,96,.12))!important;
-}
-@media(max-width:1100px){
-  html body .side-brand img{width:58px!important;height:46px!important;margin:0 auto!important}
-}
-@media(max-width:720px){
-  html body .side-brand{width:58px!important;min-width:58px!important}
-  html body .side-brand img{width:58px!important;height:46px!important;max-width:none!important}
-}
-</style>
 
 
-<style id="v56-branding-card-visible-final">
-/* V56: make the sidebar branding unmistakably a glass card. */
-html body .side-brand{
-  position:relative!important; display:flex!important; flex-direction:column!important; align-items:center!important; justify-content:center!important;
-  box-sizing:border-box!important; width:100%!important; min-height:150px!important; margin:0 0 12px!important; padding:14px 12px 16px!important;
-  border:1px solid rgba(255,255,255,.82)!important; border-radius:22px!important;
-  background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(224,242,252,.16))!important;
-  box-shadow:0 12px 30px rgba(36,91,132,.12), inset 0 1px 0 rgba(255,255,255,.92), inset 0 0 0 1px rgba(255,255,255,.18)!important;
-  backdrop-filter:blur(28px) saturate(155%)!important; -webkit-backdrop-filter:blur(28px) saturate(155%)!important;
-  overflow:hidden!important;
-}
-html body .side-brand::before{content:""!important;position:absolute!important;inset:0!important;border-radius:inherit!important;background:linear-gradient(120deg,rgba(255,255,255,.22),transparent 42%,rgba(255,255,255,.08))!important;pointer-events:none!important}
-html body .side-brand img{position:relative!important;z-index:1!important;display:block!important;width:108px!important;height:76px!important;max-width:100%!important;object-fit:contain!important;object-position:center!important;margin:0 auto 7px!important;opacity:1!important;visibility:visible!important;filter:drop-shadow(0 4px 7px rgba(20,62,96,.14))!important}
-html body .side-brand .side-app-name,html body .side-brand .side-brand-divider,html body .side-brand p{position:relative!important;z-index:1!important}
-html body .side-brand .side-app-name{display:block!important;text-align:center!important;margin:3px 0 0!important;color:#143a63!important;font-size:20px!important;font-weight:850!important;line-height:1.12!important}
-html body .side-brand .side-brand-divider{display:block!important;width:72%!important;height:1px!important;margin:8px auto 6px!important;background:rgba(255,255,255,.58)!important}
-html body .side-brand p{display:block!important;text-align:center!important;margin:0!important;color:#5f7892!important;font-size:11px!important;font-weight:650!important;line-height:1.4!important}
-@media(max-width:1100px){
- html body .side-brand{min-height:132px!important;padding:10px 8px 12px!important}
- html body .side-brand img{width:82px!important;height:60px!important}
- html body .side-brand .side-app-name{font-size:16px!important}
-}
-@media(max-width:720px){
- html body .sidebar{align-items:stretch!important}
- html body .side-brand{width:100%!important;min-height:118px!important;margin-bottom:8px!important}
- html body .side-brand img{width:82px!important;height:58px!important}
- html body .side-brand .side-app-name{font-size:17px!important}
-}
-</style>
 
 
-<style id="v60-pearl-glass-sidebar">
-/* V60 — Professional Pearl/Clear Glass Sidebar */
-html body .sidebar{
-  background:linear-gradient(180deg,rgba(238,247,253,.78),rgba(208,229,243,.62)) !important;
-  color:#173b5a !important;
-  border-right:1px solid rgba(255,255,255,.82) !important;
-  box-shadow:8px 0 30px rgba(54,91,119,.10),inset -1px 0 rgba(255,255,255,.38) !important;
-  backdrop-filter:blur(24px) saturate(135%) !important;
-  -webkit-backdrop-filter:blur(24px) saturate(135%) !important;
-}
-html body .sidebar .side-brand{
-  background:rgba(255,255,255,.30) !important;
-  border:1px solid rgba(255,255,255,.70) !important;
-  border-radius:20px !important;
-  box-shadow:inset 0 1px rgba(255,255,255,.82),0 8px 22px rgba(52,92,120,.06) !important;
-}
-html body .sidebar .side-app-name{color:#123b5c !important;text-shadow:none !important;}
-html body .sidebar .side-brand p{color:#55728a !important;}
-html body .sidebar .nav-label{
-  color:#49677f !important;
-  background:rgba(255,255,255,.28) !important;
-  border-color:rgba(255,255,255,.70) !important;
-  box-shadow:inset 0 1px rgba(255,255,255,.80),0 3px 10px rgba(55,94,120,.05) !important;
-}
-html body .sidebar .nav a{color:#214663 !important;border-color:transparent !important;}
-html body .sidebar .nav a:hover{
-  color:#153c59 !important;
-  background:rgba(255,255,255,.42) !important;
-  border-color:rgba(255,255,255,.70) !important;
-  box-shadow:inset 0 1px rgba(255,255,255,.80),0 5px 14px rgba(46,88,117,.08) !important;
-}
-html body .sidebar .nav a.active{
-  background:linear-gradient(100deg,rgba(47,132,236,.94),rgba(105,113,245,.84)) !important;
-  color:#fff !important;
-  border-color:rgba(255,255,255,.70) !important;
-  box-shadow:0 9px 24px rgba(55,113,205,.22),inset 0 1px rgba(255,255,255,.48) !important;
-}
-html body .sidebar .side-footer{
-  background:rgba(255,255,255,.28) !important;
-  border-color:rgba(255,255,255,.70) !important;
-  color:#5a7489 !important;
-  box-shadow:inset 0 1px rgba(255,255,255,.80) !important;
-}
-html body .sidebar .side-footer strong{color:#173f5e !important;}
-html body .sidebar .side-footer a{color:#2b76bc !important;}
-@media(max-width:1100px){html body .sidebar{background:linear-gradient(180deg,rgba(232,245,253,.84),rgba(207,228,243,.70)) !important;}}
-@media(max-width:720px){html body .sidebar{background:linear-gradient(180deg,rgba(232,245,253,.88),rgba(207,228,243,.74)) !important;}}
-@media(prefers-reduced-transparency:reduce){html body .sidebar{background:#e4f0f7 !important;}}
-</style>
 
-<style id="v62-sidebar-final-polish">
-/* V62 — Final Sky Blue Sidebar Polish. Based on V61; sidebar only. */
-html body .sidebar{
-  background:linear-gradient(155deg,rgba(185,224,252,.88),rgba(137,193,232,.72) 58%,rgba(119,181,226,.68)) !important;
-  border:1px solid rgba(255,255,255,.88) !important;
-  box-shadow:0 18px 42px rgba(43,105,158,.20),inset 0 1px 0 rgba(255,255,255,.96),inset -1px 0 rgba(85,151,199,.12) !important;
-  backdrop-filter:blur(20px) saturate(150%) !important;
-  -webkit-backdrop-filter:blur(20px) saturate(150%) !important;
-}
-html body .sidebar .side-brand{
-  background:rgba(239,249,255,.42) !important;
-  border-color:rgba(255,255,255,.84) !important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 8px 22px rgba(46,112,166,.10) !important;
-}
-html body .sidebar .side-app-name{color:#123f63 !important;}
-html body .sidebar .side-brand p{color:#3e6682 !important;}
-html body .sidebar .nav-label{
-  color:#1d5275 !important;
-  background:rgba(240,250,255,.40) !important;
-  border-color:rgba(255,255,255,.82) !important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.86) !important;
-}
-html body .sidebar .nav a{color:#143f60 !important;}
-html body .sidebar .nav a:hover{
-  background:rgba(255,255,255,.42) !important;
-  border-color:rgba(255,255,255,.82) !important;
-  color:#123b5b !important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 6px 16px rgba(48,116,171,.10) !important;
-}
-html body .sidebar .nav a.active{
-  background:linear-gradient(100deg,#2d8cf0,#706df2) !important;
-  color:#fff !important;
-  border-color:rgba(255,255,255,.72) !important;
-  box-shadow:0 10px 26px rgba(47,116,216,.25),inset 0 1px 0 rgba(255,255,255,.55) !important;
-}
-html body .sidebar .side-footer{
-  background:rgba(239,249,255,.34) !important;
-  border-color:rgba(255,255,255,.78) !important;
-  color:#4b7089 !important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.82) !important;
-}
-html body .sidebar .side-footer strong{color:#184b6d !important;}
-html body .sidebar .side-footer a{color:#2173b1 !important;}
-@media(max-width:1100px){html body .sidebar{background:linear-gradient(155deg,rgba(188,226,253,.91),rgba(137,193,232,.78)) !important;}}
-@media(max-width:720px){html body .sidebar{background:linear-gradient(155deg,rgba(192,230,255,.93),rgba(145,199,238,.82)) !important;}}
-@media(prefers-reduced-transparency:reduce){html body .sidebar{background:#b9dcf4 !important;}}
-</style>
+
+
+
+
 
 <script id="v64-merge-excel-feature">
 (function(){
@@ -5566,313 +6707,14 @@ html body .sidebar .side-footer a{color:#2173b1 !important;}
 })();
 </script>
 
-<style id="v72-sidebar-scroll-final">
-/* V72 final sidebar scroll contract: thin/invisible scrollbar, independent desktop scroll. */
-@media(min-width:721px){
-  .app{min-height:100vh!important;align-items:stretch!important}
-  .sidebar{height:100vh!important;max-height:100vh!important;overflow-y:auto!important;overflow-x:hidden!important;min-height:0!important;scrollbar-width:thin!important;scrollbar-color:rgba(38,119,190,.10) transparent!important}
-  .sidebar::-webkit-scrollbar{width:2px!important;height:2px!important}
-  .sidebar::-webkit-scrollbar-track{background:transparent!important}
-  .sidebar::-webkit-scrollbar-thumb{background:rgba(38,119,190,.10)!important;border-radius:999px!important}
-  .sidebar::-webkit-scrollbar-thumb:hover{background:rgba(38,119,190,.18)!important}
-}
-@media(max-width:720px){.sidebar{overflow:visible!important}}
-</style>
+
 </body></html>
-<style id="v16-clear-overlap-fix">
-/* v1.9.16 V16 — Prevent Multiple Registration Clear/Search controls from overlapping Search records. */
-.multi-reg-controls-1913{
-  grid-template-columns:minmax(0,1fr) auto!important;
-  min-width:0!important;
-  width:100%!important;
-  box-sizing:border-box!important;
-}
-.multi-reg-buttons-1913{
-  display:flex!important;
-  flex:0 0 auto!important;
-  width:auto!important;
-  min-width:max-content!important;
-  gap:6px!important;
-  align-items:center!important;
-  box-sizing:border-box!important;
-}
-.multi-reg-buttons-1913 button{
-  flex:0 0 auto!important;
-  width:auto!important;
-  min-width:0!important;
-  box-sizing:border-box!important;
-}
-#multiRegSearchBtn1913{min-width:100px!important}
-#multiRegClearBtn1913{min-width:64px!important}
-#q{
-  width:100%!important;
-  min-width:0!important;
-  max-width:100%!important;
-  box-sizing:border-box!important;
-}
-@media(max-width:1100px) and (min-width:721px){
-  .filters{
-    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
-    gap:10px!important;
-  }
-  .multi-reg-1913{grid-column:1!important}
-  .multi-reg-controls-1913{grid-template-columns:minmax(0,1fr) auto!important}
-  .filter-actions{min-width:0!important}
-  .filter-actions .filter-actions{display:flex!important;gap:8px!important;flex-wrap:wrap!important}
-}
-@media(max-width:720px){
-  .filters{grid-template-columns:1fr!important}
-  .multi-reg-controls-1913{grid-template-columns:1fr!important}
-  .multi-reg-buttons-1913{justify-content:flex-start!important}
-}
-</style>
 
-<style id="v1916-well-organized-records-ui">
-/* v1.9.16 V17 — final visual normalization for records/search controls.
-   UI-only: no data, import, export or search logic changes. */
-#records .card-body{padding-top:16px!important}
-#records .filters{
-  display:grid!important;
-  grid-template-columns:minmax(250px,1.25fr) minmax(230px,1.2fr) minmax(180px,.85fr) minmax(300px,1.45fr)!important;
-  gap:12px!important;
-  align-items:end!important;
-  width:100%!important;
-  box-sizing:border-box!important;
-}
-#records .filter-field,
-#records .filter-actions{min-width:0!important;box-sizing:border-box!important}
-#records .filter-field>label,
-#records .filter-actions>label{display:block!important;height:16px!important;margin:0 0 6px!important;line-height:16px!important;font-size:11px!important;font-weight:750!important;color:var(--muted)!important}
-#records .multi-reg-controls-1913{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) auto!important;
-  gap:8px!important;
-  align-items:center!important;
-}
-#records #multiRegSearch1913,
-#records #q,
-#records #dealer{
-  width:100%!important;
-  min-width:0!important;
-  height:40px!important;
-  min-height:40px!important;
-  max-height:40px!important;
-  box-sizing:border-box!important;
-  border-radius:9px!important;
-}
-#records #multiRegSearch1913{resize:none!important;padding:8px 10px!important;font-size:12px!important}
-#records #q{padding:9px 11px!important;font-size:12px!important}
-#records #dealer{padding:8px 10px!important;font-size:12px!important}
-#records .multi-reg-buttons-1913,
-#records .filter-actions>div.filter-actions{
-  display:flex!important;
-  align-items:center!important;
-  gap:8px!important;
-  min-width:0!important;
-}
-#records .multi-reg-buttons-1913 button,
-#records .filter-actions>div.filter-actions button{
-  width:auto!important;
-  min-width:0!important;
-  height:40px!important;
-  min-height:40px!important;
-  max-height:40px!important;
-  padding:0 14px!important;
-  margin:0!important;
-  box-sizing:border-box!important;
-  border-radius:9px!important;
-  font-size:12px!important;
-  line-height:1!important;
-  white-space:nowrap!important;
-}
-#records #reports{min-width:145px!important}
-#records #selectedExportBtn1912{min-width:125px!important}
-#records #multiRegSearchBtn1913{min-width:92px!important}
-#records #multiRegClearBtn1913{min-width:58px!important}
-#records .filter-actions{width:100%!important}
-#records .filter-actions>div.filter-actions{width:100%!important;justify-content:flex-start!important}
-#records .filter-actions>div.filter-actions button{flex:0 0 auto!important}
-#records .records-toolbar button,
-#records .records-head-actions button{height:40px!important;min-height:40px!important;padding:0 14px!important;font-size:12px!important}
-#records .export-actions button,
-#records #v1913ExportTopRow>button{height:40px!important;min-height:40px!important;padding:0 14px!important;font-size:12px!important}
-@media(max-width:1100px){
-  #records .filters{grid-template-columns:minmax(220px,1.2fr) minmax(210px,1.1fr) minmax(170px,.9fr) minmax(270px,1.4fr)!important;gap:10px!important}
-}
-@media(max-width:820px){
-  #records .filters{grid-template-columns:1fr 1fr!important;gap:10px!important}
-  #records .filter-actions{grid-column:1/-1!important}
-}
-@media(max-width:560px){
-  #records .filters{grid-template-columns:1fr!important;gap:10px!important}
-  #records .filter-actions{grid-column:auto!important}
-  #records .multi-reg-controls-1913{grid-template-columns:1fr!important}
-  #records .multi-reg-buttons-1913{justify-content:flex-start!important}
-  #records .filter-actions>div.filter-actions{flex-wrap:wrap!important}
-}
-</style>
 
-<style id="v18-multiple-search-layout-final">
-/* v1.9.16 V18 — Final search/filter sizing and alignment. */
-.filters{
-  grid-template-columns:minmax(330px,1.25fr) minmax(340px,1.35fr) minmax(210px,.85fr) auto!important;
-  gap:12px!important;
-  align-items:end!important;
-}
-.multi-reg-controls-1913{
-  grid-template-columns:minmax(0,1fr) 96px!important;
-  gap:8px!important;
-  align-items:center!important;
-}
-#multiRegSearch1913{
-  width:100%!important;
-  min-width:0!important;
-  height:42px!important;
-  min-height:42px!important;
-  max-height:42px!important;
-  padding:8px 10px!important;
-}
-.multi-reg-buttons-1913{
-  width:96px!important;
-  min-width:96px!important;
-  display:grid!important;
-  grid-template-columns:44px 44px!important;
-  gap:8px!important;
-  align-items:center!important;
-}
-.multi-reg-buttons-1913 button{
-  width:44px!important;
-  min-width:44px!important;
-  max-width:44px!important;
-  height:42px!important;
-  min-height:42px!important;
-  max-height:42px!important;
-  padding:0!important;
-  margin:0!important;
-  border-radius:8px!important;
-  font-size:0!important;
-  line-height:1!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-}
-#multiRegSearchBtn1913::before{
-  content:none!important;
-  display:none!important;
-}
-#multiRegClearBtn1913::before{
-  content:"×";
-  font-size:22px;
-  line-height:1;
-  font-weight:600;
-}
-#q{
-  width:100%!important;
-  min-width:0!important;
-  max-width:none!important;
-  height:42px!important;
-  min-height:42px!important;
-  box-sizing:border-box!important;
-}
-#dealer{
-  width:100%!important;
-  min-width:0!important;
-  height:42px!important;
-  min-height:42px!important;
-  box-sizing:border-box!important;
-}
-@media(max-width:1100px) and (min-width:721px){
-  .filters{
-    grid-template-columns:minmax(290px,1.2fr) minmax(300px,1.25fr) minmax(190px,.85fr) auto!important;
-    gap:9px!important;
-  }
-}
-@media(max-width:720px){
-  .filters{grid-template-columns:1fr!important;gap:10px!important}
-  .multi-reg-controls-1913{grid-template-columns:minmax(0,1fr) 96px!important}
-}
-</style>
-<style id="v19-search-controls-final">
-/* v1.9.16 V19 — compact Material-style search controls + no overlap. */
-.filters{
-  grid-template-columns:minmax(310px,1.25fr) minmax(280px,1.35fr) minmax(190px,.9fr) auto!important;
-  gap:12px!important;
-  align-items:end!important;
-}
-.multi-reg-controls-1913{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) 40px 40px!important;
-  gap:8px!important;
-  width:100%!important;
-  min-width:0!important;
-  align-items:center!important;
-}
-#multiRegSearch1913{
-  min-width:0!important;
-  width:100%!important;
-  height:40px!important;
-}
-.multi-reg-buttons-1913{display:contents!important}
-.multi-reg-buttons-1913 button,
-#multiRegSearchBtn1913,
-#multiRegClearBtn1913{
-  width:40px!important;
-  min-width:40px!important;
-  max-width:40px!important;
-  height:40px!important;
-  min-height:40px!important;
-  max-height:40px!important;
-  padding:0!important;
-  margin:0!important;
-  border-radius:10px!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  line-height:1!important;
-  font-size:0!important;
-  box-sizing:border-box!important;
-}
-#multiRegSearchBtn1913{
-  background:#1677c7!important;
-  color:#fff!important;
-  box-shadow:0 3px 8px rgba(18,104,180,.22)!important;
-}
-#multiRegSearchBtn1913 svg{width:21px!important;height:21px!important;display:block!important}
-#multiRegClearBtn1913{
-  background:#edf4f9!important;
-  color:#205276!important;
-  border:1px solid #d1e0eb!important;
-}
-#multiRegClearBtn1913::before{
-  content:"×";
-  font-size:22px!important;
-  font-weight:500!important;
-  line-height:1!important;
-}
-#q{
-  width:100%!important;
-  min-width:0!important;
-  max-width:none!important;
-  height:40px!important;
-  min-height:40px!important;
-}
-#dealer{
-  width:100%!important;
-  height:40px!important;
-  min-height:40px!important;
-}
-@media(max-width:1100px) and (min-width:721px){
-  .filters{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important}
-  .multi-reg-1913{grid-column:auto!important}
-  .multi-reg-controls-1913{grid-template-columns:minmax(0,1fr) 40px 40px!important}
-  .filter-actions{min-width:0!important}
-}
-@media(max-width:720px){
-  .filters{grid-template-columns:1fr!important;gap:10px!important}
-  .multi-reg-controls-1913{grid-template-columns:minmax(0,1fr) 40px 40px!important}
-  .filter-actions{width:100%!important}
-}
-</style>
+
+
+
+
 <script id="v19-material-search-icon">
 (function(){
   function install(){
@@ -5886,16 +6728,7 @@ html body .sidebar .side-footer a{color:#2173b1 !important;}
 })();
 </script>
 
-<style id="v20-no-emoji-search-icon">
-/* v1.9.16 V20 — search button uses only Material-style SVG; no emoji. */
-#multiRegSearchBtn1913::before{content:none!important;display:none!important;}
-#multiRegSearchBtn1913::after{content:none!important;display:none!important;}
-#multiRegSearchBtn1913 svg{
-  width:20px!important;height:20px!important;
-  display:block!important;
-  flex:none!important;
-}
-</style>
+
 <script id="v20-search-icon-final">
 (function(){
   function install(){
@@ -5908,88 +6741,7 @@ html body .sidebar .side-footer a{color:#2173b1 !important;}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
 })();
 </script>
-<style id="v20-search-round-clear-final">
-/* v1.9.16 V21 — compact round search + non-overlapping clear controls */
-.multi-reg-controls-1913{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) 40px 40px!important;
-  gap:8px!important;
-  width:100%!important;
-  min-width:0!important;
-  align-items:center!important;
-  box-sizing:border-box!important;
-}
-.multi-reg-buttons-1913{
-  display:contents!important;
-}
-.multi-reg-buttons-1913 button{
-  width:40px!important;
-  min-width:40px!important;
-  max-width:40px!important;
-  height:40px!important;
-  min-height:40px!important;
-  max-height:40px!important;
-  padding:0!important;
-  margin:0!important;
-  box-sizing:border-box!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  flex:none!important;
-  overflow:hidden!important;
-}
-#multiRegSearchBtn1913{
-  border-radius:50%!important;
-  position:relative!important;
-  font-size:0!important;
-}
-#multiRegSearchBtn1913::before{
-  content:""!important;
-  width:15px!important;
-  height:15px!important;
-  border:2px solid currentColor!important;
-  border-radius:50%!important;
-  display:block!important;
-  box-sizing:border-box!important;
-  position:relative!important;
-}
-#multiRegSearchBtn1913::after{
-  content:""!important;
-  position:absolute!important;
-  width:7px!important;
-  height:2px!important;
-  background:currentColor!important;
-  border-radius:2px!important;
-  transform:rotate(45deg)!important;
-  margin:12px 0 0 12px!important;
-}
-#multiRegClearBtn1913{
-  border-radius:50%!important;
-  font-size:0!important;
-  position:relative!important;
-}
-#multiRegClearBtn1913::before,
-#multiRegClearBtn1913::after{
-  content:""!important;
-  position:absolute!important;
-  width:15px!important;
-  height:2px!important;
-  background:currentColor!important;
-  border-radius:2px!important;
-}
-#multiRegClearBtn1913::before{transform:rotate(45deg)!important}
-#multiRegClearBtn1913::after{transform:rotate(-45deg)!important}
-#multiRegSearch1913{
-  width:100%!important;
-  min-width:0!important;
-  max-width:none!important;
-}
-@media(max-width:720px){
-  .multi-reg-controls-1913{
-    grid-template-columns:minmax(0,1fr) 40px 40px!important;
-  }
-}
-</style>
+
 <script id="v21-search-clear-final-js">
 (function(){
   function setup(){
@@ -6002,107 +6754,7 @@ html body .sidebar .side-footer a{color:#2173b1 !important;}
 })();
 </script>
 
-<style id="v22-search-layout-final">
-/* v1.9.16 V22 — final mobile-safe search/filter layout. */
-#records .multi-reg-controls-1913{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) 38px 38px!important;
-  gap:8px!important;
-  width:100%!important;
-  min-width:0!important;
-  max-width:100%!important;
-  align-items:center!important;
-  box-sizing:border-box!important;
-}
-#records .multi-reg-buttons-1913{display:contents!important}
-#records #multiRegSearch1913{
-  width:100%!important;
-  min-width:0!important;
-  max-width:100%!important;
-  height:40px!important;
-  min-height:40px!important;
-  max-height:40px!important;
-  box-sizing:border-box!important;
-  overflow:hidden!important;
-}
-#records #multiRegSearchBtn1913,
-#records #multiRegClearBtn1913{
-  width:38px!important;
-  min-width:38px!important;
-  max-width:38px!important;
-  height:38px!important;
-  min-height:38px!important;
-  max-height:38px!important;
-  padding:0!important;
-  margin:0!important;
-  box-sizing:border-box!important;
-  flex:none!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  position:relative!important;
-  overflow:hidden!important;
-  border-radius:50%!important;
-  font-size:0!important;
-  line-height:0!important;
-}
-/* Search icon: SVG only. No pseudo-icon and no emoji/text. */
-#records #multiRegSearchBtn1913::before,
-#records #multiRegSearchBtn1913::after{content:none!important;display:none!important}
-#records #multiRegSearchBtn1913 svg{
-  width:18px!important;
-  height:18px!important;
-  display:block!important;
-  flex:none!important;
-}
-/* Clear icon: one clean material-style X. */
-#records #multiRegClearBtn1913::before,
-#records #multiRegClearBtn1913::after{
-  content:""!important;
-  display:block!important;
-  position:absolute!important;
-  width:14px!important;
-  height:2px!important;
-  background:currentColor!important;
-  border-radius:2px!important;
-  left:50%!important;
-  top:50%!important;
-  margin:0!important;
-}
-#records #multiRegClearBtn1913::before{transform:translate(-50%,-50%) rotate(45deg)!important}
-#records #multiRegClearBtn1913::after{transform:translate(-50%,-50%) rotate(-45deg)!important}
-#records #q,
-#records #dealer{
-  width:100%!important;
-  min-width:0!important;
-  max-width:100%!important;
-  box-sizing:border-box!important;
-}
-@media(max-width:720px){
-  #records .filters{
-    display:grid!important;
-    grid-template-columns:minmax(0,1fr)!important;
-    gap:12px!important;
-    width:100%!important;
-    min-width:0!important;
-    overflow:hidden!important;
-  }
-  #records .filter-field,
-  #records .filter-actions{min-width:0!important;width:100%!important;max-width:100%!important}
-  #records .multi-reg-controls-1913{
-    grid-template-columns:minmax(0,1fr) 38px 38px!important;
-    width:100%!important;
-  }
-  #records .multi-reg-buttons-1913{display:contents!important}
-  #records .filter-actions>div.filter-actions{
-    width:100%!important;
-    min-width:0!important;
-    display:flex!important;
-    flex-wrap:wrap!important;
-    gap:8px!important;
-  }
-}
-</style>
+
 <script id="v22-search-icon-clean">
 (function(){
   function install(){
@@ -6117,346 +6769,18 @@ html body .sidebar .side-footer a{color:#2173b1 !important;}
 })();
 </script>
 
-<style id="v23-rounded-export-buttons">
-/* v1.9.16 V23 — consistent rounded corners for every user-facing Export button. */
-#v1913ExportTopRow #reports,
-#v1913ExportTopRow #selectedExportBtn1912,
-#v1913ExportTopRow #v185SubDealerExport,
-#fitmentExportBtn,
-button[id*="Export"],
-button[id*="export"]{
-  border-radius:12px !important;
-}
 
-/* Keep the dedicated export toolbar buttons balanced and professional. */
-#v1913ExportTopRow > button{
-  border-radius:12px !important;
-}
-</style>
 
-<style id="v24-export-toolbar-clean">
-/* v1.9.16 V24 — compact export toolbar with visible separation from card edges. */
-#v1913ExportTopRow{
-  width:100%!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:flex-start!important;
-  gap:12px!important;
-  flex-wrap:wrap!important;
-  overflow:visible!important;
-  padding:6px 0 16px!important;
-  margin:0!important;
-  box-sizing:border-box!important;
-}
-#v1913ExportTopRow > button{
-  flex:0 0 auto!important;
-  width:auto!important;
-  min-width:0!important;
-  max-width:none!important;
-  height:42px!important;
-  min-height:42px!important;
-  padding:0 18px!important;
-  margin:0!important;
-  border-radius:12px!important;
-  box-sizing:border-box!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  white-space:nowrap!important;
-  overflow:visible!important;
-  text-overflow:clip!important;
-  font-size:13px!important;
-  line-height:1!important;
-}
-#v1913ExportTopRow #reports{width:190px!important}
-#v1913ExportTopRow #selectedExportBtn1912{width:160px!important}
-#v1913ExportTopRow #v185SubDealerExport{width:190px!important}
-/* Keep the toolbar visually separated from the card outline. */
-#records .card-body{overflow:visible!important}
-@media(max-width:760px){
-  #v1913ExportTopRow{gap:10px!important;padding:6px 0 14px!important}
-  #v1913ExportTopRow > button{height:40px!important;min-height:40px!important;padding:0 14px!important}
-  #v1913ExportTopRow #reports{width:180px!important}
-  #v1913ExportTopRow #selectedExportBtn1912{width:150px!important}
-  #v1913ExportTopRow #v185SubDealerExport{width:180px!important}
-}
-@media(max-width:480px){
-  #v1913ExportTopRow{justify-content:flex-start!important}
-  #v1913ExportTopRow > button{width:auto!important;min-width:0!important;max-width:100%!important}
-}
-/* Fitment Dealer export follows the same rounded, compact visual language. */
-#fitmentExportBtn{
-  height:40px!important;
-  min-height:40px!important;
-  padding:0 18px!important;
-  border-radius:12px!important;
-  box-sizing:border-box!important;
-}
-</style>
-<style id="v25-compact-content-width-buttons">
-/* v1.9.16 V25 — compact buttons: width follows label + small padding. */
-#v1913ExportTopRow > button,
-#v1913ExportTopRow #reports,
-#v1913ExportTopRow #selectedExportBtn1912,
-#v1913ExportTopRow #v185SubDealerExport,
-#fitmentExportBtn,
-#records #reports,
-#records #selectedExportBtn1912,
-#records #v185SubDealerExport,
-#records button[id*="Export"],
-#records button[id*="export"],
-#records button[onclick*="export"],
-#records button[onclick*="Export"],
-#records .filter-actions button#clearFilters,
-#records #clearFiltersBtn,
-#records button[onclick*="clearFilters"]{
-  width:max-content !important;
-  min-width:0 !important;
-  max-width:max-content !important;
-  flex:0 0 auto !important;
-  padding-left:14px !important;
-  padding-right:14px !important;
-  box-sizing:border-box !important;
-  white-space:nowrap !important;
-}
-#v1913ExportTopRow{justify-content:flex-start !important; gap:10px !important;}
-#records .filter-actions>div.filter-actions{gap:8px !important;}
-@media(max-width:760px){
-  #v1913ExportTopRow{justify-content:flex-start !important; gap:8px !important; flex-wrap:wrap !important;}
-  #v1913ExportTopRow > button,
-  #fitmentExportBtn{padding-left:12px !important;padding-right:12px !important;}
-}
-</style>
-<style id="v26-export-alignment-fix">
-/* V26 — Align export controls with the filter/action controls below. */
-#v1913ExportTopRow{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-start !important;
-  gap:10px !important;
-  width:100% !important;
-  margin:0 0 14px !important;
-  padding:0 !important;
-  box-sizing:border-box !important;
-}
-#v1913ExportTopRow > button,
-#v1913ExportTopRow #reports,
-#v1913ExportTopRow #selectedExportBtn1912,
-#v1913ExportTopRow #v185SubDealerExport{
-  flex:0 0 auto !important;
-  width:auto !important;
-  min-width:0 !important;
-  max-width:fit-content !important;
-  height:42px !important;
-  min-height:42px !important;
-  margin:0 !important;
-  padding:0 14px !important;
-  border-radius:12px !important;
-  box-sizing:border-box !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  white-space:nowrap !important;
-}
-/* Keep the export row visually aligned with the controls immediately below. */
-#records .filter-actions > div.filter-actions,
-#records .filter-actions > .filter-actions{
-  display:flex !important;
-  align-items:center !important;
-  gap:8px !important;
-}
-@media(max-width:760px){
-  #v1913ExportTopRow{
-    flex-wrap:wrap !important;
-    gap:8px !important;
-  }
-  #v1913ExportTopRow > button,
-  #v1913ExportTopRow #reports,
-  #v1913ExportTopRow #selectedExportBtn1912,
-  #v1913ExportTopRow #v185SubDealerExport{
-    height:40px !important;
-    min-height:40px !important;
-    padding:0 12px !important;
-  }
-}
-</style>
 
-<style id="v27-export-spacing-fix">
-/* V27: keep export buttons visually separated from the records-card outline. */
-#recordsSection #v1913ExportTopRow,
-#v1913ExportTopRow{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-start !important;
-  gap:10px !important;
-  flex-wrap:wrap !important;
-  width:100% !important;
-  box-sizing:border-box !important;
-  margin:14px 0 16px !important;
-  padding:0 12px !important;
-  overflow:visible !important;
-}
-#recordsSection #v1913ExportTopRow > button,
-#v1913ExportTopRow > button{
-  flex:0 0 auto !important;
-  width:auto !important;
-  min-width:max-content !important;
-  max-width:100% !important;
-  height:44px !important;
-  min-height:44px !important;
-  padding:0 16px !important;
-  margin:0 !important;
-  border-radius:12px !important;
-  box-sizing:border-box !important;
-}
-@media(max-width:760px){
-  #recordsSection #v1913ExportTopRow,
-  #v1913ExportTopRow{
-    justify-content:flex-start !important;
-    padding:0 10px !important;
-    gap:8px !important;
-  }
-  #recordsSection #v1913ExportTopRow > button,
-  #v1913ExportTopRow > button{
-    flex:0 0 auto !important;
-    width:auto !important;
-    max-width:calc(100% - 4px) !important;
-  }
-}
-</style>
 
-<style id="v28-export-heading-alignment">
-/* V28 — align Export toolbar with the Vehicle / HSRP records heading. */
-#records > #v1913ExportTopRow,
-#recordsSection #v1913ExportTopRow,
-#v1913ExportTopRow{
-  box-sizing:border-box !important;
-  width:100% !important;
-  margin:12px 0 16px !important;
-  padding:0 20px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-start !important;
-  gap:10px !important;
-  flex-wrap:wrap !important;
-  overflow:visible !important;
-}
-#records > #v1913ExportTopRow > button,
-#v1913ExportTopRow > button{
-  flex:0 0 auto !important;
-  width:max-content !important;
-  min-width:0 !important;
-  max-width:100% !important;
-  height:42px !important;
-  min-height:42px !important;
-  margin:0 !important;
-  padding:0 14px !important;
-  border-radius:12px !important;
-  box-sizing:border-box !important;
-  white-space:nowrap !important;
-}
-@media(max-width:760px){
-  #records > #v1913ExportTopRow,
-  #recordsSection #v1913ExportTopRow,
-  #v1913ExportTopRow{
-    margin:10px 0 14px !important;
-    padding:0 15px !important;
-    gap:8px !important;
-  }
-  #records > #v1913ExportTopRow > button,
-  #v1913ExportTopRow > button{
-    height:40px !important;
-    min-height:40px !important;
-    padding:0 12px !important;
-  }
-}
-</style>
-<style id="v29-fitment-export-ui-final">
-/* V29 — Fitment Dealer action buttons: compact, uniform, label-sized. */
-#fitment .fitment-filters{
-  grid-template-columns:minmax(150px,1.2fr) minmax(150px,1.2fr) minmax(160px,1.25fr) auto auto auto !important;
-  column-gap:8px !important;
-  row-gap:8px !important;
-  align-items:end !important;
-}
-#fitment .fitment-actions{display:contents !important;}
-#fitment .fitment-actions button,
-#fitment #fitmentApplyBtn,
-#fitment #fitmentClearBtn,
-#fitment #fitmentExportBtn{
-  width:max-content !important;
-  min-width:0 !important;
-  max-width:max-content !important;
-  height:34px !important;
-  min-height:34px !important;
-  padding:6px 14px !important;
-  margin:0 !important;
-  box-sizing:border-box !important;
-  border-radius:9px !important;
-  white-space:nowrap !important;
-  align-self:end !important;
-}
-#fitment #fitmentExportBtn{
-  padding-left:14px !important;
-  padding-right:14px !important;
-}
-@media(max-width:760px){
-  #fitment .fitment-filters{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-  }
-  #fitment .fitment-actions button,
-  #fitment #fitmentApplyBtn,
-  #fitment #fitmentClearBtn,
-  #fitment #fitmentExportBtn{
-    width:max-content !important;
-    max-width:100% !important;
-    height:34px !important;
-    min-height:34px !important;
-    padding:6px 12px !important;
-  }
-}
-@media(max-width:430px){
-  #fitment .fitment-filters{
-    grid-template-columns:1fr 1fr !important;
-  }
-}
-</style>
 
-<style id="v46-clear-filters-final-round">
-/* V46 FINAL: force the actual Clear Filters control to a compact circular X. */
-#v44ClearFiltersRoundX,
-#v194ActionGroup button[aria-label="Clear filters"],
-#v179ActionGroup button[aria-label="Clear filters"]{
-  width:38px!important;
-  min-width:38px!important;
-  max-width:38px!important;
-  height:38px!important;
-  min-height:38px!important;
-  max-height:38px!important;
-  padding:0!important;
-  margin:0!important;
-  border-radius:50%!important;
-  box-sizing:border-box!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  font-size:0!important;
-  line-height:0!important;
-  overflow:hidden!important;
-  white-space:nowrap!important;
-  flex:0 0 38px!important;
-}
-#v44ClearFiltersRoundX::before,
-#v194ActionGroup button[aria-label="Clear filters"]::before,
-#v179ActionGroup button[aria-label="Clear filters"]::before{
-  content:"×"!important;
-  display:block!important;
-  font-size:27px!important;
-  line-height:1!important;
-  font-weight:400!important;
-  transform:translateY(-1px);
-}
-</style>
+
+
+
+
+
+
+
 <script id="v46-clear-filters-final-round-js">
 (function(){
   function force(){
@@ -6471,258 +6795,13 @@ button[id*="export"]{
   window.addEventListener('resize',force);
 })();
 </script>
-<style id="v48-clear-water-glass-final">
-/* V48 — Final clear-water Liquid Glass + circular Clear Filters. Visual only. */
-:root{--v48-glass:rgba(255,255,255,.20);--v48-glass-head:rgba(255,255,255,.10)}
-.card,.stat{
-  background:rgba(255,255,255,.20)!important;
-  border:1px solid rgba(255,255,255,.62)!important;
-  box-shadow:0 14px 42px rgba(25,72,111,.12),inset 0 1px rgba(255,255,255,.72)!important;
-  backdrop-filter:blur(26px) saturate(150%)!important;
-  -webkit-backdrop-filter:blur(26px) saturate(150%)!important;
-}
-.card-head{background:rgba(255,255,255,.08)!important;border-bottom:1px solid rgba(255,255,255,.30)!important}
-.card-body{background:transparent!important}
-.notice{background:rgba(255,255,255,.16)!important;border-color:rgba(255,255,255,.46)!important;backdrop-filter:blur(18px) saturate(145%)!important;-webkit-backdrop-filter:blur(18px) saturate(145%)!important}
-.upload,.map,.auto-import-source,.fitment-group{background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.55)!important;backdrop-filter:blur(18px) saturate(145%)!important;-webkit-backdrop-filter:blur(18px) saturate(145%)!important}
-.table-wrap{background:rgba(255,255,255,.10)!important;border-color:rgba(255,255,255,.48)!important;backdrop-filter:blur(18px) saturate(140%)!important;-webkit-backdrop-filter:blur(18px) saturate(140%)!important}
-th{background:rgba(235,247,253,.38)!important}
-td{background:rgba(255,255,255,.08)!important}
-tbody tr:hover{background:rgba(255,255,255,.25)!important}
-/* Actual Clear Filters button: circular X, no text, independent of legacy button rules. */
-#records .filter-actions button[onclick*="clearFilters"],
-#vehicleRecords .filter-actions button[onclick*="clearFilters"],
-#v44ClearFiltersRoundX,
-#v194ActionGroup button[aria-label="Clear filters"],
-#v179ActionGroup button[aria-label="Clear filters"]{
-  width:38px!important;height:38px!important;min-width:38px!important;max-width:38px!important;
-  min-height:38px!important;max-height:38px!important;padding:0!important;
-  margin:0!important;border-radius:50%!important;
-  border:1px solid rgba(255,255,255,.78)!important;
-  background:rgba(255,255,255,.30)!important;color:transparent!important;
-  box-shadow:0 6px 16px rgba(32,88,133,.13),inset 0 1px rgba(255,255,255,.82)!important;
-  display:inline-flex!important;align-items:center!important;justify-content:center!important;
-  overflow:hidden!important;line-height:0!important;font-size:0!important;
-}
-#records .filter-actions button[onclick*="clearFilters"]::before,
-#vehicleRecords .filter-actions button[onclick*="clearFilters"]::before,
-#v44ClearFiltersRoundX::before,
-#v194ActionGroup button[aria-label="Clear filters"]::before,
-#v179ActionGroup button[aria-label="Clear filters"]::before{
-  content:"×"!important;display:block!important;color:#255676!important;font-size:27px!important;font-weight:400!important;line-height:34px!important;font-family:Arial,sans-serif!important;
-}
-#records .filter-actions button[onclick*="clearFilters"]:hover,
-#vehicleRecords .filter-actions button[onclick*="clearFilters"]:hover,
-#v44ClearFiltersRoundX:hover,
-#v194ActionGroup button[aria-label="Clear filters"]:hover,
-#v179ActionGroup button[aria-label="Clear filters"]:hover{
-  transform:translateY(-1px)!important;background:rgba(255,255,255,.44)!important;box-shadow:0 8px 20px rgba(32,88,133,.18),inset 0 1px rgba(255,255,255,.9)!important;
-}
-</style>
 
-<style id="v54-fitment-clear-spacing-final">
-/* V54: HSRP Fitment Clear button spacing — keep equal breathing room from both sides. */
-html body #fitmentClearBtn{
-  width:calc(100% - 8px)!important;
-  margin-left:4px!important;
-  margin-right:4px!important;
-  box-sizing:border-box!important;
-}
-@media(max-width:720px){
-  html body #fitmentClearBtn{
-    width:calc(100% - 8px)!important;
-    margin-left:4px!important;
-    margin-right:4px!important;
-  }
-}
-</style>
-<style id="v57-card-only-liquid-glass-final">
-/* V58: Clear liquid-glass page background. No frosted/blurred background; cards remain unchanged. */
-html body{
-  background:
-    radial-gradient(circle at 12% 8%, rgba(255,255,255,.52) 0, rgba(255,255,255,0) 34%),
-    radial-gradient(circle at 88% 18%, rgba(166,220,255,.28) 0, rgba(166,220,255,0) 36%),
-    linear-gradient(135deg, rgba(214,238,251,.78), rgba(235,246,253,.62)) !important;
-}
-html body::before{
-  display:block !important;
-  content:"" !important;
-  position:fixed !important;
-  inset:0 !important;
-  pointer-events:none !important;
-  background:linear-gradient(120deg, rgba(255,255,255,.16), rgba(255,255,255,0) 45%, rgba(132,202,238,.10)) !important;
-  z-index:0 !important;
-}
-html body .app{background:transparent !important;}
-html body main{background:transparent !important;}
 
-/* Clear, water-like glass cards with enough contrast from the page background. */
-html body .card,
-html body .stat,
-html body .settings-card,
-html body .fitment-group,
-html body .notice,
-html body .upload,
-html body .map,
-html body .auto-import-source,
-html body .table-wrap{
-  background:rgba(255,255,255,.34) !important;
-  border:1px solid rgba(255,255,255,.72) !important;
-  box-shadow:0 14px 34px rgba(48,92,125,.12), inset 0 1px 0 rgba(255,255,255,.88) !important;
-  backdrop-filter:blur(24px) saturate(145%) !important;
-  -webkit-backdrop-filter:blur(24px) saturate(145%) !important;
-}
-html body .card-head{background:rgba(255,255,255,.18) !important;border-bottom:1px solid rgba(255,255,255,.48) !important;}
-html body .card-body{background:transparent !important;}
-html body .table-wrap{background:rgba(255,255,255,.24) !important;}
-html body .table-wrap th{background:rgba(220,239,249,.38) !important;}
-html body .table-wrap td{background:rgba(255,255,255,.12) !important;}
-html body .notice{background:rgba(255,255,255,.24) !important;}
-</style>
-<style id="v59-sidebar-deep-blue-liquid-glass">
-/* V59: Deep translucent blue Liquid Glass sidebar — visual polish only. */
-html body .sidebar{
-  background:
-    linear-gradient(165deg, rgba(35,105,157,.62), rgba(10,61,105,.52) 58%, rgba(18,78,123,.48)) !important;
-  border:1px solid rgba(255,255,255,.62) !important;
-  box-shadow:0 16px 38px rgba(15,61,101,.18), inset 0 1px 0 rgba(255,255,255,.72) !important;
-  backdrop-filter:blur(26px) saturate(155%) !important;
-  -webkit-backdrop-filter:blur(26px) saturate(155%) !important;
-}
-html body .sidebar .side-brand{
-  background:rgba(255,255,255,.16) !important;
-  border-color:rgba(255,255,255,.42) !important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.68), 0 8px 20px rgba(14,60,99,.08) !important;
-}
-html body .sidebar .side-app-name{color:#f7fbff !important;text-shadow:0 1px 2px rgba(5,35,62,.22) !important;}
-html body .sidebar .side-brand p{color:rgba(231,244,255,.84) !important;}
-html body .sidebar .nav-label{
-  color:rgba(232,246,255,.90) !important;
-  background:rgba(255,255,255,.10) !important;
-  border-color:rgba(255,255,255,.34) !important;
-  box-shadow:inset 0 1px rgba(255,255,255,.22) !important;
-}
-html body .sidebar .nav a{color:rgba(239,249,255,.94) !important;}
-html body .sidebar .nav a:hover{
-  background:rgba(255,255,255,.14) !important;
-  border-color:rgba(255,255,255,.40) !important;
-  color:#fff !important;
-  box-shadow:inset 0 1px rgba(255,255,255,.25), 0 5px 14px rgba(5,44,77,.10) !important;
-}
-html body .sidebar .nav a.active{
-  background:linear-gradient(100deg,rgba(45,132,236,.94),rgba(104,113,247,.82)) !important;
-  border-color:rgba(255,255,255,.62) !important;
-  box-shadow:0 9px 24px rgba(20,86,168,.26),inset 0 1px rgba(255,255,255,.42) !important;
-}
-html body .sidebar .side-footer{
-  background:rgba(255,255,255,.12) !important;
-  border-color:rgba(255,255,255,.32) !important;
-  color:rgba(226,243,255,.82) !important;
-  box-shadow:inset 0 1px rgba(255,255,255,.22) !important;
-}
-html body .sidebar .side-footer strong{color:#f5fbff !important;}
-html body .sidebar .side-footer a{color:#d8efff !important;}
-@media(max-width:1100px){
-  html body .sidebar{background:linear-gradient(165deg,rgba(35,105,157,.66),rgba(10,61,105,.56)) !important;}
-}
-@media(max-width:720px){
-  html body .sidebar{background:linear-gradient(165deg,rgba(35,105,157,.68),rgba(10,61,105,.58)) !important;}
-}
-@media(prefers-reduced-transparency:reduce){
-  html body .sidebar{background:#164f7d !important;}
-}
-</style>
-<style id="v61-clean-sky-blue-glass-sidebar">
-/* V61 — Clean Sky Blue Glass Sidebar: visual-only, based on V60. */
-html body .sidebar{
-  background:linear-gradient(160deg,rgba(205,235,255,.76),rgba(160,211,244,.58)) !important;
-  border:1px solid rgba(255,255,255,.84) !important;
-  box-shadow:0 18px 42px rgba(52,126,180,.16),inset 0 1px rgba(255,255,255,.94) !important;
-  backdrop-filter:blur(22px) saturate(145%) !important;
-  -webkit-backdrop-filter:blur(22px) saturate(145%) !important;
-}
-html body .sidebar .side-brand{
-  background:rgba(235,248,255,.34) !important;
-  border-color:rgba(255,255,255,.78) !important;
-  box-shadow:inset 0 1px rgba(255,255,255,.9),0 8px 22px rgba(54,125,174,.10) !important;
-}
-html body .sidebar .side-app-name{color:#164d73 !important;text-shadow:none !important;}
-html body .sidebar .side-brand p{color:#4b718b !important;}
-html body .sidebar .nav-label{color:#245b7f !important;background:rgba(239,250,255,.34) !important;border-color:rgba(255,255,255,.78) !important;}
-html body .sidebar .nav a{color:#174d70 !important;}
-html body .sidebar .nav a:hover{background:rgba(255,255,255,.38) !important;border-color:rgba(255,255,255,.78) !important;box-shadow:inset 0 1px rgba(255,255,255,.9),0 6px 16px rgba(59,135,184,.08) !important;}
-html body .sidebar .nav a.active{background:linear-gradient(100deg,rgba(45,137,235,.94),rgba(106,113,242,.86)) !important;color:#fff !important;box-shadow:0 10px 26px rgba(57,124,220,.22),inset 0 1px rgba(255,255,255,.5) !important;}
-html body .sidebar .side-footer{background:rgba(239,250,255,.30) !important;border-color:rgba(255,255,255,.74) !important;color:#52748c !important;}
-html body .sidebar .side-footer strong{color:#184f72 !important;}
-html body .sidebar .side-footer a{color:#2878b8 !important;}
-@media(max-width:1100px){html body .sidebar{background:linear-gradient(180deg,rgba(208,237,255,.82),rgba(168,216,246,.64)) !important;}}
-@media(max-width:720px){html body .sidebar{background:linear-gradient(180deg,rgba(212,240,255,.86),rgba(176,220,248,.70)) !important;}}
-@media(prefers-reduced-transparency:reduce){html body .sidebar{background:#cfeafa !important;}}
-</style>
 
-<style id="v66-sidebar-hover-readable-final">
-/* V66 — Sidebar hover readability fix. Keep hover text/icons dark and readable. */
-html body .sidebar .nav a:hover,
-html body .sidebar .nav a:focus-visible{
-  background:rgba(177,220,249,.42) !important;
-  border-color:rgba(255,255,255,.84) !important;
-  color:#123f63 !important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.90),0 6px 16px rgba(42,112,166,.10) !important;
-  transform:translateX(1px) !important;
-}
-html body .sidebar .nav a:hover span,
-html body .sidebar .nav a:hover i,
-html body .sidebar .nav a:focus-visible span,
-html body .sidebar .nav a:focus-visible i{
-  color:#123f63 !important;
-}
-html body .sidebar .nav a.active,
-html body .sidebar .nav a.active:hover,
-html body .sidebar .nav a.active:focus-visible{
-  background:linear-gradient(100deg,#2d8cf0,#706df2) !important;
-  color:#fff !important;
-  border-color:rgba(255,255,255,.74) !important;
-  box-shadow:0 10px 26px rgba(47,116,216,.25),inset 0 1px 0 rgba(255,255,255,.55) !important;
-  transform:none !important;
-}
-html body .sidebar .nav a.active span,
-html body .sidebar .nav a.active i,
-html body .sidebar .nav a.active:hover span,
-html body .sidebar .nav a.active:hover i{
-  color:#fff !important;
-}
-</style>
 
-<style id="v68-multiple-registration-match-search-records">
-/* V68 — Make Multiple Registration Search field visually match Search records. */
-#records #multiRegSearch1913{
-  height:40px!important;
-  min-height:40px!important;
-  max-height:40px!important;
-  box-sizing:border-box!important;
-  padding:10px 12px!important;
-  border:1px solid var(--line)!important;
-  border-radius:10px!important;
-  background:rgba(255,255,255,.72)!important;
-  color:var(--navy)!important;
-  font:600 12px Inter,Segoe UI,Arial,sans-serif!important;
-  line-height:20px!important;
-  resize:none!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.55)!important;
-}
-#records #multiRegSearch1913::placeholder{
-  color:var(--muted)!important;
-  font-weight:500!important;
-}
-#records #multiRegSearch1913:focus{
-  outline:none!important;
-  border-color:rgba(55,132,205,.55)!important;
-  box-shadow:0 0 0 3px rgba(55,132,205,.10), inset 0 1px 0 rgba(255,255,255,.55)!important;
-}
-/* Keep the search/clear controls aligned to the same 40px control height. */
-#records .multi-reg-buttons-1913 button{
-  height:40px!important;
-  min-height:40px!important;
-  max-height:40px!important;
-}
-</style>
+
+
+
+
+
+

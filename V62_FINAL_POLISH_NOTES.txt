@@ -1,0 +1,10 @@
+V62 FINAL POLISH
+
+Base: V61 Clean Sky Blue Glass Sidebar
+Version: 1.9.17
+
+Changes:
+- Sidebar sky-blue glass darkened slightly for stronger professional separation.
+- Kept clear liquid-glass treatment, not grey/dark navy.
+- Preserved branding card, active navigation, main background, cards and functionality.
+- Version metadata updated to 1.9.17 for the released build.

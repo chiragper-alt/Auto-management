@@ -1,0 +1,7 @@
+V71 PERMANENT UI STRUCTURE FIX
+- Consolidated all legacy CSS into one valid <style> block in <head>.
+- Removed malformed/extra closing style tags and repaired missing style closures.
+- Moved CSS that had been embedded after body/scripts back into the head.
+- Added permanent desktop sidebar independent vertical scrolling.
+- Added validate-ui.js and made the release script run the UI structure validator before electron-builder.
+- Preserved existing functionality and requested UI changes.

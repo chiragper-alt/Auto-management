@@ -1,0 +1,14 @@
+Auto Management v1.9.17 - V64 Merge Excel
+
+Feature added:
+- New sidebar Menu option: Merge Excel
+- Opens a separate Merge Excel page.
+- Select multiple XLSX/XLS/CSV files.
+- Uses the first worksheet from each file.
+- Requires identical column headers and column order across selected files.
+- Appends all non-empty data rows under a single header.
+- Exports one XLSX file named Merged_Excel_YYYYMMDD.xlsx.
+- Original files are not modified.
+- Files are processed locally in the app.
+
+Existing functionality preserved.

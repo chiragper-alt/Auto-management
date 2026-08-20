@@ -1,21 +1,31 @@
-# v1.9.16 Release
+# Auto Management v1.9.18 — Windows Auto-Update Release
 
-1. Copy this package's contents into `chiragper-alt/Auto-management`.
-2. Commit/push.
-3. Verify `package.json` version = `1.9.15`.
-4. Create/push Git tag `v1.9.16`.
-5. GitHub Actions builds and publishes the Windows NSIS installer.
+## Release package
+Base: v1.9.17 V78 confirmed working UI
+Release: **v1.9.18**
 
-Expected asset:
-`Auto-Management-Setup-1.9.15.exe`
+## Included
+- Complete Electron source project
+- `main.js` / `preload.js`
+- `app.html` with V78 UI and inline embedded branding logo
+- `package.json` version 1.9.18
+- Electron Builder NSIS configuration
+- GitHub Actions Windows release workflow
+- Auto-update support via `electron-updater`
+- Required `resources/` icons and installer icon
+- UI validation script
 
-Future:
-- Change version to 1.9.16.
-- Commit/push.
-- Tag `v1.9.16`.
-- GitHub Actions publishes the new release.
-- Installed users receive an update prompt through electron-updater.
+## GitHub release procedure
+1. Upload/replace the repository files with this complete source package.
+2. Commit the changes to `main`.
+3. Create and push tag **`v1.9.18`**.
+4. GitHub Actions workflow `Auto Management Windows Release` starts automatically.
+5. The workflow runs `npm install`, validates the UI, builds the Windows NSIS installer, and publishes the release using `GITHUB_TOKEN`.
+6. Confirm the workflow is green.
+7. Confirm GitHub Release **v1.9.18** contains `Auto-Management-Setup-1.9.18.exe` and the generated update metadata (`latest.yml` and blockmap).
 
-Important:
-- Test the generated installer on a clean Windows PC first.
-- Keep user data outside the installation directory for full data safety.
+## Auto-update behavior
+Existing v1.9.17 installations will check the GitHub latest release. When v1.9.18 is available, the app can download the update and then install/restart using the existing updater flow.
+
+## Important
+Do not manually change the tag to a different version. Keep `package.json` version and Git tag aligned at `1.9.18` / `v1.9.18`.

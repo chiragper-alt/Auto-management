@@ -71,6 +71,29 @@ ipcMain.handle("check-for-update-manual", async () => {
     return { ok: false, currentVersion: app.getVersion(), message: "Unable to check for updates right now." };
   }
 });
+ipcMain.handle("check-for-update-ui", async () => {
+  return await new Promise(async (resolve) => {
+    let settled = false;
+    const finish = (result) => { if (!settled) { settled = true; resolve(result); } };
+    const onAvailable = (info) => finish({ ok:true, hasUpdate:true, currentVersion:app.getVersion(), latestVersion:String(info.version||"") });
+    const onNotAvailable = (info) => finish({ ok:true, hasUpdate:false, currentVersion:app.getVersion(), latestVersion:String(info?.version||app.getVersion()) });
+    const onError = () => finish({ ok:false, message:"Unable to check for updates right now." });
+    autoUpdater.once("update-available", onAvailable);
+    autoUpdater.once("update-not-available", onNotAvailable);
+    autoUpdater.once("error", onError);
+    try { await autoUpdater.checkForUpdates(); } catch (e) { onError(); }
+    setTimeout(() => finish({ ok:true, hasUpdate:false, currentVersion:app.getVersion(), latestVersion:app.getVersion() }), 15000);
+  });
+});
+ipcMain.handle("download-update-ui", async () => {
+  try { autoUpdater.autoDownload = false; await autoUpdater.downloadUpdate(); return {ok:true}; }
+  catch(e){ return {ok:false,message:e?.message||"Unable to download update."}; }
+});
+ipcMain.handle("install-update-ui", async () => {
+  try { autoUpdater.quitAndInstall(); return {ok:true}; }
+  catch(e){ return {ok:false,message:e?.message||"Unable to install update."}; }
+});
+
 
 app.whenReady().then(() => {
   Menu.setApplicationMenu(null);

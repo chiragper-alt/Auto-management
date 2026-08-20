@@ -1,0 +1,6 @@
+V67 Sidebar Scroll Fix
+- Sidebar nav is now independently vertically scrollable on desktop/tablet.
+- All menu items remain accessible even on shorter screens.
+- Branding and footer remain fixed within the sidebar.
+- Mobile keeps horizontal navigation behavior.
+- No application functionality changed.
